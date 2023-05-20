@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
   <head>
   	<meta charset="UTF-8">
     <title>Consejos de Salud para Mascotas</title>
-    <link rel="stylesheet" href="../static/css/estilos.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
   </head>
   <body>
-    <header>
-      <h1>Consejos de Salud para Mascotas</h1>
-      <img src="../static/images/petstore.jpg" alt="PetStore" title="PetStore"> 
-    </header>
-    <nav>
-      <ul>
-        <li style="display: inline-block"><a href="index.html">Inicio</a></li>
-        <li style="display: inline-block"><a href="Productos.html">Productos</a></li>
-        <li style="display: inline-block"><a href="Consejos_de_salud.html">Consejos de Salud</a></li>
-        <li style="display: inline-block"><a href="Servicio_de_paseos.html">Servicio de Paseos</a></li>
-        <li style="display: inline-block"><a href="Sucursales.html">Sucursales</a></li>
-        <li style="display: inline-block"><a href="contacto.html">Contáctanos</a></li>
-      </ul>
-    </nav>
+    <h1>Consejos de Salud para Mascotas</h1>
+    <header th:replace="layouts/header :: header"></header>
+    <nav th:replace="layouts/nav :: nav"></nav>
     <section>
       <article>
         <h2>Alimentación Balanceada</h2>
@@ -34,8 +23,6 @@
         <p>El cuidado dental adecuado es importante para prevenir enfermedades en las encías y otros problemas de salud oral en tu mascota. Consulta con tu veterinario para obtener recomendaciones sobre cómo cepillar los dientes de tu mascota y mantener su higiene oral.</p>
       </article>
     </section>
-    <footer>
-      <p>Derechos de autor © 2023 - Pet strore - Diseñado por Grupo 45 - Jujuy - República Argentina</p>
-    </footer>
-  </body>
+    	<footer th:replace="layouts/footer :: footer"></footer>
+  	</body>
 </html>

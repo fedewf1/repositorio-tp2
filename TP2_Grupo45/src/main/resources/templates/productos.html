@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Productos</title>
-	    <link rel="stylesheet" href="../static/css/estilos.css">
+	    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 	</head>
-	
 	<body>
-	    <header>
-	        <h1>Productos</h1>
-	        <img src="../static/images/petstore.jpg" alt="PetStore" title="PetStore"> 
-	        <nav>
-			<ul>
-				<li style="display: inline-block"><a href="index.html" target="_blank">Inicio</a></li>	
-				<li style="display: inline-block"><a href="productos.html" target="_blank">Productos</a></li>	
-				<li style="display: inline-block"><a href="consejos_de_salud.html" target="_blank">Consejos de salud</a></li>	
-				<li style="display: inline-block"><a href="servicio_de_paseos.html" target="_blank">Servicio de Paseo</a></li>	
-				<li style="display: inline-block"><a href="sucursales.html" target="_blank">Sucursales</a></li>	
-				<li style="display: inline-block"><a href="contacto.html" target="_blank">Contacto</a></li>	
-			</ul>
-		</nav>
-	    </header>
+		<h1>Productos</h1>
+	    <header th:replace="layouts/header :: header"></header>
+	    <nav th:replace="layouts/nav :: nav"></nav>
 	    <main>
 	        <section>
 	            <h2>Nuestros productos</h2>
@@ -58,9 +46,6 @@
 	            </ul>
 	        </section>
 	    </main>
-	    <footer>
-	        <p>Copyright 2023 - Petstore - 
-	        Diseñado por Grupo 45 – Jujuy – República Argentina</p>
-	    </footer>
+	    <footer th:replace="layouts/footer :: footer"></footer>
 	</body>
 </html>
