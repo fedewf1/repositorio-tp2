@@ -1,0 +1,19 @@
+<!-- nav.html es una fragmento de codigo que se repite en todas las paginas, por eso se la vuelve un layaut-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+    </head>
+	<body>
+   		<nav  th:fragment="nav">
+			<ul>
+				<li style="display: inline-block"><a href="/" >Inicio</a></li>	
+				<li style="display: inline-block"><a href="productos.html" >Productos</a></li>	
+				<li style="display: inline-block"><a href="consejos_de_salud.html" >Consejos de salud</a></li>	
+				<li style="display: inline-block"><a href="servicio_de_paseos.html" >Servicio de Paseo</a></li>	
+				<li style="display: inline-block"><a href="sucursales.html" >Sucursales</a></li>	
+				<li style="display: inline-block"><a href="contacto.html" >Contacto</a></li>	
+			</ul>
+		</nav>
+   	</body>
+</html>
