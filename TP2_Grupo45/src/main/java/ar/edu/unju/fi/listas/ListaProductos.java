@@ -7,13 +7,16 @@ public class ListaProductos {
 	private List<Producto> productos;
 	public ListaProductos() {
 		productos = new ArrayList<Producto>();
-		//nombre;codigo;precio;categoria;descuento;
-		productos.add(new Producto("Dog Show", 6585, 5000, "Alimento Balanceado", 50));
-		productos.add(new Producto("Pedigree", 6520, 9000, "Alimento Balanceado", 0));
-		productos.add(new Producto("Ken-L Ration", 6500, 13000, "Alimento Balanceado", 20));
-		productos.add(new Producto("Sieger Super Premium", 6785, 13300, "Alimento Balanceado", 0));
-		
+		// Inicialización de la lista de productos con valores predeterminados
+		//                         nombre           ;codigo;precio;categoria;descuento;
+		productos.add(new Producto("Buzo para perro", 6585, 6500, "Ropa", 50,"/images/Buzo_para_perros.jpg"));
+		productos.add(new Producto("Moises (con almohadón, plato y pelota)", 6520, 4500, "Camas y Colchones", 0,"/images/moises_mascota.jpeg"));
+		productos.add(new Producto("Mochila tipo burbuja (Pokemon)", 6500, 13000, "Mochilas, Bolsos y Transportadores", 20,"/images/mochila_pokemon.jpg"));
+		productos.add(new Producto("Set de paseo reforzado (modelo pitbull)", 6785, 13300, "Correas", 0,"/images/set_paseo_pitbull.jpg"));
+		productos.add(new Producto("Alimento para gatos, marca Whiskas", 6785, 11000, "Alimentos", 0,"/images/whiskas.jpg"));
+		productos.add(new Producto("Jaula gaiola para hamsters", 6785, 13500, "Jaulas, Casas, Peceras", 0,"/images/gaiola_hamster.jpg"));
 	}
+	// Método para obtener la lista de productos
 	public List<Producto> getProductos() {
 		// TODO Auto-generated method stub
 		return productos;

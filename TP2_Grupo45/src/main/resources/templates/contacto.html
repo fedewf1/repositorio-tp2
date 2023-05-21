@@ -6,8 +6,8 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 	</head>
 	<body>	
-		<header th:replace="layouts/header :: header"></header>
-	 	<nav th:replace="layouts/nav :: nav"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+	 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 		
 			<h1>Contactenos</h1>
 			<p>3915 Av. General Belgrano, 388-499999<br>
@@ -31,6 +31,6 @@
 			<input type="submit" value="Enviar">
 		</form>
 		
-		<footer th:replace="layouts/footer :: footer"></footer>
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
 </html>
