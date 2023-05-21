@@ -7,56 +7,28 @@
 	</head>
 	<body>
 		<h1>Productos</h1>
-	    <header th:replace="layouts/header :: header"></header>
-	    <nav th:replace="layouts/nav :: nav"></nav>
+	    <header th:replace="~{layouts/header :: header}"></header>
+	    <nav th:replace="~{layouts/nav :: nav}"></nav>
 	    <a th:href="@{/productos/nuevo}">Nuevo Producto</a>
 	    <main>
 	        <section>
 	            <h2>Nuestros productos</h2>
 	            <ul>
-	                <li>
-	                	<h3>Ropa</h3>
-	                    <p>Buzo para perro, 100% algodon $6.500</p>
-	                    <img th:src="@{/images/Buzo_para_perros.jpg}"  alt="Buzo" title="Buzo">
-	                </li>
-	                <li>
-	                	<h3>Camas y Colchones</h3>
-	                    <p>Moises (con almohadón, plato y pelota) $4.500</p>
-	                    <img th:src="@{/images/moises_mascota.jpeg}"alt="Moises" title="Moises">
-	                </li>
-	                <li>
-	                	<h3>Mochilas, Bolsos y Transportadores</h3>
-	                    <p>Mochila tipo burbuja (Pokemon)</p>
-	                    <img th:src="@{/images/mochila_pokemon.jpg}" alt="Mochila" title="Mochila">
-	                </li>
-	                <li>
-	                	<h3>Correas</h3>
-	                    <p>Set de paseo reforzado (modelo pitbull) $11.000</p>
-	                    <img th:src="@{/images/set_paseo_pitbull.jpg}" alt="Set_Paseo" title="Set_Paseo">
-	                </li>
-	                <li>
-	                	<h3>Alimentos</h3>
-	                    <p>Alimento para gatos, marca Whiskas $5.000</p>
-	                    <img th:src="@{/images/whiskas.jpg}" alt="Whiskas" title="Whiskas">
-	                </li>
-	                <li>
-	                	<h3>Jaulas, Casas, Peceras</h3>
-	                    <p>Jaula gaiola para hamsters $13.500</p>
-	                    <img th:src="@{/images/gaiola_hamster.jpg}" alt="Gaiola" title="Gaiola">
-	                </li>
+	                <li th:each="produ : ${productos}">
+	                	<h3 th:text="${produ.categoria}"></h3>
+	                	<p><span th:text="${produ.nombre}"></span>, $<span th:text="${produ.precio}"></span>
+            			</p>
+	                    <img th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
+	                </li>    
 	            </ul>
 	        </section>
 	        <!-- Burcar, como hacer para que se vean imagenes en esta tabla-->
-	        <table>
-	        	<tr th:each="produ: ${productos}">
-					<td th:text="${produ. nombre}"></td>
-					<td th:text="${produ.codigo}"></td>
-					<td th:text="${produ.precio}"></td>
-					<td th:text="${produ.categoria}"></td>
-					<td th:text="${produ.descuento}"></td>
-				</tr>
-	        </table>
+	        
 	    </main>
-	    <footer th:replace="layouts/footer :: footer"></footer>
+	    <footer th:replace="~{layouts/footer :: footer}"></footer>
+	    <section>
+    
+</section>
+	    
 	</body>
 </html>

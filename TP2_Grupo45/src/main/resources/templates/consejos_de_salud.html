@@ -7,8 +7,8 @@
   </head>
   <body>
     <h1>Consejos de Salud para Mascotas</h1>
-    <header th:replace="layouts/header :: header"></header>
-    <nav th:replace="layouts/nav :: nav"></nav>
+    <header th:replace="@{layouts/header :: header}"></header>
+    <nav th:replace="@{layouts/nav :: nav}"></nav>
     <section>
       <article>
         <h2>Alimentación Balanceada</h2>
@@ -23,6 +23,6 @@
         <p>El cuidado dental adecuado es importante para prevenir enfermedades en las encías y otros problemas de salud oral en tu mascota. Consulta con tu veterinario para obtener recomendaciones sobre cómo cepillar los dientes de tu mascota y mantener su higiene oral.</p>
       </article>
     </section>
-    	<footer th:replace="layouts/footer :: footer"></footer>
+    	<footer th:replace="@{layouts/footer :: footer}"></footer>
   	</body>
 </html>

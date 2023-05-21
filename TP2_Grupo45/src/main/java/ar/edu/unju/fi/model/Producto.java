@@ -7,15 +7,17 @@ public class Producto {
     private double precio;
     private String categoria;
     private int descuento;
+    private String nombreImagen;
 
     // Constructor parametrizado
     
-    public Producto(String nombre, int codigo, double precio, String categoria, int descuento) {
+    public Producto(String nombre, int codigo, double precio, String categoria, int descuento, String nombreImagen) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.precio = precio;
         this.categoria = categoria;
         this.descuento = descuento;
+        this.nombreImagen = nombreImagen;
     }
 
     public Producto() {
@@ -62,8 +64,16 @@ public class Producto {
 	public void setDescuento(int descuento) {
 		this.descuento = descuento;
 	}
+	
+    public String getNombreImagen() {
+		return nombreImagen;
+	}
 
-    // Método para calcular el descuento
+	public void setNombreImagen(String nombreImagen) {
+		this.nombreImagen = nombreImagen;
+	}
+
+	// Método para calcular el descuento
     public double calcularDescuento() {
         if (descuento > 0 && descuento <= 50) {
             double descuentoPorcentaje = descuento / 100.0;

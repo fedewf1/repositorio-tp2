@@ -7,9 +7,9 @@
 	  
 	  <body>
 	  	<h1>Sucursales</h1>
-		<header th:replace="layouts/header :: header"></header>
-	 	<nav th:replace="layouts/nav :: nav"></nav>
-	    <table border="1" cellpadding="10" cellspacing="0" id="mi-tabla2">
+		<header th:replace="~{layouts/header :: header}"></header>
+	 	<nav th:replace="~{layouts/nav :: nav}"></nav>
+	    <table border="1"  id="mi-tabla2">
 	      <thead>
 	        <tr>
 	          <th>Sucursal</th>
@@ -41,6 +41,6 @@
 	        </tr>
 	      </tbody>
 	    </table>
-	    <footer th:replace="layouts/footer :: footer"></footer>
+	    <footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
 </html>
