@@ -60,12 +60,17 @@ public class ProductoController {
     		}
     	}
     	model.addAttribute("producto", productoEncontrado);
-    	model.addAtribute("edicion", edicion);
+    	model.addAttribute("edicion", edicion);
     	return"nuevo_producto";
     }
-    @PostMapping(/modificar)
+    @PostMapping("/modificar")
     public String modificaProducto(@ModelAttribute("producto")Producto producto) {
-    	
+    	for(Producto produ: listadoProductos.getProductos()) {
+    		if(produ.getCodigo().equals(producto.getCategoria())) {
+    			produ= producto;
+    		}
+    	}
+    	return "redirect:/productos/listado";
     }
 }
 
