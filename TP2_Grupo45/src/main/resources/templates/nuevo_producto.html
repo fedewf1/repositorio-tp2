@@ -2,23 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo Producto</title>
+    <title>Nuevo_Producto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 </head>
 <body>
     <h1>Nuevo Producto</h1>
-    
-    <form th:action="@{/guardarProducto}" method="post">
+    <header th:replace="~{layouts/header :: header}"></header>
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+    <form th:action="${edicion}?@{/productos/modificar}:@{/productos/guardar}" th:object="${producto}" method="post">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        
+        <input type="text" id="nombre" name="nombre" th:field="*{nombre}"><br><br>
         <label for="codigo">Código:</label>
-        <input type="number" id="codigo" name="codigo" required>
+        <input type="number" id="codigo" name="codigo" th:field="*{codigo}"><br><br>
         
         <label for="precio">Precio:</label>
-        <input type="number" step="0.01" id="precio" name="precio" required>
+        <input type="number" step="0.01" id="precio" name="precio" th:field="*{precio}"><br><br>
         
         <label for="categoria">Categoría:</label>
-        <select id="categoria" name="categoria">
+        <select id="categoria" name="categoria" th:field="*{categoria}">
             <option value="Alimento">Alimento</option>
             <option value="Juguete">Juguete</option>
             <option value="Vestimenta">Vestimenta</option>
@@ -26,9 +27,12 @@
         </select>
         
         <label for="descuento">Descuento:</label>
-        <input type="number" min="0" max="50" id="descuento" name="descuento" required>
+        <input type="number" min="0" max="50" id="descuento" name="descuento" th:field="*{descuento}"><br><br>
+        <p><input type="submit" class="button" value="Guardar"></p>
         
-        <button type="submit">Guardar</button>
     </form>
+    
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
 </body>
+
 </html>

@@ -10,25 +10,26 @@
 	    <header th:replace="~{layouts/header :: header}"></header>
 	    <nav th:replace="~{layouts/nav :: nav}"></nav>
 	    <a th:href="@{/productos/nuevo}">Nuevo Producto</a>
+	    
 	    <main>
 	        <section>
 	            <h2>Nuestros productos</h2>
 	            <ul>
 	                <li th:each="produ : ${productos}">
 	                	<h3 th:text="${produ.categoria}"></h3>
-	                	<p><span th:text="${produ.nombre}"></span>, $<span th:text="${produ.precio}"></span>
+	                	<p><span th:text="${produ.nombre}"></span>, $<span th:text="${produ.calcularDescuento()}"></span>
             			</p>
 	                    <img th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
+	                	<a th:href="@{/productos/modificar/}+${produ.codigo}">Editar Producto</a>
+	    				<a th:href="@{/productos/nuevo}">Eliminar Producto</a>
 	                </li>    
 	            </ul>
 	        </section>
 	        <!-- Burcar, como hacer para que se vean imagenes en esta tabla-->
 	        
 	    </main>
-	    <footer th:replace="~{layouts/footer :: footer}"></footer>
-	    <section>
-    
-</section>
 	    
+	    
+	    <footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
 </html>
