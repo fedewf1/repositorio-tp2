@@ -1,5 +1,4 @@
 package ar.edu.unju.fi.controller;
-import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.ArrayList;
 import ar.edu.unju.fi.listas.*;
 import ar.edu.unju.fi.model.Producto;
 
@@ -49,23 +47,41 @@ public class ProductoController {
         modelView.addObject("productos", listaProductos.getProductos());
         return modelView;
     }
-    @GetMapping("/modificar/{nombre}")
-    public String getModificarProductoPage(Model model, @PathVariable(value="nombre")String nombre) {
+    @GetMapping("/modificar/{codigo}")
+    public String getModificarProductoPage(Model model, @PathVariable(value="codigo")int codigo) {
     	Producto productoEncontrado = new Producto();
     	boolean edicion= true;
     	for(Producto produ : listaProductos.getProductos()){
-    		if(produ.getNombre().equals(nombre)) {
+    		if(produ.getCodigo()==(codigo)) {
     			productoEncontrado = produ;
     			break;
     		}
     	}
     	model.addAttribute("producto", productoEncontrado);
-    	model.addAtribute("edicion", edicion);
+    	model.addAttribute("edicion", edicion);
     	return"nuevo_producto";
     }
-    @PostMapping(/modificar)
+    @PostMapping("/modificar")
     public String modificaProducto(@ModelAttribute("producto")Producto producto) {
-    	
+    	for(Producto produ:listaProductos.getProductos()) {
+    		if(produ.getCodigo()==(producto.getCodigo())) {
+    			//produ= producto;
+    			produ.setCategoria(producto.getNombre());
+    			produ.setPrecio(producto.getPrecio());
+    			produ.setDescuento(producto.getDescuento() );
+    			produ.setNombreImagen(producto.getNombreImagen());
+    		}
+    	}
+    	return "redirect:/productos/listado";
+    }
+    @GetMapping("/eliminar/{codigo}")
+    public String eliminarProducto(@PathVariable(value="codigo") int codigo) {
+    	for(Producto produ:listaProductos.getProductos()) {
+    		if(produ.getCodigo()==(codigo)) {
+    			listaProductos.getProductos().remove(produ);
+    			break;
+    			}
+         }return "redirect:/productos/listado";
     }
 }
 

@@ -17,11 +17,11 @@
 	            <ul>
 	                <li th:each="produ : ${productos}">
 	                	<h3 th:text="${produ.categoria}"></h3>
-	                	<p><span th:text="${produ.nombre}"></span>, $<span th:text="${produ.calcularDescuento()}"></span>
+	                	<p><span th:text="${produ.nombre}"></span>, Precio $<span th:text="${produ.precio}"></span>, Precio con descuento $<span th:text="${produ.calcularDescuento()}"></span>
             			</p>
 	                    <img th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
 	                	<a th:href="@{/productos/modificar/}+${produ.codigo}">Editar Producto</a>
-	    				<a th:href="@{/productos/nuevo}">Eliminar Producto</a>
+	    				<a th:href="@{/productos/eliminar/}+${produ.codigo}">Eliminar Producto</a>
 	                </li>    
 	            </ul>
 	        </section>
