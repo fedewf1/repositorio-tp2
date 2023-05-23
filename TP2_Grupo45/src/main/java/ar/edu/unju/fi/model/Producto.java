@@ -76,11 +76,11 @@ public class Producto {
 	// Método para calcular el descuento
     public double calcularDescuento() {
         if (descuento > 0 && descuento <= 50) {
-            double descuentoPorcentaje = descuento / 100;
+            double descuentoPorcentaje = (double)descuento / 100;
             return precio - (precio * descuentoPorcentaje);
         } else {
-        	double descuentoPorcentaje = descuento / 100;
-            return precio - (precio * descuentoPorcentaje);
+        	//double descuentoPorcentaje = descuento / 100;
+            return precio;
         }
     }
 

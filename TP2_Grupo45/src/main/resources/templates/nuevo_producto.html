@@ -6,10 +6,11 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 </head>
 <body>
-    <h1>Nuevo Producto</h1>
+    <h1 th:text="${edicion}?'Modificar Producto':'Nuevo Producto'"></h1>
     <header th:replace="~{layouts/header :: header}"></header>
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
-    <form th:action="${edicion}?@{/productos/modificar}:@{/productos/guardar}" th:object="${producto}" method="post">
+	
+    <form th:action="${edicion}?@{/productos/modificar}:@{/productos/guardar}" th:object="${producto}" method="post"  id="mi-tabla">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" th:field="*{nombre}"><br><br>
         <label for="codigo">Código:</label>
@@ -21,14 +22,24 @@
         <label for="categoria">Categoría:</label>
         <select id="categoria" name="categoria" th:field="*{categoria}">
             <option value="Alimento">Alimento</option>
-            <option value="Juguete">Juguete</option>
+            <option value="Ropa">Ropa</option>
+            <option value="Camas y Colchones">Camas y Colchones</option>
+            <option value="Correas">Correas</option>
+            <option value="Jaulas,Casas,Peceras">Jaulas,Casas,Peceras</option>
             <option value="Vestimenta">Vestimenta</option>
             <option value="Cuidado">Cuidado</option>
         </select>
-        
+        <select id="nombreImagen" name="nombreImagen" th:field="*{nombreImagen}">
+            <option value="/images/Buzo_para_perros.jpg">Buzo para perros</option>
+            <option value="/images/moises_mascota.jpeg">Moises Mascota</option>
+            <option value="/images/mochila_pokemon.jpg">Mochila Pokemon</option>
+            <option value="/images/set_paseo_pitbull.jpg">Paseo Pitbull</option>
+            <option value="/images/whiskas.jpg">whiskas</option>
+            <option value="/images/gaiola_hamster.jpg">Gaiola Hamster</option>
+        </select>
         <label for="descuento">Descuento:</label>
         <input type="number" min="0" max="50" id="descuento" name="descuento" th:field="*{descuento}"><br><br>
-        <p><input type="submit" class="button" value="Guardar"></p>
+        <p><input type="submit" class="button" th:value="${edicion}?'Modificar':'Guardar'"></p>
         
     </form>
     
