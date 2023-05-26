@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.listas.*;
+import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.Sucursal;
 
 
@@ -63,32 +63,14 @@ public class SucursalController {
     }
     @PostMapping("/modificar")
     public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
-    	int ca;
     	for(Sucursal sucu:listaSucursales.getSucursales()) {
-    		
     		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
-    			ca=sucu.getCodigoSucursal();
-   //sucu.getCodigoSucursal()
-    			String numeroString = String.valueOf(ca);
-    			//produ= producto;
-    			sucu.setNombreSucursal(numeroString);
-    			sucu.setDireccion(numeroString);
-    			sucu.setTelefono(sucursal.getTelefono() );
-    			
+    			sucu.setNombreSucursal(sucursal.getNombreSucursal());
+    			sucu.setDireccion(sucursal.getDireccion());
+    			sucu.setTelefono(sucursal.getTelefono());
     			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
     			sucu.setHoraSabados(sucursal.getHoraSabados());
     			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-    		}else {
-    			sucu.setNombreSucursal(sucursal.getNombreSucursal());
-    			sucu.setDireccion(sucursal.getDireccion() );
-    			sucu.setTelefono(sucursal.getTelefono() );
-    			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-    			sucu.setHoraSabados(sucursal.getHoraSabados());
-    			//ca=sucu.getCodigoSucursal();
-    			//String numeroString = String.valueOf(ca);
-    			//sucu.setNombreSucursal(numeroString);
-    			//sucu.setDireccion(sucursal.getDireccion());
-    			//sucu.setTelefono(sucursal.getTelefono() );
     		}
     	}
     	return "redirect:/sucursales/listado";
@@ -103,4 +85,3 @@ public class SucursalController {
          }return "redirect:/sucursales/listado";
     }
 }
-

@@ -24,7 +24,10 @@
         
         <label for="horaSabados">Horarios Sabados:</label>
         <input type="text" id="horaSabados" name="horaSabados" th:field="*{horaSabados}"><br><br>
-        
+  		
+  		<label for="codigoSucursal">Codigo Sucursal:</label>
+        <input type="text" id="codigoSucursal" name="codigoSucursal" th:field="*{codigoSucursal}"><br><br>
+              
         <!--<label for="fecha">Fecha de Inicio:</label>
         <input type="date" id="fechaInicio" name="fechaInicio" th:field="*{fechaInicio}"><br><br>-->
         <p><input type="submit" class="button" th:value="${edicion}?'Modificar':'Guardar'"></p>
