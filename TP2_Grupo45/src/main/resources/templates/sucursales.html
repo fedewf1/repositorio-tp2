@@ -18,6 +18,7 @@
 	          <th>Teléfono</th>
 	          <th>Horarios</th>
 	          <th>Horarios Sabados</th>
+	          <th>Codigo Sucursal</th>
 	          <!--<th>Fecha de Inicio</th>-->
 	          </tr>
 	     
@@ -29,6 +30,7 @@
 	          <td th:text="${sucu.telefono}"></td>
 	          <td>Lunes a Viernes: <span th:text="${sucu.horaLunesViernes}"></span></td>
 	          <td>Sábados: <span th:text="${sucu.horaSabados}"></span></td>
+	          <td><span th:text="${sucu.codigoSucursal}"></span></td>
 	         <!--<td th:text="${sucu.fechaInicio}"></td>-->
 	          <td><a th:href="@{/sucursales/modificar/}+${sucu.codigoSucursal}">Editar Sucursal</a><br><br>
 	    		  <a th:href="@{/sucursales/eliminar/}+${sucu.codigoSucursal}">Eliminar Sucursal</a><br><br></td>
