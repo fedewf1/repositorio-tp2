@@ -3,14 +3,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Inicio</title>
-		<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 	</head>
 	
 	<body>
-		<!--<div id="container"-->
+		<div class="container-sm">
 		<h1>Articulos para Mascotas en general</h1>
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
-		<footer th:replace="~{layouts/footer :: footer}"></footer>
+		
+		
+		</div>
+		<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	</body>
 </html>
