@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
-	<head>
-	    <meta charset="UTF-8">
-	    <title>Productos</title>
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-	</head>
-	<body>
-		<h1>Productos</h1>
-	    <header th:replace="~{layouts/header :: header}"></header>
-	    <nav th:replace="~{layouts/nav :: nav}"></nav>
-	    <a th:href="@{/productos/nuevo}">Nuevo Producto</a>
-	    
-	    <main>
-	        <section>
-	            <h2>Nuestros productos</h2>
-	            <ul>
-	                <li th:each="produ : ${productos}">
-	                	<h3 th:text="${produ.categoria}"></h3>
-	                	<p><span th:text="${produ.nombre}"></span>, Precio $<span th:text="${produ.precio}"></span>, Precio con descuento $<span th:text="${produ.calcularDescuento()}"></span>
-            			</p>
-	                    <img th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
-	                	<a th:href="@{/productos/modificar/}+${produ.codigo}">Editar Producto</a>
-	    				<a th:href="@{/productos/eliminar/}+${produ.codigo}">Eliminar Producto</a>
-	                </li>    
-	            </ul>
-	        </section>
-	        <!-- Burcar, como hacer para que se vean imagenes en esta tabla-->
-	        
-	    </main>
-	    
-	    
-	    <footer th:replace="~{layouts/footer :: footer}"></footer>
-	</body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Productos</h1>
+        <header th:replace="~{layouts/header :: header}"></header>
+        <nav th:replace="~{layouts/nav :: nav}"></nav>
+        <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo Producto</a>
+
+        <main>
+            <section>
+                <h2>Nuestros productos</h2>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="produ : ${productos}">
+                        <h3 th:text="${produ.categoria}"></h3>
+                        <p>
+                            <span th:text="${produ.nombre}"></span>, Precio $<span th:text="${produ.precio}"></span>, Precio con descuento $<span th:text="${produ.calcularDescuento()}"></span>
+                        </p>
+                        <img class="img-fluid" th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
+                        <a class="btn btn-secondary" th:href="@{/productos/modificar/}+${produ.codigo}">Editar Producto</a>
+                        <a class="btn btn-danger" th:href="@{/productos/eliminar/}+${produ.codigo}">Eliminar Producto</a>
+                    </li>
+                </ul>
+            </section>
+            <!-- Burcar, como hacer para que se vean imagenes en esta tabla-->
+
+        </main>
+
+
+        
+    </div>
+<footer th:replace="~{layouts/footer :: footer}"></footer>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
 </html>

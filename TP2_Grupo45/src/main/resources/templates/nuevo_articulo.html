@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo_Articulo</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4" th:text="${edicion} ? 'Modificar Articulo' : 'Articulo'"></h1>
+        <header th:replace="~{layouts/header :: header}"></header>
+        <nav th:replace="~{layouts/nav :: nav}"></nav>
+
+        <div class="row">
+            <div class="col-md-7">
+                <form th:action="${edicion} ? @{/modificar} : @{/guardar}" th:object="${articulo}" method="post" id="mi-tabla">
+                    <div class="form-group">
+                        <label for="articulo">Nombre:</label>
+                        <input type="text" class="form-control" id="articulo" name="articulo" th:field="*{articulo}">
+                    </div>
+                     <div class="form-group">
+                        <label for="codigo">Código:</label>
+                        <input type="text" class="form-control" id="codigo" name="codigo" th:field="*{codigo}">
+                    </div> -->
+                   
+
+                    <button type="submit" class="btn btn-primary" th:text="${edicion} ? 'Modificar' : 'Guardar'"></button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <aside>
+                    <article>
+                        Accedé a la más amplia variedad de productos al mejor precio del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes y mucho más! Recibilos en la comodidad de tu hogar en cualquier punto del país o retiralos en tu sucursal preferida.
+                    </article>
+                    <article>
+                        Dias de vacunacion
+                        Nos enfocamos en la prevención, impulsando los mejores hábitos para su bienestar general. Para ello contamos con profesionales veterinarios experimentados.
+                    </article>
+                </aside>
+            </div>
+        </div>
+        
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

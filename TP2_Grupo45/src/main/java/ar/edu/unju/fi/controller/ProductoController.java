@@ -1,4 +1,5 @@
 package ar.edu.unju.fi.controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,11 @@ import ar.edu.unju.fi.model.Producto;
 @Controller
 @RequestMapping("/productos")
 public class ProductoController {
-    ListaProductos listaProductos = new ListaProductos();
-
+	
+	@Autowired
+    private ListaProductos listaProductos;
+    @Autowired
+    private Producto producto;
     @GetMapping("/listado")
     public String getListaProductoPage(Model model) {
         model.addAttribute("productos", listaProductos.getProductos());
@@ -36,7 +40,7 @@ public class ProductoController {
     @GetMapping("/nuevo")
     public String getNuevoProductoPage(Model model) {
     	boolean edicion = false;
-    	model.addAttribute("producto", new Producto());
+    	model.addAttribute("producto", producto);
     	model.addAttribute("edicion", edicion);
     	return "nuevo_producto";
     }
