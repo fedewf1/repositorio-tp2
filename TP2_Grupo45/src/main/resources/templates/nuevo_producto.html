@@ -3,47 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo_Producto</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 </head>
 <body>
-    <h1 th:text="${edicion}?'Modificar Producto':'Nuevo Producto'"></h1>
-    <header th:replace="~{layouts/header :: header}"></header>
-	<nav th:replace="~{layouts/nav :: nav}"></nav>
-	
-    <form th:action="${edicion}?@{/productos/modificar}:@{/productos/guardar}" th:object="${producto}" method="post"  id="mi-tabla">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" th:field="*{nombre}"><br><br>
-        <label for="codigo">Código:</label>
-        <input type="number" id="codigo" name="codigo" th:field="*{codigo}"><br><br>
-        
-        <label for="precio">Precio:</label>
-        <input type="number" step="0.01" id="precio" name="precio" th:field="*{precio}"><br><br>
-        
-        <label for="categoria">Categoría:</label>
-        <select id="categoria" name="categoria" th:field="*{categoria}">
-            <option value="Alimento">Alimento</option>
-            <option value="Ropa">Ropa</option>
-            <option value="Camas y Colchones">Camas y Colchones</option>
-            <option value="Correas">Correas</option>
-            <option value="Jaulas,Casas,Peceras">Jaulas,Casas,Peceras</option>
-            <option value="Vestimenta">Vestimenta</option>
-            <option value="Cuidado">Cuidado</option>
-        </select>
-        <select id="nombreImagen" name="nombreImagen" th:field="*{nombreImagen}">
-            <option value="/images/Buzo_para_perros.jpg">Buzo para perros</option>
-            <option value="/images/moises_mascota.jpeg">Moises Mascota</option>
-            <option value="/images/mochila_pokemon.jpg">Mochila Pokemon</option>
-            <option value="/images/set_paseo_pitbull.jpg">Paseo Pitbull</option>
-            <option value="/images/whiskas.jpg">whiskas</option>
-            <option value="/images/gaiola_hamster.jpg">Gaiola Hamster</option>
-        </select>
-        <label for="descuento">Descuento:</label>
-        <input type="number" min="0" max="50" id="descuento" name="descuento" th:field="*{descuento}"><br><br>
-        <p><input type="submit" class="button" th:value="${edicion}?'Modificar':'Guardar'"></p>
-        
-    </form>
-    
-    <footer th:replace="~{layouts/footer :: footer}"></footer>
-</body>
+    <div class="container">
+        <h1 class="mt-4" th:text="${edicion} ? 'Modificar Producto' : 'Nuevo Producto'"></h1>
+        <header th:replace="~{layouts/header :: header}"></header>
+        <nav th:replace="~{layouts/nav :: nav}"></nav>
 
+        <div class="row">
+            <div class="col-md-7">
+                <form th:action="${edicion} ? @{/productos/modificar} : @{/productos/guardar}" th:object="${producto}" method="post" id="mi-tabla">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
+                    </div>
+                    <div class="form-group">
+                        <label for="codigo">Código:</label>
+                        <input type="number" class="form-control" id="codigo" name="codigo" th:field="*{codigo}">
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="number" step="0.01" class="form-control" id="precio" name="precio" th:field="*{precio}">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoría:</label>
+                        <select class="form-control" id="categoria" name="categoria" th:field="*{categoria}">
+                            <option value="Alimento">Alimento</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Camas y Colchones">Camas y Colchones</option>
+                            <option value="Correas">Correas</option>
+                            <option value="Jaulas,Casas,Peceras">Jaulas,Casas,Peceras</option>
+                            <option value="Vestimenta">Vestimenta</option>
+                            <option value="Cuidado">Cuidado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreImagen">Nombre de la Imagen:</label>
+                        <select class="form-control" id="nombreImagen" name="nombreImagen" th:field="*{nombreImagen}">
+                            <option value="/images/Buzo_para_perros.jpg">Buzo para perros</option>
+                            <option value="/images/moises_mascota.jpeg">Moises Mascota</option>
+                            <option value="/images/mochila_pokemon.jpg">Mochila Pokemon</option>
+                            <option value="/images/set_paseo_pitbull.jpg">Paseo Pitbull</option>
+                            <option value="/images/whiskas.jpg">Whiskas</option>
+                            <option value="/images/gaiola_hamster.jpg">Gaiola Hamster</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descuento">Descuento:</label>
+                        <input type="number" min="0" max="50" class="form-control" id="descuento" name="descuento" th:field="*{descuento}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" th:text="${edicion} ? 'Modificar' : 'Guardar'"></button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <aside>
+                    <article>
+                        Accedé a la más amplia variedad de productos al mejor precio del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes y mucho más! Recibilos en la comodidad de tu hogar en cualquier punto del país o retiralos en tu sucursal preferida.
+                    </article>
+                    <article>
+                        Dias de vacunacion
+                        Nos enfocamos en la prevención, impulsando los mejores hábitos para su bienestar general. Para ello contamos con profesionales veterinarios experimentados.
+                    </article>
+                </aside>
+            </div>
+        </div>
+        
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
 </html>

@@ -1,7 +1,9 @@
 package ar.edu.unju.fi.model;
-
-
+//import jakarta.validation.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
+@Component
 public class Producto {
+	//@NotEmpty(mesage="el nombre no puede estar vacio")
     private String nombre;
     private int codigo;
     private double precio;

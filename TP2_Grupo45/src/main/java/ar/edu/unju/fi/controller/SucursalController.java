@@ -63,7 +63,7 @@ public class SucursalController {
     }
     @PostMapping("/modificar")
     public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
-    	for(Sucursal sucu:listaSucursales.getSucursales()) {
+    	for(Sucursal sucu : listaSucursales.getSucursales()) {
     		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
     			sucu.setNombreSucursal(sucursal.getNombreSucursal());
     			sucu.setDireccion(sucursal.getDireccion());
