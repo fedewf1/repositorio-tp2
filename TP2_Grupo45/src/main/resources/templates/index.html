@@ -14,9 +14,10 @@
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
 		
 		<div class="row">
-		
-    		<section class="col-7">
-    		 <a class="btn btn-primary" th:href="@{/nuevo}">Nuevo Articulo</a>
+			<section class="col-7">
+    			<br></br>
+    			<!-- Enlace para crear un nuevo articulo -->
+    			<a class="btn btn-primary" th:href="@{/nuevo}">Nuevo Articulo</a>
       			<article th:each="arti : ${articulos}">
         		<p th:text="${arti.articulo}" ></p>
      			<span th:text="${arti.codigo}"></span>
@@ -25,6 +26,7 @@
       			</article>
     		</section>
 			<aside class="col-4">
+			<br></br>
 		      	<article>
 		        <p>Accedé a la más amplia variedad de productos al mejor precio del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes y mucho más! Recibilos en la comodidad de tu hogar en cualquier punto del país o retiralos en tu sucursal preferida.</p>
 		      	</article>

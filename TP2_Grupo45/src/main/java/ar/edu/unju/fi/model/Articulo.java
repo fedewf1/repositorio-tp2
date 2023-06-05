@@ -5,10 +5,18 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 @Component
 public class Articulo {
-	
+	@NotBlank(message = "El artículo no puede estar vacío.")
 	private String articulo;
+	@NotNull(message = "El código no puede ser nulo.")
+    @Positive(message = "El código debe ser un número positivo.")
+	@Digits(integer = 2, fraction = 0, message = "El código debe ser un número de 4 dígitos")
 	private int codigo;
 	//@DateTimeFormat(pattern="dd/MM/yyyy")
 	//private LocalDate fechaInicio;
