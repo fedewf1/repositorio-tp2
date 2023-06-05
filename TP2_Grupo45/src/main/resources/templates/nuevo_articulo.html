@@ -3,33 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo_Articulo</title>
+    <!-- Incluye el archivo css de Bootstrap -->
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <!-- Incluye el archivo css del grupo -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 </head>
 <body>
     <div class="container">
+        <!-- Título de la página -->
         <h1 class="mt-4" th:text="${edicion} ? 'Modificar Articulo' : 'Articulo'"></h1>
+        <!-- Incluir el header -->
         <header th:replace="~{layouts/header :: header}"></header>
+        <!-- Incluye la barra de navegación -->
         <nav th:replace="~{layouts/nav :: nav}"></nav>
 
         <div class="row">
             <div class="col-md-7">
+                <!-- Formulario para crear o modificar un artículo -->
                 <form th:action="${edicion} ? @{/modificar} : @{/guardar}" th:object="${articulo}" method="post" id="mi-tabla">
                     <div class="form-group">
                         <label for="articulo">Nombre:</label>
                         <input type="text" class="form-control" id="articulo" name="articulo" th:field="*{articulo}">
+                        <!-- Mostrar mensajes de error para el campo "articulo" -->
+                        <div class="text-danger" th:if="${#fields.hasErrors('articulo')}" th:errors="*{articulo}"></div>
                     </div>
                      <div class="form-group">
                         <label for="codigo">Código:</label>
                         <input type="text" class="form-control" id="codigo" name="codigo" th:field="*{codigo}">
-                    </div> -->
+                        <!-- Mostrar mensajes de error para el campo "codigo" -->
+                        <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
+                    </div>
                    
-
+                    <!-- Botón para enviar el formulario -->
                     <button type="submit" class="btn btn-primary" th:text="${edicion} ? 'Modificar' : 'Guardar'"></button>
                 </form>
             </div>
             <div class="col-md-4">
                 <aside>
+                                    <!-- Información adicional -->
                     <article>
                         Accedé a la más amplia variedad de productos al mejor precio del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes y mucho más! Recibilos en la comodidad de tu hogar en cualquier punto del país o retiralos en tu sucursal preferida.
                     </article>
@@ -41,9 +52,11 @@
             </div>
         </div>
         
-        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        
     </div>
-
+    <!-- Incluye el footer -->
+	<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
+	<!-- Incluye el archivo JavaScript de Bootstrap -->
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

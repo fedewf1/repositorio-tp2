@@ -12,18 +12,24 @@
 <body>
     <div class="container">
         <h1>Productos</h1>
+        <!-- Se incluye el encabezado desde el fragmento "header" -->
         <header th:replace="~{layouts/header :: header}"></header>
+        <!-- Se incluye la navegación desde el fragmento "nav" -->
         <nav th:replace="~{layouts/nav :: nav}"></nav>
+        <!-- Enlace para crear un nuevo producto -->
         <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo Producto</a>
 
         <main>
             <section>
                 <h2>Nuestros productos</h2>
                 <ul class="list-group">
+                <!-- Iteración sobre la lista de productos -->
                     <li class="list-group-item" th:each="produ : ${productos}">
+                    <!-- Mostrar la categoría del producto -->
                         <h3 th:text="${produ.categoria}"></h3>
                         <p>
                             <span th:text="${produ.nombre}"></span>, Precio $<span th:text="${produ.precio}"></span>, Precio con descuento $<span th:text="${produ.calcularDescuento()}"></span>
+                        	<!-- Mostrar el nombre, precio y precio con descuento del producto -->
                         </p>
                         <img class="img-fluid" th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
                         <a class="btn btn-secondary" th:href="@{/productos/modificar/}+${produ.codigo}">Editar Producto</a>
@@ -31,14 +37,15 @@
                     </li>
                 </ul>
             </section>
-            <!-- Burcar, como hacer para que se vean imagenes en esta tabla-->
 
         </main>
 
 
         
     </div>
-<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	<!-- Se incluye el pie de página desde el fragmento "footer" -->
+		<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
+		<!-- Inclusión del archivo JavaScript de Bootstrap -->
 		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 

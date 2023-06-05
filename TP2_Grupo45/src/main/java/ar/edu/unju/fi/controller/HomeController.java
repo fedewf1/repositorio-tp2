@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,22 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ListaArticulos;
 import ar.edu.unju.fi.model.Articulo;
+import jakarta.validation.Valid;
 
 
 
-//HomeController.java
 @Controller
 @RequestMapping("/")
 public class HomeController {
-	//ListaArticulos listaArticulos = new ListaArticulos();
 	@Autowired
 	private ListaArticulos listaArticulos;
-	//Articulo articulo =new Articulo();
 	@Autowired
     private Articulo articulo;
-	//public String getHome() {
-    //return "index";
- //}
+	
 	
     @GetMapping("/")
     
@@ -47,12 +44,21 @@ public class HomeController {
     	return "nuevo_articulo";
     }
     @PostMapping("/guardar")
-    public ModelAndView getguardarArticuloPage(@ModelAttribute("articulo") Articulo articulo) {
+    public ModelAndView getguardarArticuloPage(@Valid @ModelAttribute("articulo") Articulo articulo, BindingResult result) {
     	ModelAndView modelView = new ModelAndView("index");
+		// Verificar si hay errores de validación en el objeto "articulo"
+    	if(result.hasErrors()) {
+    		modelView.setViewName("nuevo_articulo");
+    		modelView.addObject("articulo", articulo);
+    		return modelView;
+    	}
+		// Agregar el artículo a la lista de artículos
     	listaArticulos.getArticulos().add(articulo);
         modelView.addObject("articulos", listaArticulos.getArticulos());
         return modelView;
     }
+    
+	// Buscar el artículo en la lista de artículos
     @GetMapping("/modificar/{codigo}")
     public String getModificarArticuloPage(Model model, @PathVariable(value="codigo")int codigo) {
     	Articulo articuloEncontrado = new Articulo();
@@ -69,27 +75,21 @@ public class HomeController {
     }
     @PostMapping("/modificar")
     public String modificaArticulo(@ModelAttribute("articulo")Articulo articulo) {
-    	//Articulo articuloEncontrado = new Articulo();
     	for(Articulo arti : listaArticulos.getArticulos()) {
-    		int f=articulo.getCodigo();
-    		int h=arti.getCodigo();
+    		
     		if(arti.getCodigo()== (articulo.getCodigo())) {
-    			//arti.setArticulo("es igual");
+    			
     			arti.setArticulo(articulo.getArticulo());
-    			//arti.setArticulo(" valor de articulo.getCodigo()"+Integer.toString(f)+" valor arti.getCodigo()"+Integer.toString(h));
     			arti.setCodigo(articulo.getCodigo());
     		}
-    		else {
-        		//arti.setArticulo("no entra al if "+" valor de articulo.getCodigo()"+Integer.toString(f)+" valor arti.getCodigo()"+Integer.toString(h));
-        		//arti.setArticulo(Integer.toString(f));}
-        	}
+    		
     	}
     	return "redirect:/index";
     }
   
 		//arti.setArticulo(Integer.toString(articulo.getCodigo()));
 
-    	
+	// Eliminar el artículo de la lista de artículos	
     @GetMapping("/eliminar/{codigo}")
     public String eliminarProducto(@PathVariable(value="codigo") int codigo) {
     	for(Articulo arti:listaArticulos.getArticulos()) {

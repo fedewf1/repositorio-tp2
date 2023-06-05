@@ -5,47 +5,17 @@
 		<meta charset="UTF-8">
     </head>
 	<body>
-   		<!--<nav class="container-sm" th:fragment="nav">
-			<ul>
-				<li style="display: inline-block"><a th:href="@{/index}" >Inicio</a></li>	
-				<li style="display: inline-block"><a th:href="@{/productos/listado}" >Productos</a></li>	
-				<li style="display: inline-block"><a th:href="@{/consejos}" >Consejos de salud</a></li>	
-				
-				<li style="display: inline-block"><a th:href="@{/servicios}" >Servicio de Paseo</a></li>	
-				<li style="display: inline-block"><a th:href="@{/sucursales/listado}" >Sucursales</a></li>	
-				<li style="display: inline-block"><a th:href="@{/contacto}" >Contacto</a></li>	
-			</ul>
-		</nav>-->
-		<nav class="container-sm navbar bg-dark border-bottom border-bottom-dark avbar bg-body-tertiary" data-bs-theme="dark" th:fragment="nav">
-  				<!-- Navbar content -->
+   		<nav class="navbar bg-body-tertiary" th:fragment="nav">
+  		<!-- Navbar content -->
   				<form class="container-fluid justify-content-start">
-    		<a class="btn btn-outline-success me-2" th:href="@{/index}">Inicio</a>
-    		<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/productos/listado}" >Productos</a>
-    		<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/productos/listado}" >Productos</a>
-    		<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/productos/listado}" >Productos</a>
-    		<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/productos/listado}" >Productos</a>
-  		</form>
-  			<ul>
-  			
-				<li style="display: inline-block"><a th:href="@{/index}" >Inicio</a></li>	
-				<li style="display: inline-block"><a th:href="@{/productos/listado}" >Productos</a></li>	
-				<li style="display: inline-block"><a th:href="@{/consejos}" >Consejos de salud</a></li>	
-				
-				<li style="display: inline-block"><a th:href="@{/servicios}" >Servicio de Paseo</a></li>	
-				<li style="display: inline-block"><a th:href="@{/sucursales/listado}" >Sucursales</a></li>	
-				<li style="display: inline-block"><a th:href="@{/contacto}" >Contacto</a></li>	
-			</ul>
+    				<a class="btn btn-outline-success me-2" th:href="@{/index}">Inicio</a>
+    				<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/productos/listado}" >Productos</a>
+    				<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/consejos}" >Consejos de salud</a>
+    				<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/servicios}" >Servicio de Paseo</a>
+    				<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/sucursales/listado}" >Sucursales</a>
+    				<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/contacto}" >Contacto</a>
+  				</form>
 		</nav>
-
-		
-
-
-	<nav class="navbar bg-body-tertiary">
-  		<form class="container-fluid justify-content-start">
-    		<a class="btn btn-outline-success me-2" th:href="@{/index}">Inicio</a>
-    		<a class="btn btn-sm btn-outline-secondary" type="button" th:href="@{/productos/listado}" >Productos</a>
-  		</form>
-	</nav>
 
    	</body>
 </html>
