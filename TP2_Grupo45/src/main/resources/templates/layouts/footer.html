@@ -4,12 +4,18 @@ El siguiente código HTML representa un fragmento de código llamado "footer.htm
 En este fragmento, se define una estructura de navegación en el footer del sitio web. Se utiliza un elemento `footer` con una clase "footer" y estilos de diseño. Dentro del `footer`, se encuentra un párrafo (`p`) que muestra información de derechos de autor y atribuciones.
 -->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
-   <div th:fragment="footer">
-		<footer>
-	        <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark" >
-  				<!-- Navbar content -->
-  				<p class="text-light">Copyright 2023 - Petstore - Diseñado por Grupo 45 – Jujuy – República Argentina</p>
-			</nav>
-	    </footer>
-	</div>
+<div th:fragment="footer">
+	<footer>
+		<!-- 	        <nav class="navbar bg-dark " data-bs-theme="dark" > -->
+		<!--   				Navbar content -->
+		<!--   				<p class="text-light text-center">Copyright 2023 - Petstore - Diseñado por Grupo 45 – Jujuy – República Argentina</p> -->
+		<!-- 			</nav> -->
+
+		<div class="bg-dark p-1 sticky-bottom">
+			<p class="text-light text-center py-3">Copyright 2023 - Petstore
+				- Diseñado por Grupo 45 – Jujuy – República Argentina</p>
+
+		</div>
+	</footer>
+</div>
 </html>
