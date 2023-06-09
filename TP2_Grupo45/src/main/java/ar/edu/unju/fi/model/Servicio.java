@@ -1,50 +1,123 @@
 package ar.edu.unju.fi.model;
 
+import java.util.List;
+
+
+import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
+/**
+ * Representa un servicio ofrecido
+ * @author Jonathan R. Mascareño
+ * @version 1.0 date: 2/6/23
+ */
+
+@Component
 public class Servicio {
-		private String usuario;
-		private String dia;
-		private String hora;
-		private String paseador;
-		
-		public Servicio(String usuario,String dia, String hora, String paseador) {
-			this.usuario=usuario;
-			this.dia=dia;
-			this.hora=hora;
-			this.paseador=paseador;
-		}
-		
-		public String getUsuario() {
-			return usuario;
-		}
+	
+	
+	@NotEmpty(message = "El nombre no puede quedar vacio")
+	private String nombre;
+	@NotEmpty(message = "La dirección no puede quedar vacio")
+	private String direccion;
+	@NotEmpty(message = "El telefono no puede quedar vacio")
+	private String telefono;
+	
+	@DecimalMin(value="1.0",message = "La tarifa debe ser un número positivo")
+	private float tarifa;
+	@NotBlank(message = "Debe elegir el tipo de servicio")
+	private String tipoDeServicio;
 
-		public void setUsuario(String usuario) {
-			this.usuario = usuario;
-		}
+	@NotEmpty(message = "Debe elegir su dia disponible")
+	private List<String> diaDisponible;
+	@NotEmpty(message = "Debe elegir su horario disponible")
+	private List<String> horarioDisponible;
 
-		public String getDia() {
-			return dia;
-		}
+	public Servicio() {
+		super();
+	}
 
-		public void setDia(String dia) {
-			this.dia = dia;
-		}
+	
+	
+	/**
+	 * Constructor parametrizado
+	 * @param nombre es el nombre del trabajador
+	 * @param direccion  es la direccion del trabajador
+	 * @param telefono es el telefono del trabajador
+	 * @param tarifa es lo que cobrará el trabajador
+	 * @param tipoDeServicio se refiere al tipo de servicio que ofrece el trabajador
+	 *  @param  diaDisponible se refiere al dia de la semana disponible para el trabajador
+	 *  @param  horarioDisponible se refiere a un rango de tiempo disponible para el trabajador
+	 */
+	
+	
+	public Servicio(String nombre, String direccion, String telefono, float tarifa, String tipoDeServicio,
+			List<String> diaDisponible, List<String> horarioDisponible) {
+		super();
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.tarifa = tarifa;
+		this.tipoDeServicio = tipoDeServicio;
 
-		public String getHora() {
-			return hora;
-		}
+	}
 
-		public void setHora(String hora) {
-			this.hora = hora;
-		}
+	public String getNombre() {
+		return nombre;
+	}
 
-		public String getPaseador() {
-			return paseador;
-		}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-		public void setPaseador(String paseador) {
-			this.paseador = paseador;
-		}
+	public String getDireccion() {
+		return direccion;
+	}
 
-		
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public float getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(float tarifa) {
+		this.tarifa = tarifa;
+	}
+
+	public String getTipoDeServicio() {
+		return tipoDeServicio;
+	}
+
+	public void setTipoDeServicio(String tipoDeServicio) {
+		this.tipoDeServicio = tipoDeServicio;
+	}
+
+	public List<String> getDiaDisponible() {
+		return diaDisponible;
+	}
+
+	public void setDiaDisponible(List<String> diaDisponible) {
+		this.diaDisponible = diaDisponible;
+	}
+
+	public List<String> getHorarioDisponible() {
+		return horarioDisponible;
+	}
+
+	public void setHorarioDisponible(List<String> horarioDisponible) {
+		this.horarioDisponible = horarioDisponible;
+	}
 		
 }
