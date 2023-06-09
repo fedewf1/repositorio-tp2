@@ -15,13 +15,27 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
+	//public Sucursal(String nombre, String direccion, String provincia, LocalDate fechaInicio, String email,
+	//		String telefono, int cantidadEmpleados) {
+//		super();
+//		this.nombre = nombre;
+//		this.direccion = direccion;
+//		this.provincia = provincia;
+//		this.fechaInicio = fechaInicio;
+//		this.email = email;
+//		this.telefono = telefono;
+//		this.cantidadEmpleados = cantidadEmpleados;
+//	}
+
+
+
 /* 
 Se procede a la incorporacion de validacion de datos
 */
 @Component
 public class Sucursal {
 	@NotEmpty(message="El nombre no puede estar vacio")
-	private String nombre;
+	private String nombreSucursal;
 	
 	@NotEmpty(message="La direccion no puede estar vacio")
 	@Size(min=10, max=100, message="La direccion debe contener entre 10 y 100 caracteres")
@@ -49,43 +63,13 @@ public class Sucursal {
 	@Max(value=30, message="El valor maximo permitido es 30")
 	@Positive(message="Solo se permiten valores positivos")
 	private int cantidadEmpleados;
-	
-	public Sucursal() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	public Sucursal(String nombre, String direccion, String provincia, LocalDate fechaInicio, String email,
-			String telefono, int cantidadEmpleados) {
-		super();
-		this.nombre = nombre;
-		this.direccion = direccion;
-		this.provincia = provincia;
-		this.fechaInicio = fechaInicio;
-		this.email = email;
-		this.telefono = telefono;
-		this.cantidadEmpleados = cantidadEmpleados;
-	}
 
+	private String horaLunesViernes,horaSabados;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+    private int codigoSucursal;
+    
+    //estos gettes y setters son tuyos
 	
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
 	public String getProvincia() {
 		return provincia;
 	}
@@ -94,13 +78,6 @@ public class Sucursal {
 		this.provincia = provincia;
 	}
 
-	public LocalDate getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(LocalDate fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
 
 	public String getEmail() {
 		return email;
@@ -110,13 +87,6 @@ public class Sucursal {
 		this.email = email;
 	}
 
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
 
 	public int getCantidadEmpleados() {
 		return cantidadEmpleados;
@@ -125,4 +95,73 @@ public class Sucursal {
 	public void setCantidadEmpleados(int cantidadEmpleados) {
 		this.cantidadEmpleados = cantidadEmpleados;
 	}
+	///hasta aca eran los tuyos distintos a los mios, depues eran iguales.
+	
+	public String getNombreSucursal() {
+		return nombreSucursal;
+	}
+	public void setNombreSucursal(String nombreSucursal) {
+		this.nombreSucursal = nombreSucursal;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	
+	public int getCodigoSucursal() {
+		return codigoSucursal;
+	}
+	public void setCodigoSucursal(int codigoSucursal) {
+		this.codigoSucursal = codigoSucursal;
+	}
+	
+	
+	
+	
+	public String getHoraLunesViernes() {
+		return horaLunesViernes;
+	}
+	public void setHoraLunesViernes(String horaLunesViernes) {
+		this.horaLunesViernes = horaLunesViernes;
+	}
+	public String getHoraSabados() {
+		return horaSabados;
+	}
+	public void setHoraSabados(String horaSabados) {
+		this.horaSabados = horaSabados;
+	}
+	public LocalDate getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(LocalDate fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	public Sucursal() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Sucursal(String nombreSucursal, String direccion, String telefono, String horaLunesViernes,
+			String horaSabados, int codigoSucursal) {
+		super();
+		this.nombreSucursal = nombreSucursal;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		//this.horarios = horarios;
+		this.horaLunesViernes = horaLunesViernes;
+		this.horaSabados = horaSabados;
+		//this.fechaInicio = fechaInicio;
+		this.codigoSucursal = codigoSucursal;
+	}
+	
+	
 }

@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 	<head>
 		<meta charset="UTF-8">
 		<title>Contactenos</title>
-		 <link rel="stylesheet" href="../static/css/estilos.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 	</head>
 	<body>	
-	<img src="../static/images/petstore.jpg" alt="PetStore" title="PetStore"> 
-		<nav>
-  			<ul>
-   			<li style="display: inline-block"><a href="index.html">Inicio</a></li>
-    		<li style="display: inline-block"><a href="productos.html">Productos</a></li>
-    		<li style="display: inline-block"><a href="Consejos_de_salud.html">Consejos de Salud</a></li>
-    		<li style="display: inline-block"><a href="Servicio_de_paseos.html">Servicio de Paseos</a></li>
-    		<li style="display: inline-block"><a href="Sucursales.html">Sucursales</a></li>
-    		<li style="display: inline-block"><a href="contacto.html">Contáctanos</a></li>
-  			</ul>
-		</nav>
-		<header>
+		<header th:replace="~{layouts/header :: header}"></header>
+	 	<nav th:replace="~{layouts/nav :: nav}"></nav>
+		
 			<h1>Contactenos</h1>
 			<p>3915 Av. General Belgrano, 388-499999<br>
 				Lunes a Viernes: 9:00 a. m. a 8:00 p. m.,<br>
@@ -39,9 +30,7 @@
 			<textarea id="mensaje" name="mensaje"></textarea><br>
 			<input type="submit" value="Enviar">
 		</form>
-		</header>
-		<footer>
-     		 <p>Derechos de autor © 2023 - Pet strore - Diseñado por Grupo 45 - Jujuy - República Argentina</p>
-    	</footer>
-</body>
+		
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
+	</body>
 </html>

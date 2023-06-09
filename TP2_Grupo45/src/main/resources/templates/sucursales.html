@@ -18,48 +18,38 @@
 	 	 	</div>
 	  	</div>
 	  
-	  	
-		<header th:replace="layouts/header :: header"></header>
-		
-	 	<nav th:replace="layouts/nav :: nav"></nav>
-	 	
-	 	
-	 	
-	 	
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+		<a th:href="@{/sucursales/nueva}">Nueva Sucursal</a>	
 	    <div class="table-responsive">
 	    
 	    <table border="1" cellpadding="10" cellspacing="0" id="mi-tabla2" class="table table-striped table-bordered">
 	 
 	      <thead>
 	        <tr>
-	          <th>Sucursal</th>
+	          <th >Sucursal</th>
 	          <th>Dirección</th>
 	          <th>Teléfono</th>
 	          <th>Horarios</th>
-	        </tr>
-	      </thead>
-	      <tbody>
-	        <tr>
-	          <td>Sucursal 1</td>
+	          <th>Horarios Sabados</th>
+	          <th>Codigo Sucursal</th>
+	          <!--<th>Fecha de Inicio</th>-->
+	          </tr>
+	     
+	     
+	        <tr th:each="sucu: ${sucursales}">
+	          <td th:text="${sucu.NombreSucursal}"></td>
+	          <td th:text="${sucu.direccion}"></td>
 	          
-	          <td>Av. General Belgrano 391</td>
+	          <td th:text="${sucu.telefono}"></td>
+	          <td>Lunes a Viernes: <span th:text="${sucu.horaLunesViernes}"></span></td>
+	          <td>Sábados: <span th:text="${sucu.horaSabados}"></span></td>
+	          <td><span th:text="${sucu.codigoSucursal}"></span></td>
+	         <!--<td th:text="${sucu.fechaInicio}"></td>-->
+	          <td><a th:href="@{/sucursales/modificar/}+${sucu.codigoSucursal}">Editar Sucursal</a><br><br>
+	    		  <a th:href="@{/sucursales/eliminar/}+${sucu.codigoSucursal}">Eliminar Sucursal</a><br><br></td>
 	          
-	          <td>3884569762</td>
-	          <td>Lunes a Viernes: 9am - 8pm<br>Sábados: 9am - 12:30pm</td>
 	        </tr>
-	        <tr>
-	          <td>Sucursal 2</td>
-	          <td>Av Forestal 330</td>
-	          <td>3885225777</td>
-	          <td>Lunes a Viernes: 8am - 8pm<br>Sábados: 8am - 12pm</td>
-	        </tr>
-	        <tr>
-	          <td>Sucursal 3</td>
-	          <td>Av Irigoyen 234</td>
-	          <td>3884669234</td>
-	          <td>Lunes a Viernes: 8:30am - 8pm<br>Sábados: Cerrado</td>
-	        </tr>
-	      </tbody>
 	      
 	    </table>
 	    
@@ -67,12 +57,13 @@
 	    </div>
 	    
 	    
-	    <footer th:replace="layouts/footer :: footer"></footer>
-
+	  
 		
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	
 	
+	   
+	    <footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
 	
 </html>

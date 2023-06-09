@@ -1,72 +1,120 @@
 package ar.edu.unju.fi.model;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
+import org.springframework.stereotype.Component;
+@Component
 public class Producto {
-	// Atributos
-		private String nombre;
-	    private int codigo;
-	    private double precio;
-	    private String categoria;
-	    private int descuento;
+	// Validación del campo nombre
+	@NotEmpty(message="el nombre no puede estar vacio.")
+	@Size(min=5, max=100,message="El nombre del producto no puede ser inferior a 50 caracteres y mayor a 100.")
+    private String nombre;
+	
+	// Validación del campo código
+	//@Size(min=4, max=4,message="el codigo no puede tener mas ni menos de 4 digitos.")
+    @Digits(integer = 4, fraction = 0, message = "El código debe ser un número de 4 dígitos")
+    private int codigo;
+    
+    // Validación del campo precio
+	@Positive(message="El precio debe ser un valor positivo y no puede ser cero.")
+	//@NotEmpty(message="el nombre no puede estar vacio.")
+    private double precio;
+	
+	// Validación del campo categoría
+    @NotBlank(message="Debe seleccion una categoria.")
+    private String categoria;
+    
+    // Validación del campo descuento
+    //@PositiveOrZero(message="El descuento debe ser un valor positivo")
+    @Max(value=50, message="el descuento no puede ser mayor a 50")
+    @NotNull(message = "El descuento no puede ser nulo")
+    private int descuento;
+    
+ // Validación del campo nombreImagen
+    @NotBlank(message="Debe seleccion una imagen.")
+    private String nombreImagen;
 
-	    // Getters y setters
-	    public String getNombre() {
-	        return nombre;
-	    }
+    // Constructor parametrizado
+    
+    public Producto(String nombre, int codigo, double precio, String categoria, int descuento, String nombreImagen) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.precio = precio;
+        this.categoria = categoria;
+        this.descuento = descuento;
+        this.nombreImagen = nombreImagen;
+    }
 
-	    public void setNombre(String nombre) {
-	        this.nombre = nombre;
-	    }
+    public Producto() {
+		
+	}
 
-	    public int getCodigo() {
-	        return codigo;
-	    }
+	// Métodos accesores (getters y setters)
+    public String getNombre() {
+		return nombre;
+	}
 
-	    public void setCodigo(int codigo) {
-	        this.codigo = codigo;
-	    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-	    public double getPrecio() {
-	        return precio;
-	    }
+	public int getCodigo() {
+		return codigo;
+	}
 
-	    public void setPrecio(double precio) {
-	        this.precio = precio;
-	    }
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 
-	    public String getCategoria() {
-	        return categoria;
-	    }
+	public double getPrecio() {
+		return precio;
+	}
 
-	    public void setCategoria(String categoria) {
-	        this.categoria = categoria;
-	    }
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 
-	    public int getDescuento() {
-	        return descuento;
-	    }
+	public String getCategoria() {
+		return categoria;
+	}
 
-	    public void setDescuento(int descuento) {
-	        this.descuento = descuento;
-	    }
-	    
-	    // Constructor parametrizado
-	    public Producto(String nombre, int codigo, double precio, String categoria, int descuento) {
-	        this.nombre = nombre;
-	        this.codigo = codigo;
-	        this.precio = precio;
-	        this.categoria = categoria;
-	        this.descuento = descuento;
-	    }
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 
-	    // Método para calcular el descuento y obtener el precio con descuento
-	    public double calcularDescuento() {
-	        if (descuento > 0 && descuento <= 50) {
-	            double porcentajeDescuento = descuento / 100.0;
-	            double descuentoAplicado = precio * porcentajeDescuento;
-	            return precio - descuentoAplicado;
-	        } else {
-	            return precio;
-	        }
-	    }
-	    
+	public int getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
+	}
+	
+    public String getNombreImagen() {
+		return nombreImagen;
+	}
+
+	public void setNombreImagen(String nombreImagen) {
+		this.nombreImagen = nombreImagen;
+	}
+
+	// Método para calcular el descuento
+    public double calcularDescuento() {
+        if (descuento > 0 && descuento <= 50) {
+            double descuentoPorcentaje = (double)descuento / 100;
+            return precio - (precio * descuentoPorcentaje);
+        } else {
+        	//double descuentoPorcentaje = descuento / 100;
+            return precio;
+        }
+    }
+
+	
 }
+

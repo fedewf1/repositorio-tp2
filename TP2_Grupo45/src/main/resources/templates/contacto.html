@@ -18,11 +18,8 @@
 	 	 		<h1>Contactenos</h1>
 	 		</div>
 		</div>
-	
-	
-		<header th:replace="layouts/header :: header"></header>
-		
-	 	<nav th:replace="layouts/nav :: nav"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+	 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 		
 			
 			<p>3915 Av. General Belgrano, 388-499999<br>
@@ -61,10 +58,7 @@
 			
 		</form>
 		
-		
-		<footer th:replace="layouts/footer :: footer"></footer>
-		
-		
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
 	
 	
