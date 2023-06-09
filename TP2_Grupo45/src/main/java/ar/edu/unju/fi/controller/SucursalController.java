@@ -82,30 +82,30 @@ Se procede a la captura de errores
   }
   
   
-  @PostMapping("/modificar")
-  public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
-  	for(Sucursal sucu:listaSucursales.getSucursales()) {
-  	for(Sucursal sucu : listaSucursales.getSucursales()) {
-  		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
-  			sucu.setNombreSucursal(sucursal.getNombreSucursal());
-  			sucu.setDireccion(sucursal.getDireccion());
-  			sucu.setTelefono(sucursal.getTelefono());
-  			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-  			sucu.setHoraSabados(sucursal.getHoraSabados());
-  			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-  		}
-  	}
-  	return "redirect:/sucursales/listado";
-  }
-  @GetMapping("/eliminar/{codigoSucursal}")
-  public String eliminarSocursal(@PathVariable(value="codigoSucursal") int codigoSucursal) {
-  	for(Sucursal sucu:listaSucursales.getSucursales()) {
-  		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
-  			listaSucursales.getSucursales().remove(sucu);
-  			break;
-  			}
-       }
-  	return "redirect:/sucursales/listado";
-  }
-}
+//  @PostMapping("/modificar")
+//  public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
+//  	for(Sucursal sucu:listaSucursales.getSucursales()) {
+//  	for(Sucursal sucu : listaSucursales.getSucursales()) {
+//  		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
+//  			sucu.setNombreSucursal(sucursal.getNombreSucursal());
+//  			sucu.setDireccion(sucursal.getDireccion());
+//  			sucu.setTelefono(sucursal.getTelefono());
+//  			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
+//  			sucu.setHoraSabados(sucursal.getHoraSabados());
+//  			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
+//  		}
+//  	}
+//  	return "redirect:/sucursales/listado";
+//  }
+//  @GetMapping("/eliminar/{codigoSucursal}")
+//  public String eliminarSocursal(@PathVariable(value="codigoSucursal") int codigoSucursal) {
+//  	for(Sucursal sucu:listaSucursales.getSucursales()) {
+//  		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
+//  			listaSucursales.getSucursales().remove(sucu);
+//  			break;
+//  			}
+//       }
+//  	return "redirect:/sucursales/listado";
+//  }
+//}
 }
