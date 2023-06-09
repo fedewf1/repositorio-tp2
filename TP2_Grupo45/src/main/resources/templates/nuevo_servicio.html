@@ -242,10 +242,12 @@
 
 
 
-					<div class="d-flex justify-content-center mt-lg-3 mt-md-1 mt-sm-1">
+					<div class="d-flex justify-content-center mt-lg-4 mt-md-1 mt-sm-1">
 						<button type="submit"
 							class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color mb-lg-4 mb-md-3 mb-sm-3"
 							th:text="${editando}?'Modificar' : 'Guardar' "></button>
+							
+						<a th:href="@{/servicios}" class="btn btn-sm btn-outline-secondary mb-lg-4 mb-md-3 mb-sm-3 ms-2" onclick="return confirm('¿Seguro de que deseas volver sin guardar los cambios?')">Volver</a>
 					</div>
 
 
