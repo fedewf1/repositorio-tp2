@@ -1,16 +1,15 @@
 /*@charset "ISO-8859-1";*/
-
-*{
+* {
 	margin: opx;
 	padding: opx;
 }
 
-body{
+body {
 	background: withe;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-h1{
+h1 {
 	font-size: 60px;
 	font-family: Times New Roman, Arial, Helvetica;
 	font-style: italic;
@@ -19,35 +18,74 @@ h1{
 	color: #996600;
 }
 
-
 img {
-  display: block;
-  margin: 0 auto;
+	display: block;
+	margin: 0 auto;
 }
 
 #mi-tabla {
-  margin: 0 auto;
-  width: 80%; /* Ajusta el ancho de la tabla */
-  padding: 10px; /* Agrega un espacio de relleno en las celdas */
-  font-size: 18px; /* Aumenta el tamaño de fuente */
-  border: 2px solid #996600; /* Agrega un borde a las celdas */
-  border-collapse: collapse; /* Combina los bordes de las celdas */
-  font-weight: bold; /* Hacer el texto en negrita */
-  color: #996600;
-  text-align: center;
+	margin: 0 auto;
+	width: 80%; /* Ajusta el ancho de la tabla */
+	padding: 10px; /* Agrega un espacio de relleno en las celdas */
+	font-size: 18px; /* Aumenta el tamaño de fuente */
+	border: 2px solid #996600; /* Agrega un borde a las celdas */
+	border-collapse: collapse; /* Combina los bordes de las celdas */
+	font-weight: bold; /* Hacer el texto en negrita */
+	color: #996600;
+	text-align: center;
 }
 
 #mi-tabla2 {
-  margin: 0 auto;
-  width: 80%; /* Ajusta el ancho de la tabla */
-  padding: 10px; /* Agrega un espacio de relleno en las celdas */
-  font-size: 18px; /* Aumenta el tamaño de fuente */
-  border: 2px solid #996600; /* Agrega un borde a las celdas */
-  border-collapse: collapse; /* Combina los bordes de las celdas */
-  font-weight: bold; /* Hacer el texto en negrita */
-  color: #996600;
-  text-align: center;
+	margin: 0 auto;
+	width: 80%; /* Ajusta el ancho de la tabla */
+	padding: 10px; /* Agrega un espacio de relleno en las celdas */
+	font-size: 18px; /* Aumenta el tamaño de fuente */
+	border: 2px solid #996600; /* Agrega un borde a las celdas */
+	border-collapse: collapse; /* Combina los bordes de las celdas */
+	font-weight: bold; /* Hacer el texto en negrita */
+	color: #996600;
+	text-align: center;
 }
 
+.nav-botones-color {
+	border: 2px solid #996600;
+	color: black;
+}
 
+.nav-botones-color:hover {
+	background-color: #512515;
+	color: white;
+	border: 2px solid #512515;
+}
 
+/* --------------ESTILO PARA SECCIÓN CONSEJOS------------ */
+.formulario-consejo-boton-color {
+	color: black;
+	border: 2px solid #996600;
+}
+
+.formulario-consejo-boton-color:hover {
+	background-color: #512515;
+	color: white;
+	border: 2px solid #512515;
+}
+
+.consejos-boton-color {
+	border: 1px solid #996600;
+	color: black;
+}
+
+.consejos-boton-color:hover {
+	border: 1px solid #512515;
+	background-color: #512515;
+	color: white;
+}
+
+.card-consejo-color {
+	border: 2px solid #996600;
+}
+
+.detalle-consejo-titulo{
+	background-color: #996600;
+}
+/* -------------------------------------------------------------- */
