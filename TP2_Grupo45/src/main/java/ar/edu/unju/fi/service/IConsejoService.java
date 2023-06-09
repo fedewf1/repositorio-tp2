@@ -1,5 +1,5 @@
 package ar.edu.unju.fi.service;
 
-public class IProductoService {
+public interface IConsejoService {
 
 }
