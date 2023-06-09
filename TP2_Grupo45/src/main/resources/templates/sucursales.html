@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+
 	  <head>
+	 	<meta charset="UTF-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	    <title>Sucursales</title>
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+	    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	    <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 	  </head>
 	  
+	  
 	  <body>
-	  	<h1>Sucursales</h1>
+	  
+	 	 <div class="container-fluid">
+	 	 	<div class="row">
+	 	 			<h1>Sucursales</h1>
+	 	 	</div>
+	  	</div>
+	  
 		<header th:replace="~{layouts/header :: header}"></header>
-	 	<nav th:replace="~{layouts/nav :: nav}"></nav>
-	 	<a th:href="@{/sucursales/nueva}">Nueva Sucursal</a>
-	    <table border="1"  id="mi-tabla2">
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+		<a th:href="@{/sucursales/nueva}">Nueva Sucursal</a>	
+	    <div class="table-responsive">
 	    
+	    <table border="1" cellpadding="10" cellspacing="0" id="mi-tabla2" class="table table-striped table-bordered">
+	 
+	      <thead>
 	        <tr>
 	          <th >Sucursal</th>
 	          <th>Dirección</th>
@@ -40,7 +54,16 @@
 	    </table>
 	    
 	    
+	    </div>
+	    
+	    
+	  
+		
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	
+	
 	   
 	    <footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
+	
 </html>

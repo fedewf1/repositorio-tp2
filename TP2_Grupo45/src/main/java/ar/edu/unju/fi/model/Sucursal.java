@@ -3,14 +3,99 @@ package ar.edu.unju.fi.model;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
+	//public Sucursal(String nombre, String direccion, String provincia, LocalDate fechaInicio, String email,
+	//		String telefono, int cantidadEmpleados) {
+//		super();
+//		this.nombre = nombre;
+//		this.direccion = direccion;
+//		this.provincia = provincia;
+//		this.fechaInicio = fechaInicio;
+//		this.email = email;
+//		this.telefono = telefono;
+//		this.cantidadEmpleados = cantidadEmpleados;
+//	}
+
+
+
+/* 
+Se procede a la incorporacion de validacion de datos
+*/
+@Component
 public class Sucursal {
-	private String nombreSucursal,direccion,telefono,horaLunesViernes,horaSabados;
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotEmpty(message="El nombre no puede estar vacio")
+	private String nombreSucursal;
+	
+	@NotEmpty(message="La direccion no puede estar vacio")
+	@Size(min=10, max=100, message="La direccion debe contener entre 10 y 100 caracteres")
+	private String direccion;
+	
+	@NotBlank(message="Debe seleccionar una provincia")
+	private String provincia;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@NotNull(message="La fecha no puede ser null")
+	@Past(message="La fecha debe ser menor a la fecha actual")
 	private LocalDate fechaInicio;
+	
+	@Email(message="Debe ingresar un email con formato valido")
+	@NotEmpty(message="El email no puede ser vacio")
+	private String email;
+	
+	@NotEmpty(message="El telefono no puede ser vacio")
+	@Min(value=10, message="El valor minimo permitido es 10")
+	@Max(value=20, message="El valor maximo permitido es 20")
+	@Positive(message="Solo se permiten valores positivos")
+	private String telefono;
+	
+	@Min(value=5, message="El valor minimo permitido es 5")
+	@Max(value=30, message="El valor maximo permitido es 30")
+	@Positive(message="Solo se permiten valores positivos")
+	private int cantidadEmpleados;
+
+	private String horaLunesViernes,horaSabados;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
     private int codigoSucursal;
     
-    
+    //estos gettes y setters son tuyos
+	
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public int getCantidadEmpleados() {
+		return cantidadEmpleados;
+	}
+
+	public void setCantidadEmpleados(int cantidadEmpleados) {
+		this.cantidadEmpleados = cantidadEmpleados;
+	}
+	///hasta aca eran los tuyos distintos a los mios, depues eran iguales.
 	
 	public String getNombreSucursal() {
 		return nombreSucursal;

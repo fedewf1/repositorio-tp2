@@ -15,6 +15,10 @@ import ar.edu.unju.fi.model.Servicio;
 import jakarta.validation.Valid;
 
 
+/* 
+Se añaden los getmapping de sucursales y contacto que redirigen a sus respectivas paginas
+*/
+
 @Controller
 public class ServicioController {
 		
