@@ -84,7 +84,7 @@ Se procede a la captura de errores
   
   @PostMapping("/modificar")
   public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
-  	for(Sucursal sucu:listaSucursales.getSucursales()) {
+  	
   	for(Sucursal sucu : listaSucursales.getSucursales()) {
   		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
   			sucu.setNombreSucursal(sucursal.getNombreSucursal());
@@ -107,5 +107,5 @@ Se procede a la captura de errores
        }
   	return "redirect:/sucursales/listado";
   }
-}
+
 }
