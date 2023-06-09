@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nuevo Consejo</title>
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Consejos de salud</h1>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+		<div class="row">
+			<section class="col-xl-8 col-lg-8">
+				
+						<div>
+				<form action="#"
+					th:action="${editando}?@{/consejo/modificar/{id} (id=${consejo.id})}:@{/consejo/guardar}"
+					th:object="${consejo}" method="post"
+					class="text-light  formulario-sucursales-dentro">
+
+
+
+
+					<!-- DIV QUE ENVUELVE TODO EL CAMPO TITULO -->
+					<div
+						class="row col-lg-12  col-sm-12 justify-content-start ms-2 mb-md-1 ">
+					
+						 
+
+						<div class="col-lg-6 col-sm-6 align-self-center">
+							<input type="text" class="form-control" id="titulo"
+								th:field="*{titulo}" placeholder="Titulo">
+							<p class="form-text text-danger"
+								th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}" />
+						</div>
+
+					</div>
+					<!-- DIV QUE ENVUELVE TODO EL CAMPO TITULO -->
+
+					<!-- DIV QUE ENVUELVE TODO EL CAMPO AUTOR -->
+					<div
+						class="row col-lg-12  col-sm-12 justify-content-start ms-2 mb-md-1 ">
+							
+
+						<div class="col-lg-6 col-sm-6 align-self-center">
+
+
+							<input type="text" class="form-control" id="autor"
+								th:field="*{autor}" placeholder="Autor">
+
+							<p class="form-text text-danger"
+								th:if="${#fields.hasErrors('autor')}" th:errors="*{autor}" />
+						</div>
+					</div>
+					<!-- DIV QUE ENVUELVE TODO EL CAMPO AUTOR -->
+
+					<!-- DIV QUE ENVUELVE TODO EL CAMPO CONTENIDO -->
+
+				<div
+						class="row col-lg-12  col-sm-12 justify-content-start ms-2 mb-md-1 ">
+
+						<div class="col-lg-6 col-sm-6 align-self-center">
+							
+								<textarea class="form-control " style="height:350px"
+									placeholder="Escriba aqui su texto" id="floatingTextarea2"
+									 th:field="*{contenido}"></textarea>
+
+						
+						</div>
+
+						<div class="d-flex justify-content-start mt-lg-3 mt-md-1 mt-sm-1">
+							<button type="submit"
+								class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color mb-lg-4 mb-md-3 mb-sm-3"
+								th:text="${editando}?'Modificar' : 'Guardar' "></button>
+						</div>
+					</div>
+				</form>
+				<!-- FORMULARIO DE CONSEJO -->
+
+			</div>
+			<!-- FIN DEL DIV QUE ENVUELVE TODO EL FORMULARIO -->
+				
+				
+				
+			</section>
+			<aside class="col-4">
+				<br></br>
+				<article>
+					<p>Accedé a la más amplia variedad de productos al mejor precio
+						del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes
+						y mucho más! Recibilos en la comodidad de tu hogar en cualquier
+						punto del país o retiralos en tu sucursal preferida.</p>
+				</article>
+				<article>
+					<p>Dias de vacunacion Nos enfocamos en la prevención,
+						impulsando los mejores hábitos para su bienestar general. Para
+						ello contamos con profesionales veterinarios experimentados</p>
+				</article>
+			</aside>
+		</div>
+	</div>
+	<p></p>
+	
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
+		
+		
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+
+
+</body>
+</html>

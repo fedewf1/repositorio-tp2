@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva_Sucursal</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <h1 th:text="${edicion}?'Modificar Sucursal':'Nueva Sucursal'"></h1>
+    <header th:replace="~{layouts/header :: header}"></header>
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+	
+    <form th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}" th:object="${sucursal}" method="post"  id="mi-tabla">
+        <label for="nombreSucursal">Nombre Sucursal:</label>
+        <input type="text" id="nombreSucursal" name="nombreSucursal" th:field="*{nombreSucursal}"><br><br>
+        <div class="text-danger" th:if="${#fields.hasErrors('nombreSucursal')}" th:errors="*{nombreSucursal}"></div>
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" name="direccion" th:field="*{direccion}"><br><br>
+        <div class="text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+        
+        <label for="telefono">Telefono:</label>
+        <input type="text" id="telefono" name="telefono" th:field="*{telefono}"><br><br>
+        <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+        
+        <label for="horaLunesViernes">Horarios:</label>
+        <input type="text" id="horaLunesViernes" name="horaLunesViernes" th:field="*{horaLunesViernes}"><br><br>
+        <div class="text-danger" th:if="${#fields.hasErrors('horaLunesViernes')}" th:errors="*{horaLunesViernes}"></div>
+        
+        <label for="horaSabados">Horarios Sabados:</label>
+        <input type="text" id="horaSabados" name="horaSabados" th:field="*{horaSabados}"><br><br>
+        <div class="text-danger" th:if="${#fields.hasErrors('horaSabados')}" th:errors="*{horaSabados}"></div>
+  		
+  		<label for="codigoSucursal">Codigo Sucursal:</label>
+        <input type="text" id="codigoSucursal" name="codigoSucursal" th:field="*{codigoSucursal}"><br><br>
+        <div class="text-danger" th:if="${#fields.hasErrors('codigoSucursal')}" th:errors="*{codigoSucursal}"></div>
+              
+        <!--<label for="fecha">Fecha de Inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" th:field="*{fechaInicio}"><br><br>-->
+        <p><input type="submit" class="button" th:value="${edicion}?'Modificar':'Guardar'"></p>
+        
+    </form>
+    
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+</body>
+
+</html>

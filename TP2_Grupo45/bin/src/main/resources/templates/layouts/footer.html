@@ -1,8 +1,21 @@
-<!-- nav.html es una fragmento de codigo que se repite en todas las paginas, por eso se la vuelve un layaut-->
-<html xmlns:th="http://www.thymeleaf.org">
-   <div th:fragment="nav">
-		<footer>
-	        <p>Copyright 2023 - Petstore - 
-	        Diseñado por Grupo 45 – Jujuy – República Argentina</p>
-	    </footer>
-	</div>
+
+<!--
+El siguiente código HTML representa un fragmento de código llamado "footer.html". Este fragmento se repite en todas las páginas del sitio web y se utiliza como un layout común.
+En este fragmento, se define una estructura de navegación en el footer del sitio web. Se utiliza un elemento `footer` con una clase "footer" y estilos de diseño. Dentro del `footer`, se encuentra un párrafo (`p`) que muestra información de derechos de autor y atribuciones.
+-->
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<div th:fragment="footer">
+	<footer>
+		<!-- 	        <nav class="navbar bg-dark " data-bs-theme="dark" > -->
+		<!--   				Navbar content -->
+		<!--   				<p class="text-light text-center">Copyright 2023 - Petstore - Diseñado por Grupo 45 – Jujuy – República Argentina</p> -->
+		<!-- 			</nav> -->
+
+		<div class="bg-dark p-1 sticky-bottom">
+			<p class="text-light text-center py-3">Copyright 2023 - Petstore
+				- Diseñado por Grupo 45 – Jujuy – República Argentina</p>
+
+		</div>
+	</footer>
+</div>
+</html>

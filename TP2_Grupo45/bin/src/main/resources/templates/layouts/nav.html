@@ -5,15 +5,17 @@
 		<meta charset="UTF-8">
     </head>
 	<body>
-   		<nav  th:fragment="nav">
-			<ul>
-				<li style="display: inline-block"><a th:href="@{/index}" >Inicio</a></li>	
-				<li style="display: inline-block"><a th:href="@{/productos/listado}" >Productos</a></li>	
-				<li style="display: inline-block"><a href="consejos_de_salud.html" >Consejos de salud</a></li>	
-				<li style="display: inline-block"><a href="servicio_de_paseos.html" >Servicio de Paseo</a></li>	
-				<li style="display: inline-block"><a href="sucursales.html" >Sucursales</a></li>	
-				<li style="display: inline-block"><a href="contacto.html" >Contacto</a></li>	
-			</ul>
+   		<nav class="navbar bg-body-tertiary " th:fragment="nav">
+  		<!-- Navbar content -->
+  				<form class="container-fluid justify-content-start">
+    				<a class="btn btn-outline-success me-2 nav-botones-color" th:href="@{/index}">Inicio</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1 " type="button" th:href="@{/productos/listado}" >Productos</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/consejos}" >Consejos de salud</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/servicios}" >Servicio de Paseo</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/sucursales/listado}" >Sucursales</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/contacto}" >Contacto</a>
+  				</form>
 		</nav>
+
    	</body>
 </html>
