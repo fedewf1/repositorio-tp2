@@ -27,7 +27,6 @@ public class ProductoServiceImp implements IProductoService{
 		return listaProductos.getProductos();
 	}
 	
-
 	@Override
 	// Retorna el objeto producto
 	public Producto getProducto() {

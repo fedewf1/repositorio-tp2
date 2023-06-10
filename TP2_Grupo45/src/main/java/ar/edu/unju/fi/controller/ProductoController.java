@@ -23,7 +23,8 @@ public class ProductoController {
 	@Autowired
 	private IProductoService productoService;
 	
-    //private Producto producto;
+	
+    //private Producto producto
     
     // Muestra la página con el listado de productos
     @GetMapping("/listado")
@@ -31,7 +32,7 @@ public class ProductoController {
         model.addAttribute("productos", productoService.getProductos());
         return "productos";
     }
-    
+   
     // Muestra la página para agregar un nuevo producto
     @GetMapping("/nuevo")
     public String getNuevoProductoPage(Model model) {
