@@ -97,6 +97,15 @@ img {
 	
 }
 
-
-
 /* -------------------------------------------------------------- */
+
+/* --------------ESTILO PARA SECCIÓN CONTACTO------------ */
+.contacto-estilo-titulo{
+		background-color: #996600;
+	
+}
+
+.contacto-estilo{
+		border: 2px solid #996600;
+	
+}
