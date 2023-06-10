@@ -1,65 +1,137 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inicio</title>
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
 
-
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>Contactenos</title>
-		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	    <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-	</head>
-	
-	
-	<body>	
-	
-		<div class="container-fluid">
-	 		<div class="row">
-	 	 		<h1>Contactenos</h1>
-	 		</div>
-		</div>
+<body>
+	<div class="container">
+		<h1>Articulos para Mascotas en general</h1>
 		<header th:replace="~{layouts/header :: header}"></header>
-	 	<nav th:replace="~{layouts/nav :: nav}"></nav>
-		
-			
-			<p>3915 Av. General Belgrano, 388-499999<br>
-				Lunes a Viernes: 9:00 a. m. a 8:00 p. m.,<br>
-				Sabado a domingo: 9:00 a. m. a 12:30 p. m.<br>
-				contactos@mail.com.ar
-			</p>
-			<ul>
-				<li>Facebook: <a href="https://www.facebook.com/">facebook.com</a></li>
-				<li>Instagram: <a href="https://www.instagram.com/">instagram.com</a></li>
-				<li>Twitter: <a href="https://www.twitter.com/">twitter.com</a></li>
-			</ul>
-				
-			
-		<form action="#" method="post">
-		  <div class="form-group">
-			<label for="nombre">Nombre:</label>
-			<input type="text" id="nombre" name="nombre"><br>
-		  </div>
-		  
-		  <div class="form-group">
-			<label for="email">Email:</label>
-			<input type="email" id="email" name="email"><br>
-		  </div>
-		  
-		  <div class="form-group">
-			<label for="ciudad">Ciudad:</label>
-			<input type="text" id="ciudad" name="ciudad"><br>
-		  </div>
-		  
-		  <div class="form-group">
-			<label for="mensaje">Mensaje:</label>
-			<textarea id="mensaje" name="mensaje"></textarea><br>
-		  </div>
-			<input type="submit" value="Enviar">
-			
-		</form>
-		
-		<footer th:replace="~{layouts/footer :: footer}"></footer>
-	</body>
-	
-	
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+		<div class="row">
+
+			<section class="col-8">
+				<div class="row text-dark contacto-estilo">
+
+					<div >
+						<p class="row contacto-estilo-titulo p-2 fs-4 text-light">Contactenos</p>
+					</div>
+					<div class="d-flex justify-content-center"></div>
+					<p class="ps-3 text-center">3915 Av. General Belgrano,
+						388-1099999</p>
+					<p class="ps-3 text-center">Lunes a Viernes 9:00 am a 8:00 pm</p>
+					<p class="ps-3 text-center">Sabados y Domingos 9:00 am a 12:30
+						pm</p>
+
+
+					<div class="d-flex justify-content-center">
+						<a class="ps-3 text-center" href="contactos@gmail.com.ar"><img
+							src="/images/maillogo.svg" alt="Email logo"
+							class="img-fluid me-3" width="40" height="40"></a> <a
+							href="https://www.instagram.com"><img
+							src="/images/instagramlogov2.png" alt="Instagram logo"
+							class="img-fluid me-3 " width="40" height="40"></a> <a
+							href="https://www.twitter.com"><img
+							src="/images/twitterlogo.svg" alt="Twitter logo"
+							class="img-fluid me-3" width="40" height="40"></a> <a
+							href="https://www.twitter.com"><img
+							src="/images/fbooklogo.svg" alt="Facebook logo"
+							class="img-fluid me-3" width="40" height="40"></a>
+
+					</div>
+
+
+					<div class="d-flex justify-content-center">
+
+						<form class="row g-3 text-dark mt-3">
+
+							<div class="d-flex justify-content-center">
+
+								<div class="col-md-4 col-sm-4 me-2">
+									<label for="inputEmail4" class="form-label">Nombre y
+										Apellido</label> <input type="text" class="form-control">
+								</div>
+
+								<div class="col-md-4 col-sm-4">
+									<label for="inputEmail4" class="form-label">Correo</label> <input
+										type="email" class="form-control" id="inputEmail4">
+								</div>
+
+
+							</div>
+
+
+							<div class="d-flex justify-content-center">
+								<div class="col-md-8 col-sm-8">
+									<label for="inputState" class="form-label">Provincia</label> <select
+										id="inputState" class="form-select">
+										<option selected>Buenos Aires</option>
+										<option selected>Cordoba</option>
+										<option selected>Entre Ríos</option>
+										<option selected>Jujuy</option>
+										<option selected>Tucumán</option>
+										<option>...</option>
+									</select>
+								</div>
+
+							</div>
+							<!-- DIV PROVINCIAS -->
+
+							<div class="d-flex justify-content-center ">
+								<div class="col-md-8 col-sm-8 mb-1">
+									<label for="exampleFormControlTextarea1" class="form-label">Mensaje:
+									</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1"
+										rows="3"></textarea>
+								</div>
+
+
+							</div>
+
+						</form>
+
+					</div>
+					<!-- DIV que envuelve el formulario -->
+
+					<div class="d-flex justify-content-center mt-2  mb-2 ">
+						<button type="submit" class="btn btn-sm btn-outline-secondary contacto-estilo-titulo text-light">Enviar</button>
+					</div>
+
+
+				</div>
+				<!-- DIV que envuelve los dias y los logos -->
+
+			</section>
+
+
+
+
+			<aside class="col-4">
+				<br></br>
+				<article class="p-3">
+					<p>Accedé a la más amplia variedad de productos al mejor precio
+						del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes
+						y mucho más! Recibilos en la comodidad de tu hogar en cualquier
+						punto del país o retiralos en tu sucursal preferida.</p>
+				</article>
+				<article class="p-3">
+					<p>Dias de vacunacion Nos enfocamos en la prevención,
+						impulsando los mejores hábitos para su bienestar general. Para
+						ello contamos con profesionales veterinarios experimentados</p>
+				</article>
+			</aside>
+		</div>
+	</div>
+	<p></p>
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
 </html>
