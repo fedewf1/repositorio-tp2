@@ -45,34 +45,36 @@ public class SucursalServiceImp implements ISucursalService {
 	@Override
 	public void modificarSucursal(Sucursal sucursal) {
 		 
-		 for(Sucursal sucu : listaSucursales.getSucursales()) {
-		  		if(sucu.getNombreSucursal().equals(sucursal.getNombreSucursal())) {
-		  			
-		  			sucu.setNombreSucursal(sucursal.getNombreSucursal());
-		  			sucu.setDireccion(sucursal.getDireccion());
-		  			sucu.setEmail(sucursal.getEmail());
-		  			sucu.setFechaInicio(sucursal.getFechaInicio());
-		  			sucu.setProvincia(sucursal.getProvincia());
-		  			sucu.setTelefono(sucursal.getTelefono());
-		  			sucu.setCantidadEmpleados(sucursal.getCantidadEmpleados());
-		  			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-		  			sucu.setHoraSabados(sucursal.getHoraSabados());
-		  		}
-		  	}
+		for(Sucursal sucu : listaSucursales.getSucursales()) {
+    		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
+    			sucu.setNombreSucursal(sucursal.getNombreSucursal());
+    			sucu.setDireccion(sucursal.getDireccion());
+    			sucu.setTelefono(sucursal.getTelefono());
+    			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
+    			sucu.setHoraSabados(sucursal.getHoraSabados());
+    			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
+    		}
+    	}
 		 
 	}
-	  
+	   
 	//elimina una sucursal
 	@Override
-	public void eliminarSucursal(Sucursal sucursal) {
-		listaSucursales.getSucursales().remove(sucursal);
+	public void eliminarSucursal(Integer codigoSucursal) {
+		for(Sucursal sucu:listaSucursales.getSucursales()) {
+	  		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
+	  			listaSucursales.getSucursales().remove(sucu);
+	  			break;
+	  			}
+	       }
+		
 	}
 
 	//busca una sucursal por nombre
 	@Override
-	public Sucursal buscarSucursalPorNombre(String nombre) {
+	public Sucursal buscarSucursalPorCodigo(Integer codigoSucursal) {
 		 for (Sucursal sucursal: listaSucursales.getSucursales()) {
-	            if (sucursal.getNombreSucursal().equals(nombre)) {
+	            if (sucursal.getCodigoSucursal()==(codigoSucursal)) {
 	                return sucursal;
 	            }
 	        }
