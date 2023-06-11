@@ -15,23 +15,14 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
-	//public Sucursal(String nombre, String direccion, String provincia, LocalDate fechaInicio, String email,
-	//		String telefono, int cantidadEmpleados) {
-//		super();
-//		this.nombre = nombre;
-//		this.direccion = direccion;
-//		this.provincia = provincia;
-//		this.fechaInicio = fechaInicio;
-//		this.email = email;
-//		this.telefono = telefono;
-//		this.cantidadEmpleados = cantidadEmpleados;
-//	}
+/**
+ * Representa una sucursal
+ * @author joelrojas95
+ * @version 1.0 date: 10/06/23
+ */
 
+// Se procede a la incorporacion de validacion de datos
 
-
-/* 
-Se procede a la incorporacion de validacion de datos
-*/
 @Component
 public class Sucursal {
 	@NotEmpty(message="El nombre no puede estar vacio")
@@ -68,7 +59,7 @@ public class Sucursal {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
     private int codigoSucursal;
     
-    //estos gettes y setters son tuyos
+    //Getters and Setters
 	
 	public String getProvincia() {
 		return provincia;
@@ -78,7 +69,6 @@ public class Sucursal {
 		this.provincia = provincia;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
@@ -87,7 +77,6 @@ public class Sucursal {
 		this.email = email;
 	}
 
-
 	public int getCantidadEmpleados() {
 		return cantidadEmpleados;
 	}
@@ -95,7 +84,6 @@ public class Sucursal {
 	public void setCantidadEmpleados(int cantidadEmpleados) {
 		this.cantidadEmpleados = cantidadEmpleados;
 	}
-	///hasta aca eran los tuyos distintos a los mios, depues eran iguales.
 	
 	public String getNombreSucursal() {
 		return nombreSucursal;
@@ -116,15 +104,12 @@ public class Sucursal {
 		this.telefono = telefono;
 	}
 
-	
 	public int getCodigoSucursal() {
 		return codigoSucursal;
 	}
 	public void setCodigoSucursal(int codigoSucursal) {
 		this.codigoSucursal = codigoSucursal;
 	}
-	
-	
 	
 	
 	public String getHoraLunesViernes() {
@@ -145,11 +130,22 @@ public class Sucursal {
 	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
+	
+	
 	public Sucursal() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Constructor parametrizado
+	 * @param nombreSucursal es el nombre de la sucursal
+	 * @param direccion es la direccion de la sucursal
+	 * @param telefono es el numero telefonico de la sucursal
+	 * @param horaLunesViernes es el horario de los dias Lunes a Viernes
+	 * @param horaSabados es el horario de los dias Sabados
+	 * @param codigoSucursal es el codigo de la sucursal
+	 */
 	public Sucursal(String nombreSucursal, String direccion, String telefono, String horaLunesViernes,
 			String horaSabados, int codigoSucursal) {
 		super();

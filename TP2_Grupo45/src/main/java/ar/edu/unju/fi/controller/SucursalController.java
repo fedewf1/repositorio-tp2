@@ -1,4 +1,5 @@
 package ar.edu.unju.fi.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,73 +10,59 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
+/**
+ * Capa Controladora de Sucursal
+ * @author joelrojas95
+ * @version 1.0 date: 10/06/23
+ */
 
-//@Controller
-//public class ProductoController {
-//   private List<Producto> listaProductos = new ArrayList<>();
-//@GetMapping("/productos")
-//	public String mostrarFormulario() {
-      //model.addAttribute("producto", new Producto(null, 0, 0, null, 0));
-//      return "productos";
-//  }
-  
-//}
+
 @Controller
-@RequestMapping("/sucursales")
+@RequestMapping("/sucursal")
 public class SucursalController {
-  
   @Autowired
-  private ListaSucursales listaSucursales;
-  
-  
-  @Autowired
-  private Sucursal sucursal;
+  private ISucursalService sucursalService;
   
   @GetMapping("/listado")
-  public String getListaProductoPage(Model model) {
-      model.addAttribute("sucursales", listaSucursales.getSucursales());
+  public String getListaSucursalesPage(Model model) {
+      model.addAttribute("sucursales", sucursalService.getSucursales());
       return "sucursales";
   }
   
-  @GetMapping("/nueva")
+  @GetMapping("/nuevo")
   public String getNuevaSucursalPage(Model model) {
   	boolean edicion = false;
-  	model.addAttribute("sucursal", sucursal);
+  	model.addAttribute("sucursal", sucursalService.getSucursal());
   	model.addAttribute("edicion", edicion);
   	return "nueva_sucursal";
   }
   
+
   /* 
 Se procede a la captura de errores
 */
   
   @PostMapping("/guardar")
-  public ModelAndView getguardarSucursalPage(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result) {
+  public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result) {
 	ModelAndView modelView = new ModelAndView("sucursales");
 	if(result.hasErrors()) {
 		modelView.setViewName("nueva_sucursal");
 		modelView.addObject("sucursal", sucursal);
 		return modelView;
 	}
-    listaSucursales.getSucursales().add(sucursal);
-    modelView.addObject("sucursales", listaSucursales.getSucursales());
+	sucursalService.getSucursales().add(sucursal);
+    modelView.addObject("sucursales", sucursalService.getSucursales());
     return modelView;
   }
   
   
-  @GetMapping("/modificar/{codigoSucursal}")
-  public String getModificarSucursalPage(Model model, @PathVariable(value="codigoSucursal")int codigoSucursal) {
-  	Sucursal sucursalEncontrada = new Sucursal();
+  @GetMapping("/modificar/{nombre}")
+  public String getModificarSucursalPage(Model model, @PathVariable(value="nombre")String nombre) {
+  	Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorNombre(nombre);
   	boolean edicion= true;
-  	for(Sucursal sucu : listaSucursales.getSucursales()){
-  		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
-  			sucursalEncontrada = sucu;
-  			break;
-  		}
-  	}
   	model.addAttribute("sucursal", sucursalEncontrada);
   	model.addAttribute("edicion", edicion);
   	return"nueva_sucursal";
@@ -85,7 +72,7 @@ Se procede a la captura de errores
   @PostMapping("/modificar")
   public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
   	
-  	for(Sucursal sucu : listaSucursales.getSucursales()) {
+  	for(Sucursal sucu : sucursalService.getSucursales()) {
   		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
   			sucu.setNombreSucursal(sucursal.getNombreSucursal());
   			sucu.setDireccion(sucursal.getDireccion());
@@ -97,11 +84,13 @@ Se procede a la captura de errores
   	}
   	return "redirect:/sucursales/listado";
   }
+  
+  
   @GetMapping("/eliminar/{codigoSucursal}")
   public String eliminarSocursal(@PathVariable(value="codigoSucursal") int codigoSucursal) {
-  	for(Sucursal sucu:listaSucursales.getSucursales()) {
+  	for(Sucursal sucu:sucursalService.getSucursales()) {
   		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
-  			listaSucursales.getSucursales().remove(sucu);
+  			sucursalService.getSucursales().remove(sucu);
   			break;
   			}
        }
