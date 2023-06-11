@@ -9,112 +9,77 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.listas.ListaServicio;
 import ar.edu.unju.fi.model.Servicio;
+import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 
 
-/* 
-Se añaden los getmapping de sucursales y contacto que redirigen a sus respectivas paginas
-*/
+
 
 @Controller
 public class ServicioController {
-		
+	
+	
+	@Autowired
+	private IServicioService servicioService;
+	
+	
 	@Autowired
 	private Servicio servicio;
-
-	@Autowired
-	private ListaServicio listaServicios;
-
+	
 	@GetMapping("/servicios")
-	public String mostrarListaServicios(Model model) {
-		model.addAttribute("servicios", listaServicios.getServicios());
-		return "servicios";
-	}
-	
-	 @ModelAttribute("trabajadores")
-	    public List<Servicio> obtenerTrabajadoresDisponibles() {
-	        return listaServicios.getServicios();
-	    }
-	
+    public String mostrarListaServicios(Model model) {
+        model.addAttribute("servicios", servicioService.getServicios());
+        return "servicios";
+    }
 
-	@GetMapping("/servicio/nuevo")
-	public String mostrarFormularioNuevoServicio(Model model) {
-		boolean editando = false;
-		model.addAttribute("servicio", servicio);
-		model.addAttribute("editando", editando);
+    @ModelAttribute("trabajadores")
+    public List<Servicio> obtenerTrabajadoresDisponibles() {
+        return servicioService.getServicios();
+    }
 
-		return "nuevo_servicio";
-	}
+    @GetMapping("/servicio/nuevo")
+    public String mostrarFormularioNuevoServicio(Model model) {
+        boolean editando = false;
+        model.addAttribute("servicio", new Servicio());
+        model.addAttribute("editando", editando);
+        return "nuevo_servicio";
+    }
 
-	@PostMapping("/servicio/guardar")
-	public ModelAndView getGuardarServicioPage(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult result) {
-		
-		  if (result.hasErrors()) {
-		        ModelAndView modelView = new ModelAndView("nuevo_servicio");
-		        modelView.addObject("servicio", servicio);
-		        return modelView;
-		    }
-		
-		ModelAndView modelAndView = new ModelAndView("servicios");
-		listaServicios.getServicios().add(servicio);
+    @PostMapping("/servicio/guardar")
+    public String guardarServicio(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult result) {
+        if (result.hasErrors()) {
+            return "nuevo_servicio";
+        }
+        servicioService.agregarServicio(servicio);
+        return "redirect:/servicios";
+    }
 
-		modelAndView.addObject("servicios", listaServicios.getServicios());
-		return modelAndView;
-	}
+    @GetMapping("/servicio/modificar/{nombre}")
+    public String mostrarFormularioModificarServicio(Model model, @PathVariable(value = "nombre") String nombre) {
+        Servicio servicio = servicioService.getServicioPorNombre(nombre);
+        boolean editando = true;
+        if (servicio == null) {
+            return "redirect:/servicios";
+        }
+        model.addAttribute("servicio", servicio);
+        model.addAttribute("editando", editando);
+        return "nuevo_servicio";
+    }
 
-	@GetMapping("/servicio/modificar/{nombre}")
-	public String getModificarServicioPage(Model model, @PathVariable(value = "nombre") String nombre) {
-		Servicio servicioEncontrado = new Servicio();
-		boolean editando = true;
-		for (Servicio serv : listaServicios.getServicios()) {
-			if (serv.getNombre().equals(nombre)) {
-				servicioEncontrado = serv;
-				break;
-			}
-		}
+    @PostMapping("/servicio/modificar")
+    public String modificarServicio(@Valid @ModelAttribute("servicio") Servicio servicioActualizado, BindingResult result) {
+        if (result.hasErrors()) {
+            return "nuevo_servicio";
+        }
+        servicioService.actualizarServicio(servicioActualizado);
+        return "redirect:/servicios";
+    }
 
-		model.addAttribute("servicio", servicioEncontrado);
-		model.addAttribute("editando", editando);
-		return "nuevo_servicio";
-	}
-
-	@PostMapping("/servicio/modificar")
-	public String modificarServicio(Model model, @ModelAttribute("servicio") Servicio servicioActualizado) {
-		
-		
-
-		for (Servicio serv : listaServicios.getServicios()) {
-			if (serv.getNombre().equals(servicioActualizado.getNombre())) {
-				serv.setDireccion(servicioActualizado.getDireccion());
-				serv.setTelefono(servicioActualizado.getTelefono());
-				serv.setTarifa(servicioActualizado.getTarifa());
-				serv.setTipoDeServicio(servicioActualizado.getTipoDeServicio());
-				serv.setDiaDisponible(servicioActualizado.getDiaDisponible());
-				serv.setHorarioDisponible(servicioActualizado.getHorarioDisponible());
-
-				break;
-			}
-		}
-
-		return "redirect:/servicios";
-	}
-
-	@GetMapping("/servicio/eliminar/{nombre}")
-	public String eliminarServicio(Model model, @PathVariable(value = "nombre") String nombre) {
-
-		for (Servicio serv : listaServicios.getServicios()) {
-			if (serv.getNombre().equals(nombre)) {
-				listaServicios.getServicios().remove(serv);
-				break;
-			}
-		}
-
-		return "redirect:/servicios";
-	}
-	
-	
+    @GetMapping("/servicio/eliminar/{nombre}")
+    public String eliminarServicio(@PathVariable(value = "nombre") String nombre) {
+        servicioService.eliminarServicio(nombre);
+        return "redirect:/servicios";
+    }
  
 }
