@@ -39,5 +39,5 @@ public class ListaArticulos {
 			public void setArticulos(List<Articulo> articulos){
 				this.articulos=articulos;
 			}
-			
+			 
 }

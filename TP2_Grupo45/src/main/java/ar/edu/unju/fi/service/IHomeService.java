@@ -4,7 +4,7 @@ import java.util.List;
 
 import ar.edu.unju.fi.model.Articulo;
 
-/**
+/** 
  * @author federico nicolas burgos grupo 45
  * @category Interfaz
  * @version 1.0.1 date: 11/6/23

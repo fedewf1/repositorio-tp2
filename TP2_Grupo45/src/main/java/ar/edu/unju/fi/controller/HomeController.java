@@ -14,7 +14,7 @@ import ar.edu.unju.fi.model.Producto;
 import ar.edu.unju.fi.service.IHomeService;
 import jakarta.validation.Valid;
 
-
+ 
 
 /**
  * Esta clase representa a la clase controladora del Homo/Index y articulo.

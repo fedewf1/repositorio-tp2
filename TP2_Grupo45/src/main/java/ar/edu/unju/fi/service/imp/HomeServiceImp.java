@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
  * En esta clase se implementas los metodos presentes referenciados en la interfaz
  * y que son utilizadas por el controlador HomeController
  */
-@Service
+@Service 
 public class HomeServiceImp implements IHomeService{
 	@Autowired
 	private ListaArticulos listaArticulos;
