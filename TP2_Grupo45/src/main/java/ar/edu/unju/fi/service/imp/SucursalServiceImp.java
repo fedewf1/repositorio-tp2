@@ -1,0 +1,84 @@
+package ar.edu.unju.fi.service.imp;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ar.edu.unju.fi.listas.ListaSucursales;
+import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.service.ISucursalService;
+import jakarta.validation.Valid;
+
+/**
+ * Clase de Sucursal que implementa los metodos definidos en la interfaz IsucursalService
+ * @author joelrojas95
+ * @version 1.0 date: 10/06/23
+ */
+
+@Service
+public class SucursalServiceImp implements ISucursalService {
+	@Autowired
+	private ListaSucursales listaSucursales;
+	@Autowired
+	private Sucursal sucursal;
+
+	// Lista de sucursales
+	@Override
+	public List<Sucursal> getSucursales() {
+		return listaSucursales.getSucursales();
+	}
+	
+	@Override
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+	
+	//guarda una nueva sucursal
+	@Override
+	public void guardarSucursal(@Valid Sucursal sucursal) {
+		listaSucursales.getSucursales().add(sucursal);
+		
+	}
+		
+	//modificacion de los datos de la sucursal
+	@Override
+	public void modificarSucursal(Sucursal sucursal) {
+		 
+		 for(Sucursal sucu : listaSucursales.getSucursales()) {
+		  		if(sucu.getNombreSucursal().equals(sucursal.getNombreSucursal())) {
+		  			
+		  			sucu.setNombreSucursal(sucursal.getNombreSucursal());
+		  			sucu.setDireccion(sucursal.getDireccion());
+		  			sucu.setEmail(sucursal.getEmail());
+		  			sucu.setFechaInicio(sucursal.getFechaInicio());
+		  			sucu.setProvincia(sucursal.getProvincia());
+		  			sucu.setTelefono(sucursal.getTelefono());
+		  			sucu.setCantidadEmpleados(sucursal.getCantidadEmpleados());
+		  			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
+		  			sucu.setHoraSabados(sucursal.getHoraSabados());
+		  		}
+		  	}
+		 
+	}
+	  
+	//elimina una sucursal
+	@Override
+	public void eliminarSucursal(Sucursal sucursal) {
+		listaSucursales.getSucursales().remove(sucursal);
+	}
+
+	//busca una sucursal por nombre
+	@Override
+	public Sucursal buscarSucursalPorNombre(String nombre) {
+		 for (Sucursal sucursal: listaSucursales.getSucursales()) {
+	            if (sucursal.getNombreSucursal().equals(nombre)) {
+	                return sucursal;
+	            }
+	        }
+	        return null; // Si no se encuentra el servicio
+	}
+
+}
+
+
