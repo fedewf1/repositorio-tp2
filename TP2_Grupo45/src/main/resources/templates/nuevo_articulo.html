@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Título de la página -->
+        <!-- Título de la página --> 
         <h1 class="mt-4" th:text="${edicion} ? 'Modificar Articulo' : 'Articulo'"></h1>
         <!-- Incluir el header -->
         <header th:replace="~{layouts/header :: header}"></header>
@@ -33,7 +33,12 @@
                         <!-- Mostrar mensajes de error para el campo "codigo" -->
                         <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
                     </div>
-                   
+                   <div class="form-group">
+                        <label for="fechaArticulo">Fecha Articulo:</label>
+                        <input type="text" class="form-control" id="fechaArticulo" name="fechaArticulo" th:field="*{fechaArticulo}">
+                        <!-- Mostrar mensajes de error para el campo "codigo" -->
+                        <div class="text-danger" th:if="${#fields.hasErrors('fechaArticulo')}" th:errors="*{fechaArticulo}"></div>
+                    </div>
                     <!-- Botón para enviar el formulario -->
                     <button type="submit" class="btn btn-primary" th:text="${edicion} ? 'Modificar' : 'Guardar'"></button>
                 </form>

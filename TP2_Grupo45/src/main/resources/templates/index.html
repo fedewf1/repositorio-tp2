@@ -18,9 +18,18 @@
     			<br></br>
     			<!-- Enlace para crear un nuevo articulo -->
     			<a class="btn btn-primary" th:href="@{/nuevo}">Nuevo Articulo</a>
+    			
+    			<!-- En la siguiente etiqueta article se visualizan los articulos guardados, junto con su correspondiete 
+    			opcion de editar o eliminar articulo -->
+    			
       			<article th:each="arti : ${articulos}">
-        		<p th:text="${arti.articulo}" ></p>
-     			<span th:text="${arti.codigo}"></span>
+        		<p th:text="${arti.articulo}" > </p>
+        		<div style="display: inline;"> 
+        		<h6>
+        		<span th:with="formattedDate=${#temporals.format(arti.fechaArticulo, 'dd/MM/yyyy')}" th:text="'Fecha del articulo '+${formattedDate}"></span>
+
+        		<span  th:text="' Cod. del Articulo '+${arti.codigo}"></span></h6>
+        		</div>
         		<a class="btn btn-secondary" th:href="@{/modificar/}+${arti.codigo}">Editar Articulo</a>
                 <a class="btn btn-danger" th:href="@{/eliminar/}+${arti.codigo}">Eliminar Articulo</a>
       			</article>
@@ -36,7 +45,7 @@
 		      	</article>
     		</aside>
   		</div>
-		</div>
+		</div> 
 		<p></p>
 		<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
 		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
