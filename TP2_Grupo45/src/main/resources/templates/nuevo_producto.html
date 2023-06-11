@@ -78,17 +78,10 @@
                     <button type="submit" class="btn btn-primary" th:text="${edicion} ? 'Modificar' : 'Guardar'"></button>
                 </form>
             </div>
-            <div class="col-md-4">
-                <aside>
-                <!-- Información adicional -->
-                    <article>
-                        Accedé a la más amplia variedad de productos al mejor precio del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes y mucho más! Recibilos en la comodidad de tu hogar en cualquier punto del país o retiralos en tu sucursal preferida.
-                    </article>
-                    <article>
-                        Dias de vacunacion
-                        Nos enfocamos en la prevención, impulsando los mejores hábitos para su bienestar general. Para ello contamos con profesionales veterinarios experimentados.
-                    </article>
-                </aside>
+            <!-- Incluye al aside layouts -->
+            <aside class="col-4" th:replace="~{layouts/aside :: aside}">
+			
+    		</aside>
             </div>
         </div>
         
