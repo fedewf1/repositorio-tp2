@@ -17,6 +17,14 @@ h1 {
 	text-align: center;
 	color: #996600;
 }
+h6{
+	font-size: 15px;
+	font-family: Times New Roman, Arial, Helvetica;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	color: #9e978a;
+}
 
 img {
 	display: block;

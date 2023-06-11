@@ -9,40 +9,50 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unju.fi.listas.ListaArticulos;
 import ar.edu.unju.fi.model.Articulo;
+import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.service.IHomeService;
 import jakarta.validation.Valid;
 
 
 
+/**
+ * Esta clase representa a la clase controladora del Homo/Index y articulo.
+ * @author federicono nicolas burgos Grupo 45
+ * @version 1.0.1 date: 11/6/23
+ */
 @Controller
 @RequestMapping("/")
 public class HomeController {
 	@Autowired
-	private ListaArticulos listaArticulos;
-	@Autowired
-    private Articulo articulo;
-	
+	private IHomeService homeService;
+	/**
+	 * Este método maneja una solicitud GET a la ruta "/" y devuelve la vista "index". 
+	 * Agrega un atributo llamado "articulos" al modelo, que se obtiene llamando al método getArticulos() del servicio homeService. 
+	 * La vista "index" utilizará este atributo para mostrar la lista de artículos.
+	 * @param model
+	 * @return
+	 */
 	
     @GetMapping("/")
     
     public String getListaArticuloPage(Model model) {
-    model.addAttribute("articulos", listaArticulos.getArticulos());
+    model.addAttribute("articulos", homeService.getArticulos());
     return "index";
     }
     @GetMapping("/index")
     public String getListaArticuloPag(Model model) {
-        model.addAttribute("articulos", listaArticulos.getArticulos());
+        model.addAttribute("articulos", homeService.getArticulos());
         return "index";
     }
     @GetMapping("/nuevo")
     public String getNuevoProductoPage(Model model) {
     	boolean edicion = false;
-    	model.addAttribute("articulo", articulo);
+    	model.addAttribute("articulo", new Articulo());
     	model.addAttribute("edicion", edicion);
     	return "nuevo_articulo";
     }
+    //Guarda un nuevo articulo en la lista
     @PostMapping("/guardar")
     public ModelAndView getguardarArticuloPage(@Valid @ModelAttribute("articulo") Articulo articulo, BindingResult result) {
     	ModelAndView modelView = new ModelAndView("index");
@@ -53,52 +63,43 @@ public class HomeController {
     		return modelView;
     	}
 		// Agregar el artículo a la lista de artículos
-    	listaArticulos.getArticulos().add(articulo);
-        modelView.addObject("articulos", listaArticulos.getArticulos());
+    	homeService.guardarArticulo(articulo);
+        modelView.addObject("articulos", homeService.getArticulos());
         return modelView;
     }
+ 
     
 	// Buscar el artículo en la lista de artículos
     @GetMapping("/modificar/{codigo}")
     public String getModificarArticuloPage(Model model, @PathVariable(value="codigo")int codigo) {
-    	Articulo articuloEncontrado = new Articulo();
+    	Articulo articuloEncontrado = homeService.buscarPorCodigo(codigo);
     	boolean edicion= true;
-    	for(Articulo arti : listaArticulos.getArticulos()){
-    		if(arti.getCodigo()==(codigo)) {
-    			articuloEncontrado = arti;
-    			break;
+    		if(articuloEncontrado==null) {
+    			return "redirect:/index";
     		}
-    	}
+    	
     	model.addAttribute("articulo", articuloEncontrado);
     	model.addAttribute("edicion", edicion);
     	return"nuevo_articulo";
+    
+ 
     }
+    // El código itera sobre la lista de artículos y busca un artículo con un código coincidente. Si se encuentra, se actualizan el nombre y el código del artículo. Luego, se redirige a la página de inicio.
     @PostMapping("/modificar")
     public String modificaArticulo(@ModelAttribute("articulo")Articulo articulo) {
-    	for(Articulo arti : listaArticulos.getArticulos()) {
-    		
-    		if(arti.getCodigo()== (articulo.getCodigo())) {
-    			
-    			arti.setArticulo(articulo.getArticulo());
-    			arti.setCodigo(articulo.getCodigo());
-    		}
-    		
-    	}
+    	homeService.modificarArticulo(articulo);
     	return "redirect:/index";
     }
-  
+ 
 		//arti.setArticulo(Integer.toString(articulo.getCodigo()));
 
 	// Eliminar el artículo de la lista de artículos	
     @GetMapping("/eliminar/{codigo}")
-    public String eliminarProducto(@PathVariable(value="codigo") int codigo) {
-    	for(Articulo arti:listaArticulos.getArticulos()) {
-    		if(arti.getCodigo()==(codigo)) {
-    			listaArticulos.getArticulos().remove(arti);
-    			break;
-    			}
-         }return "redirect:/index";
+    public String eliminarArticulo(@PathVariable(value="codigo") int codigo) {
+    	homeService.eliminarArticulo(codigo);
+    	return "redirect:/index";
     }
+ 
 }
 
 

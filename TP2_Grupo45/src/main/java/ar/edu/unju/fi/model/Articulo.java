@@ -18,9 +18,10 @@ public class Articulo {
     @Positive(message = "El código debe ser un número positivo.")
 	@Digits(integer = 2, fraction = 0, message = "El código debe ser un número de 4 dígitos")
 	private int codigo;
-	//@DateTimeFormat(pattern="dd/MM/yyyy")
-	//private LocalDate fechaInicio;
-	
+	@NotNull(message = "El artículo no puede estar vacío.")
+	@DateTimeFormat(pattern="yyyy/MM/dd")
+	public LocalDate fechaArticulo;
+	//metodos gettes y settes auto generados
 	public String getArticulo() {
 		return articulo;
 	}
@@ -33,22 +34,28 @@ public class Articulo {
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	//public LocalDate getFechaInicio() {
-	//	return fechaInicio;
-	//}
-	//public void setFechaInicio(LocalDate fechaInicio) {
-	//	this.fechaInicio = fechaInicio;
-	//}
+	public LocalDate getFechaArticulo() {
+		return fechaArticulo;
+	}
+	public void setFechaArticulo(LocalDate fechaArticulo) {
+		this.fechaArticulo = fechaArticulo;
+	}
 	public Articulo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	//, LocalDate fechaInicio
-	public Articulo(String articulo, Integer codigo) {
+	/*
+	 * Contructor parametrizado
+	 * @param articulo es el articulo que se muestra en el index
+	 * @param codigo es el codigo del articulo, con el que es ingresado en la listaArticulos
+	 * @param fechaArticulo es la fecha en la que el articulo fue creado
+	 */
+	
+	public Articulo(String articulo, Integer codigo, LocalDate fechaArticulo) {
 		super();
 		this.articulo = articulo;
 		this.codigo = codigo;
-	//	this.fechaInicio = fechaInicio;
+		this.fechaArticulo = fechaArticulo;
 	}
 	
 	
