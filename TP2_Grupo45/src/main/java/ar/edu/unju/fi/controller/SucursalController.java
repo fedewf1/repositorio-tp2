@@ -68,7 +68,7 @@ Se procede a la captura de errores
   	model.addAttribute("edicion", edicion);
   	return"nueva_sucursal";
   }
-  
+   
   
   @PostMapping("/modificar")
   public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {

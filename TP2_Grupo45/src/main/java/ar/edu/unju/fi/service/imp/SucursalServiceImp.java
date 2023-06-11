@@ -57,7 +57,7 @@ public class SucursalServiceImp implements ISucursalService {
     	}
 		 
 	}
-	  
+	   
 	//elimina una sucursal
 	@Override
 	public void eliminarSucursal(Integer codigoSucursal) {

@@ -5,7 +5,7 @@ import ar.edu.unju.fi.model.Sucursal;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-
+ 
 @Component
 public class ListaSucursales {
 	private List<Sucursal> sucursales;

@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Size;
  * @author joelrojas95
  * @version 1.0 date: 10/06/23
  */
-
+  
 // Se procede a la incorporacion de validacion de datos
 
 @Component
