@@ -17,11 +17,12 @@ import jakarta.validation.Valid;
  * Capa Controladora de Sucursal
  * @author joelrojas95
  * @version 1.0 date: 10/06/23
+ * 
  */
 
 
 @Controller
-@RequestMapping("/sucursal")
+@RequestMapping("/sucursales")
 public class SucursalController {
   @Autowired
   private ISucursalService sucursalService;
@@ -35,7 +36,7 @@ public class SucursalController {
   @GetMapping("/nuevo")
   public String getNuevaSucursalPage(Model model) {
   	boolean edicion = false;
-  	model.addAttribute("sucursal", sucursalService.getSucursal());
+  	model.addAttribute("sucursal", new Sucursal());
   	model.addAttribute("edicion", edicion);
   	return "nueva_sucursal";
   }
@@ -53,15 +54,15 @@ Se procede a la captura de errores
 		modelView.addObject("sucursal", sucursal);
 		return modelView;
 	}
-	sucursalService.getSucursales().add(sucursal);
+	sucursalService.guardarSucursal(sucursal);
     modelView.addObject("sucursales", sucursalService.getSucursales());
     return modelView;
   }
   
   
-  @GetMapping("/modificar/{nombre}")
-  public String getModificarSucursalPage(Model model, @PathVariable(value="nombre")String nombre) {
-  	Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorNombre(nombre);
+  @GetMapping("/modificar/{codigoSucursal}")
+  public String getModificarSucursalPage(Model model, @PathVariable(value="codigoSucursal")int codigoSucursal) {
+  	Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorCodigo(codigoSucursal);
   	boolean edicion= true;
   	model.addAttribute("sucursal", sucursalEncontrada);
   	model.addAttribute("edicion", edicion);
@@ -72,29 +73,16 @@ Se procede a la captura de errores
   @PostMapping("/modificar")
   public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
   	
-  	for(Sucursal sucu : sucursalService.getSucursales()) {
-  		if(sucu.getCodigoSucursal()==(sucursal.getCodigoSucursal())) {
-  			sucu.setNombreSucursal(sucursal.getNombreSucursal());
-  			sucu.setDireccion(sucursal.getDireccion());
-  			sucu.setTelefono(sucursal.getTelefono());
-  			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-  			sucu.setHoraSabados(sucursal.getHoraSabados());
-  			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
-  		}
-  	}
+  	
+  	sucursalService.modificarSucursal(sucursal);
   	return "redirect:/sucursales/listado";
   }
   
   
   @GetMapping("/eliminar/{codigoSucursal}")
   public String eliminarSocursal(@PathVariable(value="codigoSucursal") int codigoSucursal) {
-  	for(Sucursal sucu:sucursalService.getSucursales()) {
-  		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
-  			sucursalService.getSucursales().remove(sucu);
-  			break;
-  			}
-       }
-  	return "redirect:/sucursales/listado";
+	  sucursalService.eliminarSucursal(codigoSucursal);
+  	  return "redirect:/sucursales/listado";
   }
 
 }

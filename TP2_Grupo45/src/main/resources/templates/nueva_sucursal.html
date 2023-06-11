@@ -31,7 +31,7 @@
         <div class="text-danger" th:if="${#fields.hasErrors('horaSabados')}" th:errors="*{horaSabados}"></div>
   		
   		<label for="codigoSucursal">Codigo Sucursal:</label>
-        <input type="text" id="codigoSucursal" name="codigoSucursal" th:field="*{codigoSucursal}"><br><br>
+        <input type="number" id="codigoSucursal" name="codigoSucursal" th:field="*{codigoSucursal}"><br><br>
         <div class="text-danger" th:if="${#fields.hasErrors('codigoSucursal')}" th:errors="*{codigoSucursal}"></div>
               
         <!--<label for="fecha">Fecha de Inicio:</label>

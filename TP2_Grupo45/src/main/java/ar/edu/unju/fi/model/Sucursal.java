@@ -29,34 +29,38 @@ public class Sucursal {
 	private String nombreSucursal;
 	
 	@NotEmpty(message="La direccion no puede estar vacio")
-	@Size(min=10, max=100, message="La direccion debe contener entre 10 y 100 caracteres")
+	@Size(min=6, max=100, message="La direccion debe contener entre 6 y 100 caracteres")
 	private String direccion;
 	
-	@NotBlank(message="Debe seleccionar una provincia")
+	//@NotEmpty(message="Debe seleccionar una provincia")
 	private String provincia;
 	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@NotNull(message="La fecha no puede ser null")
-	@Past(message="La fecha debe ser menor a la fecha actual")
+	//@DateTimeFormat(pattern="yyyy-MM-dd")
+	//@NotNull(message="La fecha no puede ser null")
+	//@Past(message="La fecha debe ser menor a la fecha actual")
 	private LocalDate fechaInicio;
 	
-	@Email(message="Debe ingresar un email con formato valido")
-	@NotEmpty(message="El email no puede ser vacio")
+	//@Email(message="Debe ingresar un email con formato valido")
+	//@NotEmpty(message="El email no puede ser vacio")
 	private String email;
 	
-	@NotEmpty(message="El telefono no puede ser vacio")
-	@Min(value=10, message="El valor minimo permitido es 10")
-	@Max(value=20, message="El valor maximo permitido es 20")
-	@Positive(message="Solo se permiten valores positivos")
+	@NotEmpty(message="El telefono no puede estar vacio")
+	@Min(value=7, message="El valor minimo de Tel. permitido es 7")
+	//@Max(value=20, message="El valor maximo de Tel. permitido es 20")
+	//@Positive(message="Solo se permiten valores positivos")
 	private String telefono;
 	
-	@Min(value=5, message="El valor minimo permitido es 5")
-	@Max(value=30, message="El valor maximo permitido es 30")
-	@Positive(message="Solo se permiten valores positivos")
+	//@Min(value=5, message="El valor minimo permitido es 5")
+	//@Max(value=30, message="El valor maximo permitido es 30")
+	//@Positive(message="Solo se permiten valores positivos")
 	private int cantidadEmpleados;
 
-	private String horaLunesViernes,horaSabados;
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotEmpty(message="La fecha no puede estar vacio")
+	private String horaLunesViernes;
+	@NotEmpty(message="La fecha no puede estar vacio")
+	private String horaSabados;
+	//@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull(message="El codigo no puede ser vacio")
     private int codigoSucursal;
     
     //Getters and Setters
