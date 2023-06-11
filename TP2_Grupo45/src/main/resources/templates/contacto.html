@@ -16,7 +16,7 @@
 
 		<div class="row">
 
-			<section class="col-8">
+			<section class="col-7">
 				<div class="row text-dark contacto-estilo">
 
 					<div >
@@ -98,7 +98,7 @@
 
 					</div>
 					<!-- DIV que envuelve el formulario -->
-
+	
 					<div class="d-flex justify-content-center mt-2  mb-2 ">
 						<button type="submit" class="btn btn-sm btn-outline-secondary contacto-estilo-titulo text-light">Enviar</button>
 					</div>
@@ -111,21 +111,10 @@
 
 
 
-
-			<aside class="col-4">
-				<br></br>
-				<article class="p-3">
-					<p>Accedé a la más amplia variedad de productos al mejor precio
-						del mercado: ¡Alimento balanceado, accesorios, golosinas, juguetes
-						y mucho más! Recibilos en la comodidad de tu hogar en cualquier
-						punto del país o retiralos en tu sucursal preferida.</p>
-				</article>
-				<article class="p-3">
-					<p>Dias de vacunacion Nos enfocamos en la prevención,
-						impulsando los mejores hábitos para su bienestar general. Para
-						ello contamos con profesionales veterinarios experimentados</p>
-				</article>
-			</aside>
+			<!-- Incluye al aside layouts -->
+			<aside class="col-4" th:replace="~{layouts/aside :: aside}">
+			
+    		</aside>
 		</div>
 	</div>
 	<p></p>
