@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 
 /**
  * Clase de Sucursal que implementa los metodos definidos en la interfaz IsucursalService
@@ -36,7 +36,7 @@ public class SucursalServiceImp implements ISucursalService {
 	
 	//guarda una nueva sucursal
 	@Override
-	public void guardarSucursal(@Valid Sucursal sucursal) {
+	public void guardarSucursal(Sucursal sucursal) {
 		listaSucursales.getSucursales().add(sucursal);
 		
 	}
@@ -52,7 +52,11 @@ public class SucursalServiceImp implements ISucursalService {
     			sucu.setTelefono(sucursal.getTelefono());
     			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
     			sucu.setHoraSabados(sucursal.getHoraSabados());
+    			sucu.setFechaInicio(sucursal.getFechaInicio());
+    			sucu.setCantidadEmpleados(sucursal.getCantidadEmpleados());
+    			sucu.setEmail(sucursal.getEmail());
     			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
+    			  break;
     		}
     	}
 		 
