@@ -52,6 +52,9 @@ public class SucursalServiceImp implements ISucursalService {
     			sucu.setTelefono(sucursal.getTelefono());
     			sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
     			sucu.setHoraSabados(sucursal.getHoraSabados());
+    			sucu.setFechaInicio(sucursal.getFechaInicio());
+    			sucu.setCantidadEmpleados(sucursal.getCantidadEmpleados());
+    			sucu.setEmail(sucursal.getEmail());
     			//sucu.setHoraLunesViernes(sucursal.getHoraLunesViernes());
     		}
     	}

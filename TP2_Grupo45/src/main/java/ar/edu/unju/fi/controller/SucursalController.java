@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+//import ar.edu.unju.fi.model.Servicio;
 import ar.edu.unju.fi.model.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
@@ -51,7 +53,7 @@ Se procede a la captura de errores
 	ModelAndView modelView = new ModelAndView("sucursales");
 	if(result.hasErrors()) {
 		modelView.setViewName("nueva_sucursal");
-		modelView.addObject("sucursal", sucursal);
+		
 		return modelView;
 	}
 	sucursalService.guardarSucursal(sucursal);
@@ -59,6 +61,8 @@ Se procede a la captura de errores
     return modelView;
   }
   
+  
+
   
   @GetMapping("/modificar/{codigoSucursal}")
   public String getModificarSucursalPage(Model model, @PathVariable(value="codigoSucursal")int codigoSucursal) {

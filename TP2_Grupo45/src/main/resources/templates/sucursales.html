@@ -1,69 +1,118 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Servicios</title>
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
 
-	  <head>
-	 	<meta charset="UTF-8">
-	  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	    <title>Sucursales</title>
-	    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	    <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-	  </head>
-	  
-	  
-	  <body>
-	  
-	 	 <div class="container-fluid">
-	 	 	<div class="row">
-	 	 			<h1>Sucursales</h1>
-	 	 	</div>
-	  	</div>
-	  
+<body>
+	<div class="container">
+		<h1>Sucursales</h1>
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
-		<a th:href="@{/sucursales/nuevo}">Nueva Sucursal</a>	
-	    <div class="table-responsive">
-	    
-	    <table border="1" cellpadding="10" cellspacing="0" id="mi-tabla2" class="table table-striped table-bordered">
-	 
-	      <thead>
-	        <tr>
-	          <th >Sucursal</th>
-	          <th>Dirección</th>
-	          <th>Teléfono</th>
-	          <th>Horarios</th>
-	          <th>Horarios Sabados</th>
-	          <th>Codigo Sucursal</th>
-	          <!--<th>Fecha de Inicio</th>-->
-	          </tr>
-	     
-	     
-	        <tr th:each="sucu: ${sucursales}">
-	          <td th:text="${sucu.NombreSucursal}"></td>
-	          <td th:text="${sucu.direccion}"></td>
-	          
-	          <td th:text="${sucu.telefono}"></td>
-	          <td>Lunes a Viernes: <span th:text="${sucu.horaLunesViernes}"></span></td>
-	          <td>Sábados: <span th:text="${sucu.horaSabados}"></span></td>
-	          <td><span th:text="${sucu.codigoSucursal}"></span></td>
-	         <!--<td th:text="${sucu.fechaInicio}"></td>-->
-	          <td><a th:href="@{/sucursales/modificar/}+${sucu.codigoSucursal}">Editar Sucursal</a><br><br>
-	    		  <a th:href="@{/sucursales/eliminar/}+${sucu.codigoSucursal}">Eliminar Sucursal</a><br><br></td>
-	          
-	        </tr>
-	      
-	    </table>
-	    
-	    
-	    </div>
-	    
-	    
-	  
-		
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-	
-	
-	   
-	    <footer th:replace="~{layouts/footer :: footer}"></footer>
-	</body>
-	
+
+		<div class="row">
+			<section class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+		<a
+		class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
+		th:href="@{/sucursales/nuevo}">Nueva sucursal</a>
+
+
+	<div
+		class="card mt-3 servicios-card shadow bg-body-tertiary rounded">
+		<div class="card-body">
+			<div th:each="sucu : ${sucursales}">
+				<div class="card mb-3">
+					<div class="card-body servicios-card">
+						<div class="row">
+							<div class="col-md-2 text-center">
+								<p class="card-title fw-bold">Sucursal</p>
+								<p class="card-text" th:text="${sucu.NombreSucursal}"></p>
+							</div>
+							<div class="col-md-2 text-center">
+								<p class="card-title fw-bold">Dirección</p>
+								<p class="card-text" th:text="${sucu.direccion}"></p>
+							</div>
+							
+							<div class="col-md-2 text-center">
+							        <p class="card-title fw-bold">Email</p>
+							        <p class="card-text" th:text="${sucu.email}"></p>
+							</div>
+
+
+							<div class="col-md-3 text-center">
+								<p class="card-title fw-bold">Horario Lunes a Viernes</p>
+								<p class="card-text" th:text="${sucu.horaLunesViernes}"></p>
+							</div>
+
+							<div class="col-md-3 text-center">
+								<p class="card-title fw-bold">Horario Sabado</p>
+								<p class="card-text" th:text="${sucu.horaSabados}"></p>
+							</div>
+						</div>
+						<div class="row mt-2 text-center">
+							<div class="col-md-2 text-center">
+								<p class="card-title fw-bold">Codigo sucursal</p>
+								<p class="card-text" th:text="${sucu.codigoSucursal}"></p>
+							</div>
+
+
+							<div class="col-md-2 text-center">
+								<p class="card-title fw-bold">Telefono</p>
+								<p class="card-text" th:text="${sucu.telefono}"></p>
+							</div>
+
+							<div class="col-md-2 text-center">
+								<p class="card-title fw-bold">Cantidad de empleados</p>
+								<p class="card-text" th:text="${sucu.cantidadEmpleados}"></p>
+							</div>
+
+
+							<div class="col-md-3 text-center">
+								<p class="card-title fw-bold">Fecha de inicio</p>
+								<p class="card-text" th:text="${sucu.fechaInicio}"></p>
+							</div>
+							<div class="col-md-2 text-center">
+								<p class="card-title fw-bold">Acciones</p>
+								<a
+									class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
+									th:href="@{/sucursales/modificar/}+${sucu.codigoSucursal}"
+									role="button">Editar</a> <a
+									class="btn btn-sm btn-secondary text-light mt-2"
+									th:href="@{/sucursales/eliminar/}+${sucu.codigoSucursal}"
+									role="button">Eliminar</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+			</section>
+			<!-- Incluye al aside layouts -->
+			<aside class="col-4" th:replace="~{layouts/aside :: aside}">
+			
+    		</aside>
+		</div>
+	</div>
+	<p></p>
+
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
+
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+
+
+</body>
 </html>
