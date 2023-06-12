@@ -33,8 +33,8 @@ public class Sucursal {
 	@Size(min = 6, max = 100, message = "La direccion debe contener entre 6 y 100 caracteres")
 	private String direccion;
 
-	@NotEmpty(message = "Debe seleccionar una provincia")
-	private String provincia;
+//	@NotEmpty(message = "Debe seleccionar una provincia")
+//	private String provincia;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "La fecha no puede ser null")
@@ -42,7 +42,7 @@ public class Sucursal {
 	private LocalDate fechaInicio;
 
 	@Email(message = "Debe ingresar un correo valido")
-//	@NotEmpty(message="El correo no puede quedar vacio")
+ @NotEmpty(message="El correo no puede quedar vacio")
 //	@NotNull(message = "Este campo no puede quedar vacio")
 	private String email;
 
@@ -60,17 +60,18 @@ public class Sucursal {
 	private String horaSabados;
 	// @DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull(message = "El codigo no puede ser vacio")
+	@Min(value = 1, message = "El valor minimo permitido es 1")
 	private int codigoSucursal;
 
 	// Getters and Setters
 
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
+//	public String getProvincia() {
+//		return provincia;
+//	}
+//
+//	public void setProvincia(String provincia) {
+//		this.provincia = provincia;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -159,26 +160,13 @@ public class Sucursal {
 	 * @param horaSabados      es el horario de los dias Sabados
 	 * @param codigoSucursal   es el codigo de la sucursal
 	 */
-//	public Sucursal(String nombreSucursal, String direccion, String telefono, String horaLunesViernes,
-//			String horaSabados, int codigoSucursal, LocalDate fechaInicio, int cantidadEmpleados) {
-//		super();
-//		this.nombreSucursal = nombreSucursal;
-//		this.direccion = direccion;
-//		this.telefono = telefono;
-//
-//		this.horaLunesViernes = horaLunesViernes;
-//		this.horaSabados = horaSabados;
-//		this.fechaInicio = fechaInicio;
-//		this.codigoSucursal = codigoSucursal;
-//		this.cantidadEmpleados = cantidadEmpleados;
-//	}
 
-	public Sucursal(String nombreSucursal, String direccion, String provincia, LocalDate fechaInicio, String telefono,
+	public Sucursal(String nombreSucursal, String direccion,LocalDate fechaInicio, String telefono,
 			int cantidadEmpleados, String horaLunesViernes, String horaSabados, int codigoSucursal,String email) {
 		super();
 		this.nombreSucursal = nombreSucursal;
 		this.direccion = direccion;
-		this.provincia = provincia;
+//		this.provincia = provincia;
 		this.fechaInicio = fechaInicio;
 		this.telefono = telefono;
 		this.cantidadEmpleados = cantidadEmpleados;

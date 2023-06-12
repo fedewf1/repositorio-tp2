@@ -19,7 +19,7 @@
 			<section class="col-xl-8 col-lg-8">
 				<div class="mt-3">
 
-				<form action="#" th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}" th:object="${sucursal}" method="post"
+				<form th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}" th:object="${sucursal}" method="post"
 					class="text-dark formulario-servicios-dentro">
 
 					<!-- DIV CAMPO SUCURSAL -->
@@ -88,7 +88,7 @@
 						</div>
 
 						<div class="col-lg-4 col-sm-6 align-self-center">
-							<input type="email" class="form-control" id="email"
+							<input type="text" class="form-control" id="email"
 								th:field="*{email}">
 
 							<p class="form-text text-danger"
