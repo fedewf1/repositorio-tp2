@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 /**
@@ -29,6 +30,10 @@ public class SucursalController {
   @Autowired
   private ISucursalService sucursalService;
   
+  
+  @Autowired
+  private ICommonService commonService;
+  
   @GetMapping("/listado")
   public String getListaSucursalesPage(Model model) {
       model.addAttribute("sucursales", sucursalService.getSucursales());
@@ -39,6 +44,7 @@ public class SucursalController {
   public String getNuevaSucursalPage(Model model) {
   	boolean edicion = false;
   	model.addAttribute("sucursal", new Sucursal());
+  	model.addAttribute("provincias" , commonService.getProvincias());
   	model.addAttribute("edicion", edicion);
   	return "nueva_sucursal";
   }
@@ -67,6 +73,7 @@ Se procede a la captura de errores
   	Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorCodigo(codigoSucursal);
   	boolean edicion= true;
   	model.addAttribute("sucursal", sucursalEncontrada);
+  	model.addAttribute("provincias" , commonService.getProvincias());
   	model.addAttribute("edicion", edicion);
   	return"nueva_sucursal";
   }
