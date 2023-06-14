@@ -33,8 +33,8 @@ public class Sucursal {
 	@Size(min = 6, max = 100, message = "La direccion debe contener entre 6 y 100 caracteres")
 	private String direccion;
 
-//	@NotEmpty(message = "Debe seleccionar una provincia")
-//	private String provincia;
+	@NotEmpty(message = "Debe seleccionar una provincia")
+	private String provincia;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "La fecha no puede ser null")
@@ -65,13 +65,13 @@ public class Sucursal {
 
 	// Getters and Setters
 
-//	public String getProvincia() {
-//		return provincia;
-//	}
-//
-//	public void setProvincia(String provincia) {
-//		this.provincia = provincia;
-//	}
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
 
 	public String getEmail() {
 		return email;
@@ -161,12 +161,12 @@ public class Sucursal {
 	 * @param codigoSucursal   es el codigo de la sucursal
 	 */
 
-	public Sucursal(String nombreSucursal, String direccion,LocalDate fechaInicio, String telefono,
+	public Sucursal(String nombreSucursal, String direccion,String provincia,LocalDate fechaInicio, String telefono,
 			int cantidadEmpleados, String horaLunesViernes, String horaSabados, int codigoSucursal,String email) {
 		super();
 		this.nombreSucursal = nombreSucursal;
 		this.direccion = direccion;
-//		this.provincia = provincia;
+		this.provincia = provincia;
 		this.fechaInicio = fechaInicio;
 		this.telefono = telefono;
 		this.cantidadEmpleados = cantidadEmpleados;
