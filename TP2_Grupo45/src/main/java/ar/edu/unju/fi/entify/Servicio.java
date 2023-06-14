@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.model;
+package ar.edu.unju.fi.entify;
 
 import java.util.List;
 

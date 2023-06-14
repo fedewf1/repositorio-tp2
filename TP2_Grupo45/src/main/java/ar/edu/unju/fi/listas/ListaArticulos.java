@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Articulo;
+import ar.edu.unju.fi.entify.Articulo;
 
 /**
  * @author federico nicolas burgos grupo 45

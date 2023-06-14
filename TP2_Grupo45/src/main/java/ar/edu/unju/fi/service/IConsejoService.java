@@ -2,7 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.model.Consejo;
+import ar.edu.unju.fi.entify.Consejo;
 
 public interface IConsejoService {
 	
