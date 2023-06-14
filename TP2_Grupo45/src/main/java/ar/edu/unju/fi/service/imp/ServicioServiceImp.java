@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entify.Servicio;
 import ar.edu.unju.fi.listas.ListaServicio;
-//import ar.edu.unju.fi.model.Consejo;
-import ar.edu.unju.fi.model.Servicio;
 import ar.edu.unju.fi.service.IServicioService;
 
 
