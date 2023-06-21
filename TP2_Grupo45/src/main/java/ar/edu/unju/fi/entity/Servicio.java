@@ -1,8 +1,22 @@
-package ar.edu.unju.fi.entify;
+package ar.edu.unju.fi.entity;
 
 import java.util.List;
 
-
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.springframework.stereotype.Component;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -15,26 +29,47 @@ import jakarta.validation.constraints.NotEmpty;
  */
 
 @Component
+@Entity
+@Table
 public class Servicio {
 	
+	@Id
+	@Column(name="serv_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	
 	@NotEmpty(message = "El nombre no puede quedar vacio")
+	@Column(name="serv_nombre")
 	private String nombre;
 	@NotEmpty(message = "La dirección no puede quedar vacio")
+	@Column(name="serv_direccion")
 	private String direccion;
 	@NotEmpty(message = "El telefono no puede quedar vacio")
+	@Column(name="serv_telefono")
 	private String telefono;
 	
+	
+	
+
+	@NotNull(message = "La tarifa no puede quedar vacia")
 	@DecimalMin(value="1.0",message = "La tarifa debe ser un número positivo")
-	private float tarifa;
+	@Column(name="serv_tarifa")
+	private Float tarifa;
 	@NotBlank(message = "Debe elegir el tipo de servicio")
+	@Column(name="serv_tipoDeServicio")
 	private String tipoDeServicio;
 
-	@NotEmpty(message = "Debe elegir su dia disponible")
+	@NotNull(message = "Debe elegir su dia disponible")
+	@Column(name = "serv_diaDisponible")
 	private List<String> diaDisponible;
-	@NotEmpty(message = "Debe elegir su horario disponible")
+	@NotNull(message = "Debe elegir su horario disponible")
+	@Column(name = "serv_horarioDisponible")
 	private List<String> horarioDisponible;
 
+	@Column(name="serv_estado")
+	private boolean estado = true;
+	
 	public Servicio() {
 		super();
 	}
@@ -43,6 +78,7 @@ public class Servicio {
 	
 	/**
 	 * Constructor parametrizado
+	 * @param id es el numero de id de un trabajador
 	 * @param nombre es el nombre del trabajador
 	 * @param direccion  es la direccion del trabajador
 	 * @param telefono es el telefono del trabajador
@@ -53,14 +89,15 @@ public class Servicio {
 	 */
 	
 	
-	public Servicio(String nombre, String direccion, String telefono, float tarifa, String tipoDeServicio,
-			List<String> diaDisponible, List<String> horarioDisponible) {
+	public Servicio(String nombre, String direccion, String telefono, Float tarifa, String tipoDeServicio,
+			List<String> diaDisponible, List<String> horarioDisponible, boolean estado) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.tarifa = tarifa;
 		this.tipoDeServicio = tipoDeServicio;
+		this.estado = estado;
 
 	}
 
@@ -88,11 +125,11 @@ public class Servicio {
 		this.telefono = telefono;
 	}
 
-	public float getTarifa() {
+	public Float getTarifa() {
 		return tarifa;
 	}
 
-	public void setTarifa(float tarifa) {
+	public void setTarifa(Float tarifa) {
 		this.tarifa = tarifa;
 	}
 
@@ -119,5 +156,30 @@ public class Servicio {
 	public void setHorarioDisponible(List<String> horarioDisponible) {
 		this.horarioDisponible = horarioDisponible;
 	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public boolean getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 		
+	
 }

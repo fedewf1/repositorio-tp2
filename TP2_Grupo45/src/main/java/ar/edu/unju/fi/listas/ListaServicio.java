@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.entify.Servicio;
+import ar.edu.unju.fi.entity.Servicio;
 @Component
 public class ListaServicio {
 
+	
+	private Long id;
+	
 	private List<Servicio> servicios;
 
 	public ListaServicio() {
@@ -23,6 +26,14 @@ public class ListaServicio {
 
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

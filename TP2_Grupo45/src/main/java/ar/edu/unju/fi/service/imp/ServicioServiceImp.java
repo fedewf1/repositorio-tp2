@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.entify.Servicio;
+import ar.edu.unju.fi.entity.Servicio;
 import ar.edu.unju.fi.listas.ListaServicio;
 import ar.edu.unju.fi.service.IServicioService;
 
 
-@Service
+@Service("servicioServiceImp")
 public class ServicioServiceImp implements IServicioService{
 	
 	@Autowired
@@ -32,9 +32,9 @@ public class ServicioServiceImp implements IServicioService{
 	
 	
     @Override
-    public Servicio getServicioPorNombre(String nombre) {
+    public Servicio getServicioById(Long id) {
         for (Servicio servicio : listaServicios.getServicios()) {
-            if (servicio.getNombre().equals(nombre)) {
+            if (servicio.getId().equals(id)) {
                 return servicio;
             }
         }
@@ -42,7 +42,7 @@ public class ServicioServiceImp implements IServicioService{
     }
 
     @Override
-    public void agregarServicio(Servicio servicio) {
+    public void guardarServicio(Servicio servicio) {
         listaServicios.getServicios().add(servicio);
     }
 
@@ -62,9 +62,9 @@ public class ServicioServiceImp implements IServicioService{
     }
 
     @Override
-    public void eliminarServicio(String nombre) {
+    public void eliminarServicio(Servicio servicio) {
         for (Servicio serv : listaServicios.getServicios()) {
-            if (serv.getNombre().equals(nombre)) {
+            if (serv.getId().equals(serv.getId())){
                 listaServicios.getServicios().remove(serv);
                 break;
             }

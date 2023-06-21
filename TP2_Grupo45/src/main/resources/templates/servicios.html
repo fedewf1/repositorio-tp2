@@ -22,7 +22,7 @@
 				<div class="card mt-3 servicios-card shadow  bg-body-tertiary rounded">
 	
 	<div class="card-body">
-		<div class="row" th:each="servicio : ${servicios}">
+		<div class="row" th:each="servicio : ${servicios}" th:if="${servicio.estado}">
 			<div class="col-md-12">
 				<div class="card mb-3">
 					<div class="card-body servicios-card">
@@ -61,10 +61,10 @@
 								<div class="col-md-3">
 									<h5 class="card-title fw-bold">Acciones</h5>
 									<a class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
-										th:href="@{/servicio/modificar/{nombre}(nombre=${servicio.nombre})}"
+										th:href="@{/servicio/modificar/{id}(id=${servicio.id})}"
 										role="button">Editar</a>
 									<a class="btn btn-sm btn-secondary text-light"
-										th:href="@{/servicio/eliminar/{nombre}(nombre=${servicio.nombre})}"
+										th:href="@{/servicio/eliminar/{id}(id=${servicio.id})}"
 										role="button">Eliminar</a>
 								</div>
 							</div>

@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ar.edu.unju.fi.entify.Servicio;
+import ar.edu.unju.fi.entity.Servicio;
 import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 
@@ -22,17 +23,20 @@ public class ServicioController {
 	
 	
 	@Autowired
+	@Qualifier("servicioServiceMysql")
 	private IServicioService servicioService;
+	
 	
 	
 	@Autowired
 	private Servicio servicio;
 	
 	@GetMapping("/servicios")
-    public String mostrarListaServicios(Model model) {
-        model.addAttribute("servicios", servicioService.getServicios());
-        return "servicios";
-    }
+	public String mostrarListaServicios(Model model) {
+		List<Servicio> servicios = servicioService.getServicios();
+		model.addAttribute("servicios", servicios);
+		return "servicios";
+	}
 
     @ModelAttribute("trabajadores")
     public List<Servicio> obtenerTrabajadoresDisponibles() {
@@ -52,13 +56,13 @@ public class ServicioController {
         if (result.hasErrors()) {
             return "nuevo_servicio";
         }
-        servicioService.agregarServicio(servicio);
+        servicioService.guardarServicio(servicio);
         return "redirect:/servicios";
     }
 
-    @GetMapping("/servicio/modificar/{nombre}")
-    public String mostrarFormularioModificarServicio(Model model, @PathVariable(value = "nombre") String nombre) {
-        Servicio servicio = servicioService.getServicioPorNombre(nombre);
+    @GetMapping("/servicio/modificar/{id}")
+    public String mostrarFormularioModificarServicio(Model model, @PathVariable(value = "id") Long id) {
+        Servicio servicio = servicioService.getServicioById(id);
         boolean editando = true;
         if (servicio == null) {
             return "redirect:/servicios";
@@ -69,18 +73,21 @@ public class ServicioController {
     }
 
     @PostMapping("/servicio/modificar")
-    public String modificarServicio(@Valid @ModelAttribute("servicio") Servicio servicioActualizado, BindingResult result) {
+    public String modificarServicio(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult result) {
         if (result.hasErrors()) {
             return "nuevo_servicio";
         }
-        servicioService.actualizarServicio(servicioActualizado);
+        servicioService.actualizarServicio(servicio);
         return "redirect:/servicios";
     }
 
-    @GetMapping("/servicio/eliminar/{nombre}")
-    public String eliminarServicio(@PathVariable(value = "nombre") String nombre) {
-        servicioService.eliminarServicio(nombre);
+    @GetMapping("/servicio/eliminar/{id}")
+    public String eliminarServicio(@PathVariable Long id) {
+        Servicio servicio = servicioService.getServicioById(id);
+        servicio.setEstado(false);  // Establece el estado como false en lugar de eliminar
+        servicioService.guardarServicio(servicio);
         return "redirect:/servicios";
     }
+
  
 }
