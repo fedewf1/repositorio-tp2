@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.entify;
+package ar.edu.unju.fi.entity;
 
 import org.springframework.stereotype.Component;
 
@@ -7,8 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 
 /**
  * Representa un producto ofrecido
- * @author Grupo45
- * @version 1.0 date: 8/6/23
+ * @author Jonathan R. Mascareño
+ * @version 1.0 date: 21/6/23
  */
 
 

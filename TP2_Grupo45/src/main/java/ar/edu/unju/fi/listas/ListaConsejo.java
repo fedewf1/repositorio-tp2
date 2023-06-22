@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.entify.Consejo;
+import ar.edu.unju.fi.entity.Consejo;
 
 @Component
 public class ListaConsejo {
@@ -33,7 +33,7 @@ public class ListaConsejo {
 		return consejo;
 	}
 
-	public void agregarConsejo(Consejo consejo) {
+	public void nuevoConsejo(Consejo consejo) {
 
 		if (consejos.isEmpty()) {
 			nextId = 1;

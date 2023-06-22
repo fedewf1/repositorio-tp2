@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.entify.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
  
 @Component
 public class ListaSucursales {

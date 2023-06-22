@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.entify.Consejo;
+import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.listas.ListaConsejo;
 import ar.edu.unju.fi.service.IConsejoService;
 
@@ -21,8 +21,8 @@ public class ConsejoServiceImp implements IConsejoService {
 	private Consejo consejo;
 
 	@Override
-	public void agregarConsejo(Consejo consejo) {
-		listaConsejos.agregarConsejo(consejo);
+	public void nuevoConsejo(Consejo consejo) {
+		listaConsejos.nuevoConsejo(consejo);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class ConsejoServiceImp implements IConsejoService {
 
 	@Override
 	public void guardarConsejo(Consejo consejo) {
-	    listaConsejos.agregarConsejo(consejo);
+	    listaConsejos.nuevoConsejo(consejo);
 	}
 
 	@Override

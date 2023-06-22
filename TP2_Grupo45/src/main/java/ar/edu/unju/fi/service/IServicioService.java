@@ -2,7 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.entify.Servicio;
+import ar.edu.unju.fi.entity.Servicio;
 
 public interface IServicioService {
 

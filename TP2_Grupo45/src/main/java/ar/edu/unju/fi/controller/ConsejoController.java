@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entify.Consejo;
+import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
 
@@ -25,11 +25,9 @@ public class ConsejoController {
 	private IConsejoService consejoService;
 	
 	
-	@Autowired
-	private Consejo consejo;
 
 
-	//Muestra la lista de consejos
+	/**Muestra la lista de consejos*/
 	@GetMapping("/consejos")
 	public ModelAndView getConsejosPage() {
 			ModelAndView mav = new ModelAndView("consejos");
@@ -37,29 +35,28 @@ public class ConsejoController {
 			return mav;
 	}
 
-	//Muestra en un html, todo el contenido de un consejo a partir de su id
+	/**Muestra en un html, todo el contenido de un consejo a partir de su id*/
 	@GetMapping("/consejo/detallado/{id}")
-	public String mostrarDetalleConsejo(@PathVariable("id") int id, Model model) {
-	    Consejo consejo = consejoService.findConsejoById(id);
-	    model.addAttribute("consejo", consejo);
-	    return "detalle_consejo";
+	public ModelAndView mostrarDetalleConsejo(@PathVariable("id") int id) {
+	    ModelAndView mav = new ModelAndView("detalle_consejo");
+	    mav.addObject("consejo", consejoService.findConsejoById(id));
+	    return mav;
 	}
+
 	
 	
 
 	@GetMapping("consejo/nuevo")
 	public ModelAndView getFormularioNuevoConsejo() {
-		consejo = new Consejo();
-		boolean editando = false;
-		ModelAndView mav = new ModelAndView("nuevo_consejo");
-		mav.addObject("consejo", consejo);
-		mav.addObject("editando", editando);
-		return mav;
-		
+	    boolean editando = false;
+	    ModelAndView mav = new ModelAndView("nuevo_consejo");
+	    mav.addObject("consejo", consejoService.getConsejo()); // Obtener el consejo a través del servicio
+	    mav.addObject("editando", editando);
+	    return mav;
 	}
-	
 
-	//Solicitud para guardar lo rellenado en un formulario
+
+	/**Solicitud para guardar lo rellenado en un formulario*/
 	@PostMapping("/consejo/guardar")
 	public ModelAndView getGuardarConsejoPage(@Valid @ModelAttribute("consejo") Consejo consejo, BindingResult result) {
 	    if (result.hasErrors()) {
@@ -75,17 +72,17 @@ public class ConsejoController {
 	}
 
 	
-	//Solicita la pagina de modificación segun un id
+	/**Solicita la pagina de modificación segun un id*/
 	@GetMapping("consejo/modificar/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") Integer id, Model model) {
-		boolean editando = true;
-		Consejo consejo = consejoService.findConsejoById(id);
-		
-		model.addAttribute("consejo", consejo);
-		model.addAttribute("editando", editando);
-		return "nuevo_consejo";
+	    boolean editando = true;
+	    model.addAttribute("consejo", consejoService.findConsejoById(id));
+	    model.addAttribute("editando", editando);
+	    return "nuevo_consejo";
 	}
-	//Solicita la modificación de un consejo a traves de su id
+
+	
+	/**Solicita la modificación de un consejo a traves de su id*/
 	@PostMapping("/consejo/modificar/{id}")
 	public String editarConsejo(@PathVariable("id") Integer id, @ModelAttribute("consejo") Consejo consejoModificado) {
 	    consejoService.actualizarConsejo(id, consejoModificado);
@@ -93,7 +90,7 @@ public class ConsejoController {
 	    return "redirect:/consejos";
 	}
 
-	//Elimina un consejo tomando como base un id
+	/**Elimina un consejo tomando como base un id*/
 	@GetMapping("/consejo/eliminar/{id}")
 	public String eliminarConsejo(@PathVariable(value = "id") Integer id) {
 	    consejoService.consejoAEliminar(id);

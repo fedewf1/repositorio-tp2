@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.entify;
+package ar.edu.unju.fi.entity;
 
 import java.util.List;
 
@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Representa un servicio ofrecido
  * @author Jonathan R. Mascareño
- * @version 1.0 date: 2/6/23
+ * @version 1.0 date: 21/6/23
  */
 
 @Component
@@ -25,8 +26,9 @@ public class Servicio {
 	@NotEmpty(message = "El telefono no puede quedar vacio")
 	private String telefono;
 	
+	@NotNull(message="Este campo debe tener un valor")
 	@DecimalMin(value="1.0",message = "La tarifa debe ser un número positivo")
-	private float tarifa;
+	private Float tarifa;
 	@NotBlank(message = "Debe elegir el tipo de servicio")
 	private String tipoDeServicio;
 
@@ -53,7 +55,7 @@ public class Servicio {
 	 */
 	
 	
-	public Servicio(String nombre, String direccion, String telefono, float tarifa, String tipoDeServicio,
+	public Servicio(String nombre, String direccion, String telefono, Float tarifa, String tipoDeServicio,
 			List<String> diaDisponible, List<String> horarioDisponible) {
 		super();
 		this.nombre = nombre;
@@ -88,11 +90,11 @@ public class Servicio {
 		this.telefono = telefono;
 	}
 
-	public float getTarifa() {
+	public Float getTarifa() {
 		return tarifa;
 	}
 
-	public void setTarifa(float tarifa) {
+	public void setTarifa(Float tarifa) {
 		this.tarifa = tarifa;
 	}
 

@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.entify;
+package ar.edu.unju.fi.entity;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
