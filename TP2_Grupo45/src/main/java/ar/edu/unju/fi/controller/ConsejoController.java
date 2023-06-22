@@ -50,7 +50,7 @@ public class ConsejoController {
 	public ModelAndView getFormularioNuevoConsejo() {
 	    boolean editando = false;
 	    ModelAndView mav = new ModelAndView("nuevo_consejo");
-	    mav.addObject("consejo", consejoService.getConsejo()); // Obtener el consejo a través del servicio
+	    mav.addObject("consejo", consejoService.getConsejo()); 
 	    mav.addObject("editando", editando);
 	    return mav;
 	}
