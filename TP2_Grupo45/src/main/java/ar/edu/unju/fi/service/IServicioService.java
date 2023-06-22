@@ -7,8 +7,10 @@ import ar.edu.unju.fi.entity.Servicio;
 public interface IServicioService {
 
 	List<Servicio> getServicios();
-    Servicio getServicioPorNombre(String nombre);
-    void agregarServicio(Servicio servicio);
+    Servicio getServicioById(Long id);
+    void guardarServicio(Servicio servicio);
     void actualizarServicio(Servicio servicioActualizado);
-    void eliminarServicio(String nombre);
+    void eliminarServicio(Servicio servicio);
+
+    Servicio getServicio();
 }
