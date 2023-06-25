@@ -21,8 +21,8 @@ public class ConsejoServiceImp implements IConsejoService {
 	private Consejo consejo;
 
 	@Override
-	public void agregarConsejo(Consejo consejo) {
-		listaConsejos.agregarConsejo(consejo);
+	public void nuevoConsejo(Consejo consejo) {
+		listaConsejos.nuevoConsejo(consejo);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class ConsejoServiceImp implements IConsejoService {
 
 	@Override
 	public void guardarConsejo(Consejo consejo) {
-	    listaConsejos.agregarConsejo(consejo);
+	    listaConsejos.nuevoConsejo(consejo);
 	}
 
 	@Override
