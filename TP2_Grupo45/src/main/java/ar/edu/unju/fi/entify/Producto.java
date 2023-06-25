@@ -1,4 +1,13 @@
 package ar.edu.unju.fi.entify;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
@@ -9,50 +18,148 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
+
+
+
+
+/**
+ * Representa un producto en el sistema.
+ * @author Federico Nicolas Burgos
+ * @Version 1.0.5
+ */
 @Component
+@Entity
+@Table(name="productos")
 public class Producto {
+	/**
+     * El nombre del producto.
+     */
+	
 	// Validación del campo nombre
 	@NotEmpty(message="el nombre no puede estar vacio.")
 	@Size(min=5, max=100,message="El nombre del producto no puede ser inferior a 50 caracteres y mayor a 100.")
-    private String nombre;
+    @Column(name="produ_nombre", length=20, nullable=false)
+	private String nombre;
+	private int codigo;
+    
+	
 	
 	// Validación del campo código
 	//@Size(min=4, max=4,message="el codigo no puede tener mas ni menos de 4 digitos.")
     @Digits(integer = 4, fraction = 0, message = "El código debe ser un número de 4 dígitos")
-    private int codigo;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="produ_id")
+    /**
+     * El código del producto.
+     */
+    private Long id;
     
     // Validación del campo precio
 	@Positive(message="El precio debe ser un valor positivo y no puede ser cero.")
 	//@NotEmpty(message="el nombre no puede estar vacio.")
-    private double precio;
+    @Column(name="produ_precio")
+	/**
+     * El precio del producto (sin descuento).
+     */
+	private double precio;
 	
 	// Validación del campo categoría
     @NotBlank(message="Debe seleccion una categoria.")
+    @Column(name="produ_categoria", length=20, nullable=false)
+    /**
+     * La categoría del producto.
+     */
     private String categoria;
     
     // Validación del campo descuento
     //@PositiveOrZero(message="El descuento debe ser un valor positivo")
     @Max(value=50, message="el descuento no puede ser mayor a 50")
     @NotNull(message = "El descuento no puede ser nulo")
+    @Column(name="produ_descuento", length=20, nullable=false)
+    /**
+     * El descuento del producto.
+     */
     private int descuento;
     
  // Validación del campo nombreImagen
     @NotBlank(message="Debe seleccion una imagen.")
+    @Column(name="produ_imamen", length= 200, nullable=false)
+    /**
+     * El nombre de la imagen del producto. La imagen debe estar en la carpeta static, dado que no realiza
+     * la subida del archivo.
+     */
     private String nombreImagen;
-
-    // Constructor parametrizado
     
-    public Producto(String nombre, int codigo, double precio, String categoria, int descuento, String nombreImagen) {
+    @Column(name="produ_estado")
+    /**
+     * El estado del producto. Esta variable es la que definira si se el producto sera visible o no en la
+     * interfaz web.
+     */
+    private boolean estado;
+    /**
+     * La categoría a la cual pertenece el producto. Esta es una clase en la cual se intento con el material
+     * brindado que tenga una relacion manytoone con producto.
+     */
+    private Categoria categori;
+
+    
+    /**
+     * Constructor parametrizado.
+     *
+     * @param nombre       el nombre del producto
+     * @param codigo       el código del producto
+     * @param id           el ID del producto
+     * @param precio       el precio del producto
+     * @param categoria    la categoría del producto
+     * @param descuento    el descuento del producto
+     * @param nombreImagen el nombre de la imagen del producto
+     * @param estado       el estado del producto
+     */
+    public Producto(String nombre, int codigo,long id, double precio, String categoria, int descuento, String nombreImagen, boolean estado) {
         this.nombre = nombre;
-        this.codigo = codigo;
+        this.id = id;
         this.precio = precio;
         this.categoria = categoria;
         this.descuento = descuento;
         this.nombreImagen = nombreImagen;
+        this.estado=estado;
     }
 
     public Producto() {
 		
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	 /**
+     * Obtiene el ID del producto.
+     *
+     * @return el ID del producto
+     */
+	public Long getId() {
+		return id;
+	}
+	/**
+     * Establece el ID del producto.
+     *
+     * @param id el ID del producto
+     */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 	// Métodos accesores (getters y setters)
@@ -64,18 +171,26 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public long getProdu_id() {
+		return id;
 	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	
+	public void setProdu_id(long id) {
+		this.id = id;
 	}
-
+	/**
+     * Obtiene el precio del producto.
+     *
+     * @return el precio del producto
+     */
 	public double getPrecio() {
 		return precio;
 	}
-
+	/**
+     * Establece el precio del producto.
+     *
+     * @param precio el precio del producto
+     */
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
@@ -104,7 +219,11 @@ public class Producto {
 		this.nombreImagen = nombreImagen;
 	}
 
-	// Método para calcular el descuento
+	/**
+     * Calcula el descuento aplicado al precio del producto.
+     *
+     * @return el precio con el descuento aplicado
+     */
     public double calcularDescuento() {
         if (descuento > 0 && descuento <= 50) {
             double descuentoPorcentaje = (double)descuento / 100;
@@ -114,7 +233,18 @@ public class Producto {
             return precio;
         }
     }
-
-	
+    /**
+     * Obtiene la categoría del producto.
+     *
+     * @return la categoría del producto
+     */
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name= "idCategoria")
+    public Categoria getCategori() {
+    	return categori;
+    }
+    public void setCategoria(Categoria catagor) {
+    	this.categori=catagor;
+    }
 }
 
