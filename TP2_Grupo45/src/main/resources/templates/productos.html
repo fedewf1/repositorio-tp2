@@ -20,11 +20,23 @@
 		<!-- Enlace para crear un nuevo producto -->
 		<a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo
 			Producto</a>
+		<label for="categoria">Categoría:</label>
+                        <select class="form-control" id="categoria" name="categoria" th:field="*{categoria}">
+                            <!-- Opciones de categoría -->
+                            <option value=""></option>
+                            <option value="Alimento">Alimento</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Camas y Colchones">Camas y Colchones</option>
+                            <option value="Correas">Correas</option>
+                            <option value="Jaulas,Casas,Peceras">Jaulas,Casas,Peceras</option>
+                            <option value="Vestimenta">Vestimenta</option>
+                            <option value="Cuidado">Cuidado</option>
+                        </select>
 
 		<main>
 			<section>
 				<h2>Nuestros productos</h2>
-
+				
 				<div class="row">
 
 					<div class="col-lg-4 col-md-6" th:each="produ : ${productos}">
@@ -51,9 +63,9 @@
 
 
 								<a class="btn btn-secondary"
-									th:href="@{/productos/modificar/}+${produ.codigo}">Editar
+									th:href="@{/productos/modificar/}+${produ.id}">Editar
 									Producto</a> <a class="btn btn-danger mt-xl-0 mt-lg-0 mt-md-2"
-									th:href="@{/productos/eliminar/}+${produ.codigo}">Eliminar
+									th:href="@{/productos/eliminar/}+${produ.id}">Eliminar
 									Producto</a>
 							</div>
 						</div>

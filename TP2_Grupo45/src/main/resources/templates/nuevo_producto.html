@@ -26,9 +26,9 @@
                         <!-- Mostrar mensajes de error para el campo "nombre" -->
                         <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="codigo">Código:</label>
-                        <input type="number" class="form-control" id="codigo" name="codigo" th:field="*{codigo}">
+                        <input type="number" class="form-control" id="codigo" name="codigo" th:field="*{id}">
                         <!-- Mostrar mensajes de error para el campo "codigo" -->
                         <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
                     </div>
