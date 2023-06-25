@@ -5,17 +5,56 @@
 		<meta charset="UTF-8">
     </head>
 	<body>
-   		<nav class="navbar bg-body-tertiary " th:fragment="nav">
+	
+	
+	
+   		<nav class="navbar bg-body-tertiary  d-none d-lg-block" th:fragment="nav">
   		<!-- Navbar content -->
   				<form class="container-fluid justify-content-start">
     				<a class="btn btn-outline-success me-2 nav-botones-color" th:href="@{/index}">Inicio</a>
     				<a class="btn btn-sm btn-outline-secondary me-1 " type="button" th:href="@{/productos/listado}" >Productos</a>
-    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/consejos}" >Consejos de salud</a>
-    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/empleados}" >Servicio de Paseo</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/consejos}" >Consejos</a>
+    				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/empleados}" >Empleados</a>
     				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/sucursales/listado}" >Sucursales</a>
     				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/contacto}" >Contacto</a>
+<!--     				<a class="btn btn-sm btn-outline-secondary me-1" type="button" th:href="@{/contacto}" >Gestion</a> -->
   				</form>
 		</nav>
+		
+<nav class="navbar navbar-expand-lg bg-body-tertiary d-lg-none d-xl-none">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/index}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/productos/listado}">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"th:href="@{/consejos}" >Consejos</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" th:href="@{/empleados}" >Empleados</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" th:href="@{/sucursales/listado}" >Sucursales</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" th:href="@{/contacto}" >Contacto</a>
+        </li>
+         <li class="nav-item">
+<!--           <a class="nav-link" th:href="@{/contacto}" >Gestion</a> -->
+        </li>
+      </ul>
+  
+    </div>
+  </div>
+</nav>
 
    	</body>
 </html>
