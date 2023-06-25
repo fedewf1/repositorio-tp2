@@ -7,9 +7,10 @@ import ar.edu.unju.fi.entify.Consejo;
 public interface IConsejoService {
 	
 	List<Consejo> getConsejos();
+	
 	Consejo getConsejo();
 
-	void agregarConsejo(Consejo consejo);
+	void nuevoConsejo(Consejo consejo);
 	Consejo findConsejoById(Integer id);
 	void actualizarId(Integer id);
 	void consejoAEliminar(Integer id);

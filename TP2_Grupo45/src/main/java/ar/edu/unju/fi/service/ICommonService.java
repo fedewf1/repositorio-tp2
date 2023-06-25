@@ -6,4 +6,5 @@ public interface ICommonService {
 
 	List<String> getProvincias();
 	
+	
 }

@@ -33,7 +33,7 @@ public class ListaConsejo {
 		return consejo;
 	}
 
-	public void agregarConsejo(Consejo consejo) {
+	public void nuevoConsejo(Consejo consejo) {
 
 		if (consejos.isEmpty()) {
 			nextId = 1;
