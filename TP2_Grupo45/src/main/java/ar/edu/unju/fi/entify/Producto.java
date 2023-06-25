@@ -101,7 +101,7 @@ public class Producto {
      * La categoría a la cual pertenece el producto. Esta es una clase en la cual se intento con el material
      * brindado que tenga una relacion manytoone con producto.
      */
-    private Categoria categori;
+  //  private Categoria categori;
 
     
     /**
@@ -238,13 +238,13 @@ public class Producto {
      *
      * @return la categoría del producto
      */
-    @ManyToOne(fetch=FetchType.LAZY)
+   /** @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name= "idCategoria")
     public Categoria getCategori() {
     	return categori;
     }
     public void setCategoria(Categoria catagor) {
     	this.categori=catagor;
-    }
+    }*/
 }
 

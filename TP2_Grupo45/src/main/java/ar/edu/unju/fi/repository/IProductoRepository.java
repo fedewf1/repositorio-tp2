@@ -29,6 +29,6 @@ public interface IProductoRepository extends CrudRepository<Producto,Long>{
      * @param estado    el estado del producto
      * @return una lista de productos que coinciden con la categoría y estado especificados
      */
-	public List<Producto> findByCategoria (String categoria, boolean estado);
+	//public List<Producto> findByCategoria (String categoria, boolean estado);
 	
 }
