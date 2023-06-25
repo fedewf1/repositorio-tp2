@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nuevo servicio</title>
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+	<div class="container">
+
+		<h1>Nuestros servicios</h1>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+		<div class="row">
+			<section class="col-xl-8 col-lg-8">
+				<div class="mt-3">
+
+					<form action="#"
+						th:action="${editando}?@{/empleado/modificar}:@{/empleado/guardar}"
+						th:object="${empleado}" method="post"
+						class="text-dark formulario-servicios-dentro">
+
+						<!-- DIV CAMPO NOMBRE -->
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="nombre" class="form-label">Nombre: </label>
+							</div>
+
+							<div class="col-xl-4 col-lg-4 col-sm-6 align-self-center">
+								<input type="text" class="form-control" id="nombre"
+									th:field="*{nombre}">
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" />
+							</div>
+
+						</div>
+
+
+						<!-- DIV CAMPO DIRECCION -->
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+							<div class="col-lg-2 col-sm-3 align-self-start">
+
+								<label for="direccion" class="form-label">Direccion: </label>
+							</div>
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<input type="text" class="form-control" id="direccion"
+									th:field="*{direccion}">
+
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('direccion')}"
+									th:errors="*{direccion}" />
+
+							</div>
+
+
+						</div>
+
+
+						<!-- DIV CAMPO TELEFONO -->
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="telefono" class="form-label">Telefono: </label>
+							</div>
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<input type="text" class="form-control" id="telefono"
+									th:field="*{telefono}">
+
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('telefono')}"
+									th:errors="*{telefono}" />
+
+							</div>
+
+						</div>
+
+
+
+						<!-- DIV CAMPO TARIFA -->
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="tarifa" class="form-label">Tarifa: </label>
+							</div>
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<input type="number" class="form-control" id="tarifa"
+									th:field="*{tarifa}">
+
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('tarifa')}" th:errors="*{tarifa}" />
+							</div>
+
+						</div>
+
+
+						<!-- DIV CAMPO SERVICIO -->
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="nombreDeServicio">Servicio:</label>
+							</div>
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<select class="form-select" id="nombreDeServicio"
+									name="servicio.id" th:field="*{servicio}">
+									<option value="">Seleccionar servicio</option>
+									<option th:each="servicio : ${servicios}"
+										th:text="${servicio.nombreDeServicio}"
+										th:value="${servicio.id}"></option>
+								</select>
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('servicio.nombreDeServicio')}"
+									th:errors="*{servicio.nombreDeServicio}" />
+							</div>
+
+
+						</div>
+
+
+
+						<!-- DIV CAMPO DIA DISPONIBLE -->
+
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="diaDisponible" class="form-label">Día
+									Disponible: </label>
+							</div>
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<div class="d-flex align-items-center ms-3">
+
+									<div class="row">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="lunes"
+												name="diaDisponible" value="Lunes"
+												th:checked="${empleado.diaDisponible != null && empleado.diaDisponible.contains('Lunes')}">
+											<label class="form-check-label me-3" for="lunes">Lunes</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="martes"
+												name="diaDisponible" value="Martes"
+												th:checked="${empleado.diaDisponible != null && empleado.diaDisponible.contains('Martes')}">
+											<label class="form-check-label me-3" for="martes">Martes</label>
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox"
+												id="miercoles" name="diaDisponible" value="Miércoles"
+												th:checked="${empleado.diaDisponible != null && empleado.diaDisponible.contains('Miércoles')}">
+											<label class="form-check-label me-2" for="miercoles">Miércoles</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="jueves"
+												name="diaDisponible" value="Jueves"
+												th:checked="${empleado.diaDisponible != null && empleado.diaDisponible.contains('Jueves')}">
+											<label class="form-check-label me-2" for="jueves">Jueves</label>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="form-check ms-2">
+											<input class="form-check-input" type="checkbox" id="viernes"
+												name="diaDisponible" value="Viernes"
+												th:checked="${empleado.diaDisponible != null && empleado.diaDisponible.contains('Viernes')}">
+											<label class="form-check-label" for="viernes">Viernes</label>
+										</div>
+										<div class="form-check ms-2">
+											<input class="form-check-input" type="checkbox" id="sabado"
+												name="diaDisponible" value="Sábado"
+												th:checked="${empleado.diaDisponible != null && empleado.diaDisponible.contains('Sábado')}">
+											<label class="form-check-label" for="sabado">Sábado</label>
+										</div>
+
+
+
+									</div>
+
+
+
+								</div>
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('diaDisponible')}"
+									th:errors="*{diaDisponible}" />
+
+							</div>
+
+						</div>
+
+						<!-- DIV CAMPO HORARIO DISPONIBLE -->
+
+						<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="horarioDisponible" class="form-label">Horario
+									Disponible: </label>
+
+							</div>
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<div class="mb-2 ms-1 col-12 mx-auto">
+
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="horario1"
+											name="horarioDisponible" value="9 a 12"
+											th:checked="${empleado.horarioDisponible != null && empleado.horarioDisponible.contains('9 a 12')}">
+										<label class="form-check-label" for="horario1">9 a 12</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="horario2"
+											name="horarioDisponible" value="16 a 19"
+											th:checked="${empleado.horarioDisponible != null && empleado.horarioDisponible.contains('16 a 19')}">
+										<label class="form-check-label" for="horario2">16 a 19</label>
+									</div>
+								</div>
+
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('horarioDisponible')}"
+									th:errors="*{horarioDisponible}" />
+
+							</div>
+
+
+						</div>
+
+
+
+
+
+						<div class="d-flex justify-content-center mt-lg-3 mt-md-1 mt-sm-1">
+							<button type="submit"
+								class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color mb-lg-4 mb-md-3 mb-sm-3"
+								th:text="${editando}?'Modificar' : 'Guardar' "></button>
+						</div>
+
+
+					</form>
+					<!-- FORMULARIO DE SERVICIO -->
+
+
+				</div>
+				<!-- FIN DEL DIV QUE ENVUELVE TODO EL FORMULARIO -->
+
+
+			</section>
+			<!-- Incluye al aside layouts -->
+			<aside class="col-4" th:replace="~{layouts/aside :: aside}">
+
+			</aside>
+		</div>
+	</div>
+	<p></p>
+
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
+
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+
+
+</body>
+</html>

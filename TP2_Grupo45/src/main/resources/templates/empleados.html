@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Servicios</title>
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Servicios</h1>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+		<div class="row">
+			<section class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+
+				<div class="d-flex">
+				
+					<div class="col-2">
+					<a
+						class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
+						th:href="@{/empleado/nuevo}">Nuevo empleado</a>
+					</div>
+
+					<div class="col-2">
+						<div class="col-md-12 mb-3">
+
+							<div class="btn-group">
+								<button type="button"
+									class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4 dropdown-toggle"
+									data-bs-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">Filtrar</button>
+								<ul class="dropdown-menu">
+									<li><a
+										class="dropdown-item btn btn-outline-primary filter-btn"
+										th:href="@{/empleados(dia='Lunes')}">Lunes</a></li>
+									<li><a
+										class="dropdown-item btn btn-outline-primary filter-btn"
+										th:href="@{/empleados(dia='Martes')}">Martes</a></li>
+									<li><a
+										class="dropdown-item btn btn-outline-primary filter-btn"
+										th:href="@{/empleados(dia='Miércoles')}">Miércoles</a></li>
+									<li><a
+										class="dropdown-item btn btn-outline-primary filter-btn"
+										th:href="@{/empleados(dia='Jueves')}">Jueves</a></li>
+									<li><a
+										class="dropdown-item btn btn-outline-primary filter-btn"
+										th:href="@{/empleados(dia='Viernes')}">Viernes</a></li>
+									<li><a
+										class="dropdown-item btn btn-outline-primary filter-btn"
+										th:href="@{/empleados(dia='Sabado')}">Sabado</a></li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+
+				<div
+					class="card mt-3 servicios-card shadow  bg-body-tertiary rounded">
+
+					<div class="card-body">
+						<div class="row" th:each="empleado : ${empleados}">
+							<div class="col-md-12">
+								<div class="card mb-3">
+									<div class="card-body servicios-card">
+										<div class="row">
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Nombre</h5>
+												<p class="card-text" th:text="${empleado.nombre}"></p>
+											</div>
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Dirección</h5>
+												<p class="card-text" th:text="${empleado.direccion}"></p>
+											</div>
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Teléfono</h5>
+												<p class="card-text" th:text="${empleado.telefono}"></p>
+											</div>
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Tarifa</h5>
+												<p class="card-text" th:text="${empleado.tarifa}"></p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Tipo de Servicio</h5>
+												<p class="card-text"
+													th:text="${empleado.servicio.nombreDeServicio}"></p>
+											</div>
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Días Disponibles</h5>
+												<p class="card-text m-0"
+													th:each="dia : ${empleado.diaDisponible}" th:text="${dia}"></p>
+											</div>
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Horarios Disponibles</h5>
+												<p class="card-text"
+													th:each="horario : ${empleado.horarioDisponible}"
+													th:text="${horario}"></p>
+											</div>
+											<div class="col-md-3">
+												<h5 class="card-title fw-bold">Acciones</h5>
+												<a
+													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
+													th:href="@{/empleado/modificar/{id}(id=${empleado.id})}"
+													role="button">Editar</a> <a
+													class="btn btn-sm btn-secondary text-light"
+													th:href="@{/empleado/eliminar/{id}(id=${empleado.id})}"
+													role="button">Eliminar</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</section>
+			<!-- Incluye al aside layouts -->
+			<aside class="col-4" th:replace="~{layouts/aside :: aside}">
+
+			</aside>
+		</div>
+
+
+
+	</div>
+	<p></p>
+
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
+
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+
+</body>
+</html>
