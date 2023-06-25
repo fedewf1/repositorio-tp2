@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.entity;
+package ar.edu.unju.fi.entify;
 
 import java.time.LocalDate;
 

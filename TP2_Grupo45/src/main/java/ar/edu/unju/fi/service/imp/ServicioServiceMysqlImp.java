@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
-import ar.edu.unju.fi.entity.Empleado;
-import ar.edu.unju.fi.entity.Servicio;
+import ar.edu.unju.fi.entify.Empleado;
+import ar.edu.unju.fi.entify.Servicio;
 import ar.edu.unju.fi.repository.IServicioRepository;
 import ar.edu.unju.fi.service.IServicioService;
 

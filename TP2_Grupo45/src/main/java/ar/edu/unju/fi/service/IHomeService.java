@@ -2,7 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.entity.Articulo;
+import ar.edu.unju.fi.entify.Articulo;
 
 /** 
  * @author federico nicolas burgos grupo 45

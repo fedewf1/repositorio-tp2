@@ -2,7 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.entity.Sucursal;
+import ar.edu.unju.fi.entify.Sucursal;
 
 /**
 * Servicio: Sucursal

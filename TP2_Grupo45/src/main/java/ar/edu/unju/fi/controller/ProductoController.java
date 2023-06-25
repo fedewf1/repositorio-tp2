@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entity.Producto;
+import ar.edu.unju.fi.entify.Producto;
 import ar.edu.unju.fi.service.IProductoService;
 import jakarta.validation.Valid;
 

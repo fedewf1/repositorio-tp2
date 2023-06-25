@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.entity.Articulo;
-import ar.edu.unju.fi.entity.Producto;
+import ar.edu.unju.fi.entify.Articulo;
+import ar.edu.unju.fi.entify.Producto;
 import ar.edu.unju.fi.listas.ListaArticulos;
 import ar.edu.unju.fi.service.IHomeService;
 import jakarta.validation.Valid;

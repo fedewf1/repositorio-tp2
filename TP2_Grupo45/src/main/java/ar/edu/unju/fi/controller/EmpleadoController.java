@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ar.edu.unju.fi.entity.Empleado;
+import ar.edu.unju.fi.entify.Empleado;
 //import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IEmpleadoService;
 import ar.edu.unju.fi.service.IServicioService;

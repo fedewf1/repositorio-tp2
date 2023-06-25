@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.entity.Sucursal;
+import ar.edu.unju.fi.entify.Sucursal;
 import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.service.ISucursalService;
 //import jakarta.validation.Valid;
