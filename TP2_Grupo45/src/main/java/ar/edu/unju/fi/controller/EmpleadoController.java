@@ -35,8 +35,8 @@ public class EmpleadoController {
 	
 	
 	
-	@Autowired
-	private Empleado empleado;
+//	@Autowired
+//	private Empleado empleado;
 	
 	/**Metodo que muestra una lista de empleados, además realiza las comprobaciones necesarias para filtrar un empleado por dia, sino muestra toda la lista de empleados*/
 	

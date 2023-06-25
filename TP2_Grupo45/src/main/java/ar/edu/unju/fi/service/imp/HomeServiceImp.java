@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entify.Articulo;
-import ar.edu.unju.fi.entify.Producto;
+//import ar.edu.unju.fi.entify.Producto;
 import ar.edu.unju.fi.listas.ListaArticulos;
 import ar.edu.unju.fi.service.IHomeService;
 import jakarta.validation.Valid;
@@ -81,9 +81,9 @@ public class HomeServiceImp implements IHomeService{
 	}
 	//@Override
  	// Agrega el producto validado a la lista de productos en listaProductos
- 	public void guardar(@Valid Producto producto){
- 		
- 	}
+// 	public void guardar(@Valid Producto producto){
+// 		
+// 	}
     // El código itera sobre la lista de artículos y busca un artículo con un código coincidente.
 	@Override
 	public void modificarArticulo(Articulo articuloA) {
