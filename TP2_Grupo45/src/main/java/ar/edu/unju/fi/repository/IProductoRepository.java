@@ -3,8 +3,8 @@ package ar.edu.unju.fi.repository;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
+import ar.edu.unju.fi.entify.Categoria;
 import ar.edu.unju.fi.entify.Producto;
 
 /**
@@ -13,7 +13,6 @@ import ar.edu.unju.fi.entify.Producto;
  * @version 1.0.1
  */
 
-@Repository
 public interface IProductoRepository extends CrudRepository<Producto,Long>{
 	/**
      * Busca y devuelve una lista de productos por estado.
@@ -29,6 +28,6 @@ public interface IProductoRepository extends CrudRepository<Producto,Long>{
      * @param estado    el estado del producto
      * @return una lista de productos que coinciden con la categoría y estado especificados
      */
-	//public List<Producto> findByCategoria (String categoria, boolean estado);
+	List<Producto> findByEstadoAndCategoria(boolean estado, String categoria);
 	
 }
