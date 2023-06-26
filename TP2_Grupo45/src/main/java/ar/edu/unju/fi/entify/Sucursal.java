@@ -51,11 +51,6 @@ public class Sucursal {
 	private Long id;
 	
 	
-    //@ManyToOne
-	//@JoinColumn(name = "sucursal_provinciaId")
-	//private Provincia provincia;
-
-	
 	@NotEmpty(message = "El nombre no puede estar vacio")
 	@Column(name = "sucu_nombre")
 	private String nombreSucursal;
@@ -66,12 +61,9 @@ public class Sucursal {
 	private String direccion;
 
 	
-	//PREGUNTAR QUE PASA CON PROVINCIAS, SE ECRIBE O ES UNA LISTA??????
 	@NotEmpty(message = "Debe seleccionar una provincia")
-	@ManyToOne
-	@JoinColumn(name = "sucu_provincia")
+	@Column(name="sucu_provincia")
 	private String provincia;
-
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -210,6 +202,8 @@ public class Sucursal {
 	 * @param horaLunesViernes es el horario de los dias Lunes a Viernes
 	 * @param horaSabados      es el horario de los dias Sabados
 	 * @param codigoSucursal   es el codigo de la sucursal
+	 * @param email			   es el email de la sucursal
+	 * @param estado 		   por defecto el estado es true
 	 */
 
 	public Sucursal(String nombreSucursal, String direccion,String provincia,LocalDate fechaInicio, String telefono,
