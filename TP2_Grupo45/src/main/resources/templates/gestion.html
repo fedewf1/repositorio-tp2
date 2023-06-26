@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gestion</title>
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Articulos para Mascotas en general</h1>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+		<div class="row">
+			<section class=" col-7">
+
+				<!-- DIV QUE ENVUELVE LA CARD PARA LA SECCION EMPLEADOS -->
+				<div class="card">
+					<div class="card-header">Empleados</div>
+					<div class="card-body">
+						<div>
+							<a
+								class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
+								th:href="@{/gestion/empleado/nuevo}" role="button">Nuevo</a>
+						</div>
+
+						<div class="row" th:each="empleado : ${empleados}">
+							<div class="col-md-12">
+								<div class="card mb-3 mt-3">
+									<div class="card-body servicios-card">
+										<div class="row">
+											<div class="col-md-9">
+												<h5 class="card-title fw-bold"></h5>
+												<p class="card-text mt-4" th:text="${empleado.nombre}"></p>
+											</div>
+
+											<div class="col-md-3">
+												<h5 class="card-title">Acciones</h5>
+
+												<a
+													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
+													th:href="@{/gestion/empleado/modificar/{id}(id=${empleado.id})}"
+													role="button">Editar</a> <a
+													class="btn btn-sm btn-secondary text-light"
+													th:href="@{/gestion/empleado/eliminar/{id}(id=${empleado.id})}"
+													role="button">Eliminar</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+	<!-- DIV QUE ENVUELVE LA CARD PARA LA SECCION SUCURSALES -->
+
+				<div class="card mt-3">
+					<div class="card-header">Sucursales</div>
+					<div class="card-body">
+						<div>
+							<a
+								class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
+								th:href="@{/gestion/sucursal/nuevo}" role="button">Nuevo</a>
+						</div>
+
+						<div class="row" th:each="sucursal : ${sucursales}">
+							<div class="col-md-12">
+								<div class="card mb-3 mt-3">
+									<div class="card-body servicios-card">
+										<div class="row">
+											<div class="col-md-9">
+												<h5 class="card-title fw-bold"></h5>
+												<p class="card-text mt-4" th:text="${sucursal.nombreSucursal}"></p>
+											</div>
+
+											<div class="col-md-3">
+												<h5 class="card-title">Acciones</h5>
+
+												<a
+													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
+													th:href="@{/gestion/sucursal/modificar/{id}(id=${sucursal.id})}"
+													role="button">Editar</a> <a
+													class="btn btn-sm btn-secondary text-light"
+													th:href="@{/gestion/sucursal/eliminar/{id}(id=${sucursal.id})}"
+													role="button">Eliminar</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<!-- DIV QUE ENVUELVE LA CARD PARA LA SECCION PRODUCTOS -->
+
+				<div class="card mt-3">
+					<div class="card-header">Productos</div>
+					<div class="card-body">
+						<div>
+							<a
+								class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
+								th:href="@{/gestion/producto/nuevo}" role="button">Nuevo</a>
+						</div>
+
+						<div class="row" th:each="producto : ${productos}">
+							<div class="col-md-12">
+								<div class="card mb-3 mt-3">
+									<div class="card-body servicios-card">
+										<div class="row">
+											<div class="col-md-9">
+												<h5 class="card-title fw-bold"></h5>
+												<p class="card-text mt-4" th:text="${producto.nombre}"></p>
+											</div>
+
+											<div class="col-md-3">
+												<h5 class="card-title">Acciones</h5>
+
+												<a
+													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
+													th:href="@{/gestion/producto/modificar/{id}(id=${producto.id})}"
+													role="button">Editar</a> <a
+													class="btn btn-sm btn-secondary text-light"
+													th:href="@{/gestion/producto/eliminar/{id}(id=${producto.id})}"
+													role="button">Eliminar</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+			</section>
+			<!-- Incluye al aside layouts -->
+			<aside class="col-4 col-md-12" th:replace="~{layouts/aside :: aside}">
+
+			</aside>
+		</div>
+	</div>
+	<p></p>
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+
+</body>
+</html>

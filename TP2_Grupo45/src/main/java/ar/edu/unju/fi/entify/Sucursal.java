@@ -1,11 +1,13 @@
 package ar.edu.unju.fi.entify;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -61,9 +63,11 @@ public class Sucursal {
 	private String direccion;
 
 	
-	@NotEmpty(message = "Debe seleccionar una provincia")
+	
 	@Column(name="sucu_provincia")
 	private String provincia;
+
+
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -104,7 +108,8 @@ public class Sucursal {
 	@Column(name = "sucu_estado")
 	private boolean estado = true;
 	
-	
+
+
 	
 	// Getters and Setters
 
@@ -202,8 +207,6 @@ public class Sucursal {
 	 * @param horaLunesViernes es el horario de los dias Lunes a Viernes
 	 * @param horaSabados      es el horario de los dias Sabados
 	 * @param codigoSucursal   es el codigo de la sucursal
-	 * @param email			   es el email de la sucursal
-	 * @param estado 		   por defecto el estado es true
 	 */
 
 	public Sucursal(String nombreSucursal, String direccion,String provincia,LocalDate fechaInicio, String telefono,
