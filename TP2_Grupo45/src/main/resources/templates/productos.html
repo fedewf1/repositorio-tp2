@@ -21,14 +21,41 @@
 		<a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo
 			Producto</a>
 		
-
+		<div class="btn-group">
+			<button type="button"
+				class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color "
+				data-bs-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">Categorias</button>
+				<ul class="dropdown-menu">
+					<li><a
+						class="dropdown-item btn btn-outline-primary filter-btn"
+						th:href="@{/productos/listado/}+'Cuidado'">Cuidado</a></li>
+						<li><a
+							class="dropdown-item btn btn-outline-primary filter-btn"
+							th:href="@{/productos/listado/}+'Alimento'">Alimento</a></li>
+						<li><a
+							class="dropdown-item btn btn-outline-primary filter-btn"
+							th:href="@{/productos/listado/}+'Ropa'">Ropa</a></li>
+						<li><a
+							class="dropdown-item btn btn-outline-primary filter-btn"
+							th:href="@{/productos/listado/}+'Correas'">Correas</a></li>
+						<li><a
+							class="dropdown-item btn btn-outline-primary filter-btn"
+							th:href="@{/productos/listado/}+'Camas y Colchones'">Camas y Colchones</a></li>
+						<li><a
+							class="dropdown-item btn btn-outline-primary filter-btn"
+							th:href="@{/productos/listado/}+'Jaulas,Casas,Peceras'">Jaulas,Casas,Peceras</a></li>
+				</ul>
+			</div>
+				
+					
 		<main>
 			<section>
 				<h2>Nuestros productos</h2>
 				
 				<div class="row">
-
-					<div class="col-lg-4 col-md-6" th:each="produ : ${productos}">
+					
+					<div class="col-xs-12 col-sm-12 col-lg-4 col-md-6" th:each="produ : ${productos}">
 						<div
 							class="card mb-4 productos-card-bordes shadow p-3 mb-5 bg-body-tertiary rounded">
 							<img class="card-img-top productos-cards-estilo mt-2"

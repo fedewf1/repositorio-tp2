@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.entify.Categoria;
+import ar.edu.unju.fi.entify.Empleado;
 import ar.edu.unju.fi.entify.Producto;
 import ar.edu.unju.fi.repository.IProductoRepository;
+import ar.edu.unju.fi.service.ICategoriaService;
 import ar.edu.unju.fi.service.IProductoService;
 //import ar.edu.unju.fi.service.imp.ProductoServiceImp;
 import jakarta.validation.Valid;
@@ -33,9 +37,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/productos")
 public class ProductoController {
 	@Autowired
-	//@Qualifier("productoServiceMysql")
-	//private IProductoRepository productoRepository;
+	@Qualifier("productoServiceMysql")
 	private IProductoService iproduSer;
+	
+	//@Autowired
+	//private ICategoriaService icatGoria;
 	
     //private Producto producto
     
@@ -57,31 +63,40 @@ public class ProductoController {
     	return "nuevo_producto";
     }
     
+    
+    /**@GetMapping("/empleados")
+    public String mostrarListaServicios(@RequestParam(value = "categoria", required = false) String categoria, Model model) {
+        List<Categoria> categoria1;
+        	categoria1 = icatGoria.getCategoria(categoria);
+        
+
+        return "productos";
+    }*/
+    @GetMapping("/listado/{categoria}")
+    public String getProductosPorCategoria(Model model,@PathVariable String categoria) {
+    	//String Categoria="Cuidado";
+    	List<Producto>productos=iproduSer.getProductosPorCategoria(categoria);
+    	model.addAttribute("productos", productos);
+        return "productos";
+    }
+    //
+    
     // Guarda un nuevo producto en la lista
     @PostMapping("/guardar")
     public String getguardarProductoPage(@Valid @ModelAttribute("producto") Producto producto, BindingResult result) {
     	
-    	//return "redirect:/productos/listado";
+    	
     	ModelAndView modelView = new ModelAndView("productos");
-   	if(result.hasErrors()) {
+    	if(result.hasErrors()) {
     		modelView.setViewName("index");
    		modelView.addObject("producto", producto);
     		modelView=new ModelAndView("index");
     		//return modelView;
     		return "nuevo_producto";
-    	}else {
-    		
-    		iproduSer.save(producto);
-    //		productoRepository.save(producto);
-        	//producto.setNombre("Collar antipulgas").
-        	//modelView=new ModelAndView("nuevo_producto");
-    		//modelView.addObject("productos", iproduSer.listar());
+    	}else {  		
+    		iproduSer.save(producto); 
     		return "redirect:/productos/listado";
-    	}
-    	//return modelView;
-    	
-        
-        
+    	}    
     }
     
     // Muestra la página para modificar un producto existente
@@ -100,13 +115,6 @@ public class ProductoController {
     	return"nuevo_producto";
     }
     
-    // Guarda los cambios realizados en un producto existente
-  //  @PostMapping("/modificar")
-  //  public String modificaProducto(@ModelAttribute("producto")Producto producto) {
-   // 	iproduSer.modificar(producto);
-   // 	return "redirect:/productos/listado";
-   // }
-    
     
     @PostMapping("/guarda/{id}")
     public String getguardarPorId(@Valid @ModelAttribute("producto") Producto producto, BindingResult result,Model model, @PathVariable long id) {
@@ -115,15 +123,9 @@ public class ProductoController {
     		modelView.setViewName("index");
    		modelView.addObject("producto", producto);
     		modelView=new ModelAndView("index");
-    		//return modelView;
     		return "nuevo_producto";
-    	}else {
-    		
+    	}else { 		
     		iproduSer.save(producto);
-    //		productoRepository.save(producto);
-        	//producto.setNombre("Collar antipulgas").
-        	//modelView=new ModelAndView("nuevo_producto");
-    		//modelView.addObject("productos", iproduSer.listar());
     		return "redirect:/productos/listado";
     	}
     }
@@ -131,18 +133,9 @@ public class ProductoController {
     // Elimina un producto de la lista
      @GetMapping("/eliminar/{id}")
      public String eliminarProducto(@PathVariable(value="id") Long id) throws Exception {
-     //Iterar sobre la lista de productos
-    //	 Optional<Producto>producto=iproduSer.listarId(id);
     	 iproduSer.eliminar(id, false);
-    	 //iproduSer.eliminar(id);
          return "redirect:/productos/listado";
-    	 //Optional<Producto> product = iproduSer.findById(id);
-	        
-	      //  producto.setEstado(false);
-	       // iproduSer.save(producto);
-    	 //iproduSer.eliminar(id,producto);
-    	// producto.setEstado(false);;
-         //return "redirect:/productos/listado";
+    	 
     }
 }
 

@@ -1,4 +1,5 @@
 package ar.edu.unju.fi.entify;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -7,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
@@ -16,6 +18,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 //import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -44,9 +48,6 @@ public class Producto {
     
 	
 	
-	// Validación del campo código
-	//@Size(min=4, max=4,message="el codigo no puede tener mas ni menos de 4 digitos.")
-    @Digits(integer = 4, fraction = 0, message = "El código debe ser un número de 4 dígitos")
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="produ_id")
@@ -102,7 +103,8 @@ public class Producto {
      * brindado que tenga una relacion manytoone con producto.
      */
   //  private Categoria categori;
-
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+	private List<Categoria> catDisponible;
     
     /**
      * Constructor parametrizado.
@@ -127,7 +129,7 @@ public class Producto {
     }
 
     public Producto() {
-		
+    	super();
 	}
 
 	public int getCodigo() {
@@ -238,13 +240,6 @@ public class Producto {
      *
      * @return la categoría del producto
      */
-   /** @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name= "idCategoria")
-    public Categoria getCategori() {
-    	return categori;
-    }
-    public void setCategoria(Categoria catagor) {
-    	this.categori=catagor;
-    }*/
+
 }
 

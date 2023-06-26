@@ -3,6 +3,8 @@ package ar.edu.unju.fi.service;
 import java.util.List;
 
 import ar.edu.unju.fi.entify.Articulo;
+import ar.edu.unju.fi.entify.Producto;
+import jakarta.validation.Valid;
 
 /** 
  * @author federico nicolas burgos grupo 45
@@ -11,18 +13,21 @@ import ar.edu.unju.fi.entify.Articulo;
  */
 public interface IHomeService {
 			// Obtiene una lista de productos
-			List<Articulo> getArticulos();
+			//List<Articulo> getArticulos();
 			// devolver un objeto de tipo Articulo
-			Articulo getIndex();
+		//	Articulo getIndex();
 			//Este método declara un método llamado getArticulo() que también debe devolver un objeto de tipo Articulo
-			Articulo getArticulo();
-			
+			//Articulo getArticulo();
+			List<Articulo> listar();
 			// Guarda un producto en la lista de productos
-			void guardarArticulo( Articulo articulo);
-			// Elimina un producto de la lista de productos utilizando el código
-			void eliminarArticulo(Integer codigo);
+	//		void guardarArticulo( Articulo articulo);
+	//		// Elimina un producto de la lista de productos utilizando el código
+	//		void eliminarArticulo(Integer codigo);
 			// Modifica un producto en la lista de productos utilizando otro producto como referencia
-			void modificarArticulo(Articulo articuloA);
+	//		void modificarArticulo(Articulo articuloA);
 			// Busca un producto en la lista de productos utilizando el código
-			Articulo buscarPorCodigo(Integer codigo);
+	//		Articulo buscarPorCodigo(Integer codigo);
+	//		void guardar(@Valid Producto producto);
+
+			void save(Articulo articulo);
 }
