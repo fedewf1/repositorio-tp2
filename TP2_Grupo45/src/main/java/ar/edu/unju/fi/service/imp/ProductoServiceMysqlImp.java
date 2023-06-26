@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entify.Categoria;
 import ar.edu.unju.fi.entify.Producto;
 import ar.edu.unju.fi.repository.IProductoRepository;
 import ar.edu.unju.fi.service.IProductoService;
@@ -20,21 +18,19 @@ import ar.edu.unju.fi.service.IProductoService;
  * @author freinicks
  * @version 1.0.2
  */
-@Service
+@Service("productoServiceMysql")
 public class ProductoServiceMysqlImp implements IProductoService {
 	@Autowired
-	
 	private IProductoRepository productoRepository;
+	@Autowired
+	private Producto producto;
 	
 	@Override
-	public long save(Producto product) {
-		long res=0;
+	public void save(Producto product) {
+		
 		product.setEstado(true);
-		Producto producto= productoRepository.save(product);
-		if(!producto.equals(null)) {
-		res=1;
-		}
-			return res;
+		productoRepository.save(product);
+		
 	}
 	
 	
@@ -72,7 +68,7 @@ public class ProductoServiceMysqlImp implements IProductoService {
      * @param estado el nuevo estado del producto
      */
 	@Override
-	public void eliminar(long id, boolean esta){
+	public void eliminar(Long id, boolean esta){
 		
 		Optional<Producto> objetoOptional = productoRepository.findById(id);
 
@@ -105,29 +101,13 @@ public class ProductoServiceMysqlImp implements IProductoService {
      * @return un objeto Optional que contiene el producto encontrado, o vacío si no se encontró
      */
 	@Override
-	public Optional<Producto> listarId(long id) {
+	public Optional<Producto> listarId(Long id) {
 		return productoRepository.findById(id);
 		
 	}
-	
-	/**
-     * Método sin implementar.
-     *
-     * @param id el ID del producto a guardar
-     */
 	@Override
-	public void saveId(long id) {
-		
-		/**
-	     * Método sin implementar.
-	     *
-	     * @param id el ID del producto a buscar
-	     * @return un objeto Optional que contiene el producto encontrado, o vacío si no se encontró
-	     */	
-	}
-	public Optional<Producto> findById(Long id){
-		return null;
-		
-	}
+	public List<Producto> getProductosPorCategoria(String categoria) {
+        return productoRepository.findByEstadoAndCategoria(true, categoria);
+    }
 	
 }
