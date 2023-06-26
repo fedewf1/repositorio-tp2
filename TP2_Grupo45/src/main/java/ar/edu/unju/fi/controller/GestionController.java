@@ -21,6 +21,7 @@ import ar.edu.unju.fi.entify.Sucursal;
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IConsejoService;
 import ar.edu.unju.fi.service.IEmpleadoService;
+import ar.edu.unju.fi.service.IProductoService;
 import ar.edu.unju.fi.service.IServicioService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
@@ -50,16 +51,19 @@ public class GestionController {
 
 	  @Autowired
 	  private ICommonService commonService;
+	  
+	  @Autowired
+		private IProductoService iproduSer;
 		
 	/**###########################*/
 	
 	@GetMapping("/gestion")
 	public String getGestionPage(Model model) {
 	    List<Empleado> empleados = empleadoService.getEmpleados();
-	    List<Consejo> consejos = consejoService.getConsejos();
+	    List<Producto> productos= iproduSer.listar();
 	    List<Sucursal> sucursales = sucursalService.getSucursales();
 	    model.addAttribute("empleados", empleados);
-	    model.addAttribute("consejos", consejos);
+	    model.addAttribute("productos", productos);
 	    model.addAttribute("sucursales", sucursales);
 	    return "gestion";
 	}
@@ -224,6 +228,68 @@ public class GestionController {
 		   /**######################################################################*/
 		   /**############################SECCION PRODUCTOS################################*/
 		   
+
+
+		    @GetMapping("/gestion/producto/nuevo")
+		    public String getNuevoProductoPage(Model model) {
+		    //	boolean edicion = false;
+		    	model.addAttribute("producto", new Producto());
+
+		    	return "nuevo_producto";
+		    }
+		    
+
+		    @PostMapping("/gestion/producto/guardar")
+		    public String getguardarProductoPage(@Valid @ModelAttribute("producto") Producto producto, BindingResult result) {
+		    	
+		
+		    	ModelAndView modelView = new ModelAndView("productos");
+		   	if(result.hasErrors()) {
+		    		modelView.setViewName("index");
+		   		modelView.addObject("producto", producto);
+		    		modelView=new ModelAndView("index");
+		
+		    		return "nuevo_producto";
+		    	}else {
+		    		
+		    		iproduSer.save(producto);
+
+		    		return "redirect:/productos/listado";
+		    	}
+
+		    }
+
+		    @GetMapping("/gestion/producto/modificar/{id}")
+		   public String getModificarProductoPage(Model model, @PathVariable long id) {
+		        //boolean editando = true;
+		    	Optional<Producto>producto=iproduSer.listarId(id);
+		    	model.addAttribute("producto", producto);
+	
+
+		    	return"nuevo_producto";
+		    }
+
+		    
+		    @PostMapping("/gestion/producto/guarda/{id}")
+		    public String getguardarPorId(@Valid @ModelAttribute("producto") Producto producto, BindingResult result,Model model, @PathVariable long id) {
+		    ModelAndView modelView = new ModelAndView("productos");
+		   	if(result.hasErrors()) {
+		    		modelView.setViewName("index");
+		   		modelView.addObject("producto", producto);
+		    		modelView=new ModelAndView("index");
+		    		return "nuevo_producto";
+		    	}else {		    		
+		    		iproduSer.save(producto);
+		    		return "redirect:/productos/listado";
+		    	}
+		    }
+		    
+		     @GetMapping("/gestion/producto/eliminar/{id}")
+		     public String eliminarProducto(@PathVariable(value="id") Long id) throws Exception {
+		    	 iproduSer.eliminar(id, false);
+		         return "redirect:/productos/listado";
+		
+		    }
 		   
 		
 		   
