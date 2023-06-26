@@ -4,8 +4,8 @@ package ar.edu.unju.fi.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ar.edu.unju.fi.entify.Empleado;
-import ar.edu.unju.fi.entify.Servicio;
+import ar.edu.unju.fi.entity.Empleado;
+import ar.edu.unju.fi.entity.Servicio;
 
 public interface IServicioRepository extends CrudRepository<Servicio, Long> {
 

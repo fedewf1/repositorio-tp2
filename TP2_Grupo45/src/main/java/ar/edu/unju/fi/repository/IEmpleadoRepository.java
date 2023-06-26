@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ar.edu.unju.fi.entify.Empleado;
+import ar.edu.unju.fi.entity.Empleado;
 
 public interface IEmpleadoRepository extends CrudRepository<Empleado, Long> {
 

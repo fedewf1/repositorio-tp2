@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ar.edu.unju.fi.entify.Consejo;
+import ar.edu.unju.fi.entity.Consejo;
 
 
 public interface IConsejoRepository extends CrudRepository<Consejo, Long> {

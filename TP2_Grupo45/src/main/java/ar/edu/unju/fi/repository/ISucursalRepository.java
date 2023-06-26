@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unju.fi.entify.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 
 /**
  * Se procede a añadir: ISucursalRepository

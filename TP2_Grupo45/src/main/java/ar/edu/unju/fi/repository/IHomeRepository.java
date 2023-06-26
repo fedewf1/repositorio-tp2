@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ar.edu.unju.fi.entify.Articulo;
+import ar.edu.unju.fi.entity.Articulo;
 
 
 public interface IHomeRepository extends CrudRepository<Articulo, Long> {

@@ -3,8 +3,8 @@ package ar.edu.unju.fi.service;
 import java.util.List;
 import java.util.Optional;
 
-import ar.edu.unju.fi.entify.Categoria;
-import ar.edu.unju.fi.entify.Producto;
+import ar.edu.unju.fi.entity.Categoria;
+import ar.edu.unju.fi.entity.Producto;
  
 /**
  * Interfaz que define los métodos para el servicio de productos.
