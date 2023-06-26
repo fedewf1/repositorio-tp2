@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.entify.Empleado;
+import ar.edu.unju.fi.entity.Empleado;
 import ar.edu.unju.fi.repository.IEmpleadoRepository;
 import ar.edu.unju.fi.service.IEmpleadoService;
 

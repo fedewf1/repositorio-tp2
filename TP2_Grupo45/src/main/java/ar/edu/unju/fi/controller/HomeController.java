@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entify.Articulo;
+import ar.edu.unju.fi.entity.Articulo;
 import ar.edu.unju.fi.repository.IHomeRepository;
 //import ar.edu.unju.fi.model.Producto;
 import ar.edu.unju.fi.service.IHomeService;

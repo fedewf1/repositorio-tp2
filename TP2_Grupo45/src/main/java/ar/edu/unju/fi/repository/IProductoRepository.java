@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ar.edu.unju.fi.entify.Categoria;
-import ar.edu.unju.fi.entify.Producto;
+import ar.edu.unju.fi.entity.Categoria;
+import ar.edu.unju.fi.entity.Producto;
 
 /**
  * Repositorio para acceder a la entidad Producto en la base de datos.

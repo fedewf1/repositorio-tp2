@@ -2,8 +2,8 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.entify.Articulo;
-import ar.edu.unju.fi.entify.Producto;
+import ar.edu.unju.fi.entity.Articulo;
+import ar.edu.unju.fi.entity.Producto;
 import jakarta.validation.Valid;
 
 /** 

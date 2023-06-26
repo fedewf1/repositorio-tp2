@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entify.Categoria;
-import ar.edu.unju.fi.entify.Empleado;
-import ar.edu.unju.fi.entify.Producto;
+import ar.edu.unju.fi.entity.Categoria;
+import ar.edu.unju.fi.entity.Empleado;
+import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.repository.IProductoRepository;
 import ar.edu.unju.fi.service.ICategoriaService;
 import ar.edu.unju.fi.service.IProductoService;

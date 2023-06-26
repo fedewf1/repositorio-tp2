@@ -5,9 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.entify.Articulo;
-import ar.edu.unju.fi.entify.Producto;
-
+import ar.edu.unju.fi.entity.Articulo;
+import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.repository.IHomeRepository;
 import ar.edu.unju.fi.service.IHomeService;
 import ar.edu.unju.fi.service.IProductoService;
