@@ -1,11 +1,13 @@
 package ar.edu.unju.fi.entify;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -51,11 +53,6 @@ public class Sucursal {
 	private Long id;
 	
 	
-    //@ManyToOne
-	//@JoinColumn(name = "sucursal_provinciaId")
-	//private Provincia provincia;
-
-	
 	@NotEmpty(message = "El nombre no puede estar vacio")
 	@Column(name = "sucu_nombre")
 	private String nombreSucursal;
@@ -66,11 +63,10 @@ public class Sucursal {
 	private String direccion;
 
 	
-	//PREGUNTAR QUE PASA CON PROVINCIAS, SE ECRIBE O ES UNA LISTA??????
-	@NotEmpty(message = "Debe seleccionar una provincia")
-	@ManyToOne
-	@JoinColumn(name = "sucu_provincia")
+	
+	@Column(name="sucu_provincia")
 	private String provincia;
+
 
 	
 	
@@ -112,7 +108,8 @@ public class Sucursal {
 	@Column(name = "sucu_estado")
 	private boolean estado = true;
 	
-	
+
+
 	
 	// Getters and Setters
 

@@ -88,21 +88,32 @@
 						<div
 							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
 
-						<div class="col-lg-2 col-sm-3 align-self-start">
-								<label for="provincia" class="form-label">Provincia</label>
-							</div>
+													<div class="col-lg-2 col-sm-3 align-self-start">
+															<label for="provincia" class="form-label">Provincia</label>
+														</div>
 
-						<div class="col-lg-4 col-sm-6 align-self-center">
-								 <select
-								class="form-select" id="provincia" name="provincia">
-								<option value="">Seleccionar provincia</option>
-								<th:block th:each="provincia : ${provincias}">
-									<option th:value="${provincia}" th:text="${provincia}"></option>
-								</th:block>
-							</select>
+													<div class="col-lg-4 col-sm-6 align-self-center">
+															 <select
+															class="form-select" id="provincia" name="provincia">
+															<option value="">Seleccionar provincia</option>
+															<th:block th:each="provincia : ${provincias}">
+																<option th:value="${provincia}" th:text="${provincia}"></option>
+															</th:block>
+														</select>
+
+													</div>
+
+							
+								<!-- Otros campos del formulario -->
+
+<!-- 								<label for="provincia">Provincia:</label> <select -->
+<!-- 									name="provincia" id="provincia"> -->
+<!-- 									<option th:each="prov : ${provincias}" th:value="${prov}" -->
+<!-- 										th:text="${prov}"></option> -->
+<!-- 								</select> -->
+
 						
-						</div>
-
+							
 						</div>
 
 
