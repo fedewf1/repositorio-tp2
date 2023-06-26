@@ -17,7 +17,9 @@
 			<section class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
     			<br></br>
     			<!-- Enlace para crear un nuevo articulo -->
+
     		<!-- <a class="btn btn-primary" th:href="@{/nuevo}">Nuevo Articulo</a>-->
+
     			
     			<!-- En la siguiente etiqueta article se visualizan los articulos guardados, junto con su correspondiete 
     			opcion de editar o eliminar articulo -->
@@ -35,18 +37,24 @@
       			</article>
     		</section>
     		<!-- Incluye al aside layouts -->
+
 			<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4" th:replace="~{layouts/aside :: aside}">
+
+
 			
     		</aside>
   		</div>
 		</div>
 		<p></p>
 		<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
-		<script type="text/javascript"
-		th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 	<script type="text/javascript"
-		th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript"
-		th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+		th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+
 	</body>
 </html>

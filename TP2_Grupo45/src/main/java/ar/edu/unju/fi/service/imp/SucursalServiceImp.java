@@ -16,10 +16,19 @@ import ar.edu.unju.fi.service.ISucursalService;
  * @version 1.0 date: 10/06/23
  */
 
-@Service
+/**
+ * Se procede a modificar los parametros, adaptando a lo requerido en el practico 7
+ * 
+ * @author joelrojas95
+ * @version 1.0 date: 24/06/23
+ */
+
+@Service("sucursalServiceImp")
 public class SucursalServiceImp implements ISucursalService {
+	
 	@Autowired
 	private ListaSucursales listaSucursales;
+	
 	@Autowired
 	private Sucursal sucursal;
 
@@ -33,6 +42,7 @@ public class SucursalServiceImp implements ISucursalService {
 	public Sucursal getSucursal() {
 		return sucursal;
 	}
+	
 	
 	//guarda una nueva sucursal
 	@Override
@@ -65,21 +75,22 @@ public class SucursalServiceImp implements ISucursalService {
 	   
 	//elimina una sucursal
 	@Override
-	public void eliminarSucursal(Integer codigoSucursal) {
+	public void eliminarSucursal(Sucursal sucursal) {
 		for(Sucursal sucu:listaSucursales.getSucursales()) {
-	  		if(sucu.getCodigoSucursal()==(codigoSucursal)) {
-	  			listaSucursales.getSucursales().remove(sucu);
-	  			break;
-	  			}
+			
+	  		 if (sucu.getId().equals(sucu.getId())){
+	                listaSucursales.getSucursales().remove(sucu);
+	                break;
+	            }
 	       }
 		
 	}
 
 	//busca una sucursal por nombre
 	@Override
-	public Sucursal buscarSucursalPorCodigo(Integer codigoSucursal) {
+	public Sucursal buscarSucursalPorCodigo(Long id) {
 		 for (Sucursal sucursal: listaSucursales.getSucursales()) {
-	            if (sucursal.getCodigoSucursal()==(codigoSucursal)) {
+	            if (sucursal.getId().equals(id)){
 	                return sucursal;
 	            }
 	        }
@@ -87,5 +98,4 @@ public class SucursalServiceImp implements ISucursalService {
 	}
 
 }
-
 

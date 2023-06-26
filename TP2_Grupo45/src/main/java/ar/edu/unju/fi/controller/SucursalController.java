@@ -1,8 +1,7 @@
 package ar.edu.unju.fi.controller;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entify.Sucursal;
+
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
@@ -24,11 +24,21 @@ import jakarta.validation.Valid;
  * 
  */
 
-
+/**
+ * Capa Controladora de Sucursal
+ * se realizan cambios para trabajar con Long Id
+ * se añade la etiqueta qualifier, para trabajar con la bd
+ * se corrige conflictos de provincias
+ * @author joelrojas95
+ * @version 1.0 date: 24/06/23
+ * 
+ */
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalController {
+	
   @Autowired
+  @Qualifier("sucursalServiceMysql")
   private ISucursalService sucursalService;
   
   
@@ -41,6 +51,7 @@ public class SucursalController {
       return "sucursales";
   }
   
+  
   @GetMapping("/nuevo")
   public String getNuevaSucursalPage(Model model) {
   	boolean edicion = false;
@@ -50,7 +61,6 @@ public class SucursalController {
   	return "nueva_sucursal";
   }
   
-
   /* 
 Se procede a la captura de errores
 */
@@ -63,15 +73,21 @@ Se procede a la captura de errores
 		modelView.addObject("sucursal", sucursal);
 		return modelView;
 	}
+	
+	String provinciaSeleccionada = sucursal.getProvincia();
+
+    // Asignar la provincia seleccionada al atributo "provincia" de la sucursal
+    sucursal.setProvincia(provinciaSeleccionada);
+	
 	sucursalService.guardarSucursal(sucursal);
     modelView.addObject("sucursales", sucursalService.getSucursales());
     return modelView;
   }
   
-  
-  @GetMapping("/modificar/{codigoSucursal}")
-  public String getModificarSucursalPage(Model model, @PathVariable(value="codigoSucursal")int codigoSucursal) {
-  	Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorCodigo(codigoSucursal);
+ 
+  @GetMapping("/modificar/{id}")
+  public String getModificarSucursalPage(Model model, @PathVariable(value="id")Long id) {
+  	Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorCodigo(id);
   	boolean edicion= true;
   	model.addAttribute("sucursal", sucursalEncontrada);
   	model.addAttribute("provincias" , commonService.getProvincias());
@@ -81,18 +97,16 @@ Se procede a la captura de errores
    
   
   @PostMapping("/modificar")
-  public String modificaSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
-  	
-  	
-  	sucursalService.modificarSucursal(sucursal);
-  	return "redirect:/sucursales/listado";
+  public String modificaSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
+    sucursalService.modificarSucursal(sucursal);
+    return "redirect:/sucursales/listado";
   }
   
-  
-  @GetMapping("/eliminar/{codigoSucursal}")
-  public String eliminarSocursal(@PathVariable(value="codigoSucursal") int codigoSucursal) {
-	  sucursalService.eliminarSucursal(codigoSucursal);
-  	  return "redirect:/sucursales/listado";
+  @GetMapping("/eliminar/{id}")
+  public String eliminarSucursal(@PathVariable(value="id") Long id) {
+    Sucursal sucursal = sucursalService.buscarSucursalPorCodigo(id);
+    sucursalService.eliminarSucursal(sucursal);
+    return "redirect:/sucursales/listado";
   }
 
 }
