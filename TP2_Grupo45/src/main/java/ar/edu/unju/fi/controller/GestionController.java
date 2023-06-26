@@ -51,7 +51,7 @@ public class GestionController {
 	  @Autowired
 	  private ICommonService commonService;
 		
-	/**##########################*/
+	/**###########################*/
 	
 	@GetMapping("/gestion")
 	public String getGestionPage(Model model) {
