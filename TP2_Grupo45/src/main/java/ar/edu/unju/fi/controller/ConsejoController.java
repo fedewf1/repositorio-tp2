@@ -93,6 +93,7 @@ public class ConsejoController {
 	}
 
 
+
 	
 	/**Solicita la modificación de un consejo a traves de su id*/
 	   @PostMapping("/consejo/modificar")

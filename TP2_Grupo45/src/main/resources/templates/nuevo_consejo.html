@@ -19,7 +19,7 @@
 				
 						<div>
 				<form 
-					th:action="${editando}?@{/consejo/modificar/ (id=${consejo.id})}:@{/consejo/guardar}"
+					th:action="${editando}? @{/consejo/modificar} : @{/consejo/guardar}"
 					th:object="${consejo}" method="post"
 					class="text-light  formulario-sucursales-dentro">
 
