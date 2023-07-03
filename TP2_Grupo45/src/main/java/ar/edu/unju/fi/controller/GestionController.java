@@ -168,8 +168,7 @@ public class GestionController {
 	
 		   @GetMapping("/gestion/consejo/eliminar/{id}")
 		   public String eliminarConsejo(@PathVariable Long id) {
-		       Consejo consejo = consejoService.getConsejoById(id);
-		       consejoService.eliminarConsejo(consejo);
+			   consejoService.eliminarConsejoById(id);
 		       return "redirect:/consejos";
 		   }
 		   
