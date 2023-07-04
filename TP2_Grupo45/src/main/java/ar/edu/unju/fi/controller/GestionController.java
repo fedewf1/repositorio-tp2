@@ -62,9 +62,11 @@ public class GestionController {
 	    List<Empleado> empleados = empleadoService.getEmpleados();
 	    List<Producto> productos= iproduSer.listar();
 	    List<Sucursal> sucursales = sucursalService.getSucursales();
+	    List<Consejo> consejos= consejoService.getConsejos();
 	    model.addAttribute("empleados", empleados);
 	    model.addAttribute("productos", productos);
 	    model.addAttribute("sucursales", sucursales);
+	    model.addAttribute("consejos", consejos);
 	    return "gestion";
 	}
 
@@ -168,7 +170,8 @@ public class GestionController {
 	
 		   @GetMapping("/gestion/consejo/eliminar/{id}")
 		   public String eliminarConsejo(@PathVariable Long id) {
-			   consejoService.eliminarConsejoById(id);
+			      Consejo consejo = consejoService.getConsejoById(id);
+			       consejoService.eliminarConsejo(consejo);
 		       return "redirect:/consejos";
 		   }
 		   

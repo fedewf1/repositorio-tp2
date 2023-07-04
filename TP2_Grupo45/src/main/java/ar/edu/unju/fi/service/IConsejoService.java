@@ -11,9 +11,9 @@ public interface IConsejoService {
     Consejo getConsejoById(Long id);
     void guardarConsejo(Consejo consejo);
     void actualizarConsejo(Consejo consejoActualizado);
-//    void eliminarConsejo(Consejo consjeo);
+    void eliminarConsejo(Consejo consjeo);
     Consejo getConsejoVacio();
     Consejo getConsejo();
-    void eliminarConsejoById(Long id);
-    public boolean existeConsejoById(Long id);
+//    void eliminarConsejoById(Long id);
+//    public boolean existeConsejoById(Long id);
 }

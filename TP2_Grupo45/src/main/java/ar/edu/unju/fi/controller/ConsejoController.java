@@ -79,26 +79,23 @@ public class ConsejoController {
 
 	
 	/**Solicita la pagina de modificación segun un id*/
-	@GetMapping("/consejo/modificar/{id}")
-	public ModelAndView mostrarFormularioModificarConsejo(Model model, @PathVariable(value = "id") Long id) {
-	    Consejo consejo = consejoService.getConsejoById(id);
-	    boolean editando = true;
-	    if (consejo == null) {
-	        return new ModelAndView("redirect:/consejos");
+	   @GetMapping("/consejo/modificar/{id}")
+	    public String mostrarFormularioModificarConsejo(Model model, @PathVariable(value = "id") Long id) {
+	        Consejo consejo = consejoService.getConsejoById(id);
+	        boolean editando = true;
+	        if (consejo == null) {
+	            return "redirect:/consejos";
+	        }
+	        model.addAttribute("consejo", consejo);
+	        model.addAttribute("editando", editando);
+	        
+	        return "nuevo_consejo";
 	    }
-	    model.addAttribute("consejo", consejo);
-	    model.addAttribute("editando", editando);
-
-	    return new ModelAndView("nuevo_consejo");
-	}
-
-
 
 	
 	/**Solicita la modificación de un consejo a traves de su id*/
 	   @PostMapping("/consejo/modificar")
 	    public String modificarConsejo(@Valid @ModelAttribute("consejo") Consejo consejo, BindingResult result) {
-	
 	        if (result.hasErrors()) {
 	            return "nuevo_consejo";
 	        }
@@ -109,7 +106,8 @@ public class ConsejoController {
 	/**Elimina un consejo tomando como base un id*/
 	   @GetMapping("/consejo/eliminar/{id}")
 	   public String eliminarConsejo(@PathVariable Long id) {
-		   consejoService.eliminarConsejoById(id);
+	       Consejo consejo = consejoService.getConsejoById(id);
+	       consejoService.eliminarConsejo(consejo);
 	       return "redirect:/consejos";
 	   }
 
