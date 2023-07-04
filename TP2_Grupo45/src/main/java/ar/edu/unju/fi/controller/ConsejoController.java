@@ -81,12 +81,12 @@ public class ConsejoController {
 	/**Solicita la pagina de modificación segun un id*/
 	   @GetMapping("/consejo/modificar/{id}")
 	    public String mostrarFormularioModificarConsejo(Model model, @PathVariable(value = "id") Long id) {
-	        Consejo consejo = consejoService.getConsejoById(id);
+	        Consejo consejoEncontrado = consejoService.getConsejoById(id);
 	        boolean editando = true;
-	        if (consejo == null) {
+	        if (consejoEncontrado == null) {
 	            return "redirect:/consejos";
 	        }
-	        model.addAttribute("consejo", consejo);
+	        model.addAttribute("consejo", consejoEncontrado);
 	        model.addAttribute("editando", editando);
 	        
 	        return "nuevo_consejo";
@@ -100,14 +100,14 @@ public class ConsejoController {
 	            return "nuevo_consejo";
 	        }
 	        consejoService.actualizarConsejo(consejo);
-	        return "redirect:/empleados";
+	        return "redirect:/consejos";
 	    }
 
 	/**Elimina un consejo tomando como base un id*/
 	   @GetMapping("/consejo/eliminar/{id}")
 	   public String eliminarConsejo(@PathVariable Long id) {
-	       Consejo consejo = consejoService.getConsejoById(id);
-	       consejoService.eliminarConsejo(consejo);
+	       Consejo consejoAEliminar = consejoService.getConsejoById(id);
+	       consejoService.eliminarConsejo(consejoAEliminar);
 	       return "redirect:/consejos";
 	   }
 

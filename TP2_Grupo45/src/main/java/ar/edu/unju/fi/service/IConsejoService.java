@@ -14,4 +14,6 @@ public interface IConsejoService {
     void eliminarConsejo(Consejo consjeo);
     Consejo getConsejoVacio();
     Consejo getConsejo();
+//    void eliminarConsejoById(Long id);
+//    public boolean existeConsejoById(Long id);
 }

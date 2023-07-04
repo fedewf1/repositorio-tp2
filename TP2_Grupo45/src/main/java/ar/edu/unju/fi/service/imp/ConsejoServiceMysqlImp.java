@@ -46,7 +46,7 @@ public class ConsejoServiceMysqlImp implements IConsejoService {
 
 	@Override
 	public void eliminarConsejo(Consejo consjeo) {
-		 consejoRepository.delete(consjeo);
+		 consejoRepository.delete(consejo);
 		
 	}
 
@@ -60,4 +60,15 @@ public class ConsejoServiceMysqlImp implements IConsejoService {
 	        return new Consejo(); 
 	    }
 
+//	    @Override
+//	    public void eliminarConsejoById(Long id) {
+//	        consejoRepository.deleteById(id);
+//	    }
+
+//	    
+//	    public boolean existeConsejoById(Long id) {
+//	        Consejo consejo = consejoRepository.findById(id).orElse(null);
+//	        return consejo != null;
+//	    }
+	    
 }

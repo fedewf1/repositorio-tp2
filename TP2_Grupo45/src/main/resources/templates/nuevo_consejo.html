@@ -18,12 +18,12 @@
 			<section class="col-xl-8 col-lg-8">
 				
 						<div>
-				<form action="#"
-					th:action="${editando}?@{/consejo/modificar/ (id=${consejo.id})}:@{/consejo/guardar}"
+				<form 
+					th:action="${editando}? @{/consejo/modificar} : @{/consejo/guardar}"
 					th:object="${consejo}" method="post"
 					class="text-light  formulario-sucursales-dentro">
 
-
+				 <input type="hidden" th:field="*{id}" />
 
 
 					<!-- DIV QUE ENVUELVE TODO EL CAMPO TITULO -->

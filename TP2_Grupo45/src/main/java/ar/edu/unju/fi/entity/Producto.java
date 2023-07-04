@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
@@ -57,13 +58,13 @@ public class Producto {
     private Long id;
     
     // Validación del campo precio
-	@Positive(message="El precio debe ser un valor positivo y no puede ser cero.")
-	//@NotEmpty(message="el nombre no puede estar vacio.")
+	@NotNull(message = "El precio no puede quedar vacio")
+	@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
     @Column(name="produ_precio")
 	/**
      * El precio del producto (sin descuento).
      */
-	private double precio;
+	private Double precio;
 	
 	// Validación del campo categoría
     @NotBlank(message="Debe seleccion una categoria.")
@@ -118,7 +119,7 @@ public class Producto {
      * @param nombreImagen el nombre de la imagen del producto
      * @param estado       el estado del producto
      */
-    public Producto(String nombre, int codigo,long id, double precio, String categoria, int descuento, String nombreImagen, boolean estado) {
+    public Producto(String nombre, int codigo,long id, Double precio, String categoria, int descuento, String nombreImagen, boolean estado) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -185,7 +186,7 @@ public class Producto {
      *
      * @return el precio del producto
      */
-	public double getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 	/**
@@ -193,7 +194,7 @@ public class Producto {
      *
      * @param precio el precio del producto
      */
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
