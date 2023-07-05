@@ -84,12 +84,12 @@ public class Sucursal {
 	@NotEmpty(message = "El telefono no puede ser vacio")
 	@Column(name = "sucu_telefono")
 	private String telefono;
-
+	@NotNull(message = "El codigo no puede ser vacio")
 	@Min(value = 5, message = "El valor minimo permitido es 5")
 	@Max(value = 30, message = "El valor maximo permitido es 30")
 	@Positive(message = "Solo se permiten valores positivos")
 	@Column(name = "sucu_cantidad_empleados")
-	private int cantidadEmpleados;
+	private Integer cantidadEmpleados;
 
 	@NotEmpty(message = "La fecha no puede estar vacio")
 	@Column(name = "sucu_hora_lunes_viernes")
@@ -102,7 +102,7 @@ public class Sucursal {
 	@NotNull(message = "El codigo no puede ser vacio")
 	@Min(value = 1, message = "El valor minimo permitido es 1")
 	@Column(name = "sucu_codigo_sucursal")
-	private int codigoSucursal;
+	private Integer codigoSucursal;
 
 	
 	@Column(name = "sucu_estado")
@@ -129,11 +129,11 @@ public class Sucursal {
 		this.email = email;
 	}
 
-	public int getCantidadEmpleados() {
+	public Integer getCantidadEmpleados() {
 		return cantidadEmpleados;
 	}
 
-	public void setCantidadEmpleados(int cantidadEmpleados) {
+	public void setCantidadEmpleados(Integer cantidadEmpleados) {
 		this.cantidadEmpleados = cantidadEmpleados;
 	}
 
@@ -161,11 +161,11 @@ public class Sucursal {
 		this.telefono = telefono;
 	}
 
-	public int getCodigoSucursal() {
+	public Integer getCodigoSucursal() {
 		return codigoSucursal;
 	}
 
-	public void setCodigoSucursal(int codigoSucursal) {
+	public void setCodigoSucursal(Integer codigoSucursal) {
 		this.codigoSucursal = codigoSucursal;
 	}
 
@@ -210,7 +210,7 @@ public class Sucursal {
 	 */
 
 	public Sucursal(String nombreSucursal, String direccion,String provincia,LocalDate fechaInicio, String telefono,
-			int cantidadEmpleados, String horaLunesViernes, String horaSabados, int codigoSucursal,String email, boolean estado) {
+			Integer cantidadEmpleados, String horaLunesViernes, String horaSabados, Integer codigoSucursal,String email, boolean estado) {
 		super();
 		this.nombreSucursal = nombreSucursal;
 		this.direccion = direccion;
