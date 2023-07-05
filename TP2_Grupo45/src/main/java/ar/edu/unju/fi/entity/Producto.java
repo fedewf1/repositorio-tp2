@@ -42,7 +42,7 @@ public class Producto {
 	
 	// Validación del campo nombre
 	@NotEmpty(message="el nombre no puede estar vacio.")
-	@Size(min=5, max=100,message="El nombre del producto no puede ser inferior a 50 caracteres y mayor a 100.")
+	@Size(min=5, max=50,message="El nombre del producto no puede ser inferior a 5 caracteres y mayor a 50.")
     @Column(name="produ_nombre", length=20, nullable=false)
 	private String nombre;
 	private int codigo;
@@ -76,13 +76,15 @@ public class Producto {
     
     // Validación del campo descuento
     //@PositiveOrZero(message="El descuento debe ser un valor positivo")
-    @Max(value=50, message="el descuento no puede ser mayor a 50")
-    @NotNull(message = "El descuento no puede ser nulo")
+    //@NotNull(message = "El descuento no puede ser nulo")
+	@NotNull(message = "El precio no puede quedar vacio")
+	//@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
+    //@Max(value=50, message="el descuento no puede ser mayor a 50")
     @Column(name="produ_descuento", length=20, nullable=false)
     /**
      * El descuento del producto.
      */
-    private int descuento;
+    private Integer descuento;
     
  // Validación del campo nombreImagen
     @NotBlank(message="Debe seleccion una imagen.")
@@ -119,7 +121,7 @@ public class Producto {
      * @param nombreImagen el nombre de la imagen del producto
      * @param estado       el estado del producto
      */
-    public Producto(String nombre, int codigo,long id, Double precio, String categoria, int descuento, String nombreImagen, boolean estado) {
+    public Producto(String nombre, int codigo,long id, Double precio, String categoria, Integer descuento, String nombreImagen, boolean estado) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -206,11 +208,11 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	public int getDescuento() {
+	public Integer getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(int descuento) {
+	public void setDescuento(Integer descuento) {
 		this.descuento = descuento;
 	}
 	

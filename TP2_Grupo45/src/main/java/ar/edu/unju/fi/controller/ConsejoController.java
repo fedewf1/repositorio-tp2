@@ -52,12 +52,13 @@ public class ConsejoController {
 	
 
 	@GetMapping("consejo/nuevo")
-	public ModelAndView getFormularioNuevoConsejo() {
+	public String getFormularioNuevoConsejo(Model model) {
 	    boolean editando = false;
-	    ModelAndView mav = new ModelAndView("nuevo_consejo");
-	    mav.addObject("consejo", consejoService.getConsejo()); 
-	    mav.addObject("editando", editando);
-	    return mav;
+	    //ModelAndView mav = new ModelAndView("nuevo_consejo");
+	   // mav.addObject("consejo", consejoService.getConsejo()); 
+	    model.addAttribute("consejo", new Consejo());
+	   // mav.addObject("editando", editando);
+	    return "nuevo_consejo";
 	}
 
 

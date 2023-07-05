@@ -69,7 +69,8 @@
 								<textarea class="form-control " style="height:350px"
 									placeholder="Escriba aqui su texto" id="floatingTextarea2"
 									 th:field="*{contenido}"></textarea>
-
+								<p class="form-text text-danger"
+								th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}" />
 						
 						</div>
 
