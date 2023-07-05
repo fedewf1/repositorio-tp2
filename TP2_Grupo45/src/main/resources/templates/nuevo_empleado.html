@@ -113,7 +113,7 @@
 
 							<div class="col-lg-4 col-sm-6 align-self-center">
 								<select class="form-select" id="nombreDeServicio"
-									name="servicio.id" th:field="*{servicio}">
+									name="servicio.id" th:field="*{servicio.id}">
 									<option value="">Seleccionar servicio</option>
 									<option th:each="servicio : ${servicios}"
 										th:text="${servicio.nombreDeServicio}"

@@ -78,6 +78,7 @@ public class EmpleadoController {
     @PostMapping("/empleado/guardar")
     public String guardarServicio(@Valid @ModelAttribute("empleado") Empleado empleado, BindingResult result, Model model) {
         if (result.hasErrors()) {
+        	
             model.addAttribute("servicios", servicioService.getServicios());
             return "nuevo_empleado";
         }

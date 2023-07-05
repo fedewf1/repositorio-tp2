@@ -15,6 +15,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.NotBlank;
 //import jakarta.validation.constraints.DecimalMin;
 //import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -37,7 +39,7 @@ public class Servicio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "El nombre no puede quedar vacio")
+	@NotNull(message = "Debes seleccionar un servicio")
 	@Column(name = "serv_nombre")
 	private String nombreDeServicio;
 

@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -59,7 +60,7 @@ public class Sucursal {
 	@Column(name = "sucu_nombre")
 	private String nombreSucursal;
 
-	@NotEmpty(message = "La direccion no puede estar vacio")
+	@NotEmpty(message = "La direccion no puede estar vacia")
 	@Size(min = 6, max = 100, message = "La direccion debe contener entre 6 y 100 caracteres")
 	@Column(name = "sucu_direccion")
 	private String direccion;
@@ -67,6 +68,7 @@ public class Sucursal {
 	@ManyToOne(cascade = CascadeType.ALL)
 	//@NotNull(message = "Debes elegir una provincia")
 	@JoinColumn(name = "prov_id")
+	@Valid
 	private Provincia provincia;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -80,7 +82,7 @@ public class Sucursal {
 	@Column(name = "sucu_email")
 	private String email;
 
-	@NotEmpty(message = "El telefono no puede ser vacio")
+	@NotEmpty(message = "El telefono no puede quedar vacio")
 	@Column(name = "sucu_telefono")
 	private String telefono;
 	@NotNull(message = "La cantidad de empleados no puede quedar vacía")

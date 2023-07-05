@@ -13,9 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-//import jakarta.validation.constraints.NotEmpty;
-//import jakarta.validation.constraints.NotNull;
-//import jakarta.validation.constraints.NotNull;
+
+import jakarta.validation.constraints.NotNull;
 
 @Component
 @Entity
@@ -28,7 +27,7 @@ public class Provincia {
 	private Long id;
 
 	@Column(name = "prov_nombreDeProvincia")
-//	@NotNull(message = "Debes elegir una provincia")
+	@NotNull(message = "Debes elegir una provincia")
 	private String nombre;
 
 	@OneToMany(mappedBy = "provincia", cascade = CascadeType.ALL)
