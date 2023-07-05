@@ -8,8 +8,14 @@ import ar.edu.unju.fi.entity.Empleado;
 
 public interface IEmpleadoRepository extends CrudRepository<Empleado, Long> {
 
-	public List<Empleado> findByEstado(boolean estado);
+//	public List<Empleado> findByEstado(boolean estado);
 
 	List<Empleado> findByDiaDisponible(String dia);
 
+
+    List<Empleado> findByEstado(boolean estado);
+
+    List<Empleado> findByDiaDisponibleAndEstado(String dia, boolean estado);
+	
+	
 }

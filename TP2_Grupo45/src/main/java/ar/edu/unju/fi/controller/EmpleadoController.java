@@ -47,12 +47,17 @@ public class EmpleadoController {
 	    public String mostrarListaServicios(@RequestParam(value = "dia", required = false) String dia, Model model) {
 	        List<Empleado> empleados;
 
+	        /**
+	         * Comprueba que dia tenga un valur y no sea vacio
+	         * trae los empleados segun el dia y su estado es true
+	         * De otra forma solo los trae si su estado es true
+	         * */
+	        
 	        if (dia != null && !dia.isEmpty()) {
-	            empleados = empleadoService.getEmpleadosPorDia(dia);
+	            empleados = empleadoService.getEmpleadosPorDiaYEstado(dia, true);
 	        } else {
-	            empleados = empleadoService.getEmpleados();
+	            empleados = empleadoService.getEmpleadosPorEstado(true);
 	        }
-
 	        for (Empleado empleado : empleados) {
 	            // Obtener el servicio para el empleado actual
 	            empleado.setServicio(servicioService.obtenerServicioPorEmpleado(empleado));

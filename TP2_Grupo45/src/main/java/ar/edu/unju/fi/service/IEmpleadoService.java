@@ -16,4 +16,7 @@ public interface IEmpleadoService {
     Empleado getEmpleado();
 	List<Empleado> getEmpleadosPorDia(String dia);
 	
+	List<Empleado> getEmpleadosPorEstado(boolean estado);
+	List<Empleado> getEmpleadosPorDiaYEstado(String dia, boolean estado);
+
 }

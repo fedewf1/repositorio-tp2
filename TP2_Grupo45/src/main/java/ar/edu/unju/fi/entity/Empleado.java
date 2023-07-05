@@ -65,7 +65,7 @@ public class Empleado {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "serv_id")
-	@Valid
+//	@Valid
 	private Servicio servicio;
 
 	public Empleado() {
