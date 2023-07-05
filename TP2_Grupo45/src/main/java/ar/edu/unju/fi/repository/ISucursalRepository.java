@@ -1,11 +1,12 @@
 package ar.edu.unju.fi.repository;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
+
 
 import ar.edu.unju.fi.entity.Sucursal;
 
@@ -18,7 +19,6 @@ import ar.edu.unju.fi.entity.Sucursal;
 
 @Repository
 public interface ISucursalRepository extends CrudRepository<Sucursal,Long> {
-
 	public List<Sucursal> findByEstado(boolean estado);
 	
 	//Mostrar las sucursales que están entre una fechaInicio y fechaFin:

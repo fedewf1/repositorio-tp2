@@ -1,12 +1,9 @@
 package ar.edu.unju.fi.service.imp;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Service;
-
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.repository.ISucursalRepository;
 import ar.edu.unju.fi.service.ISucursalService;
@@ -31,38 +28,43 @@ public class SucursalServiceMysqlImp implements ISucursalService{
 	@Override
 	public List<Sucursal> getSucursales() {
 		return sucursalRepository.findByEstado(true);
-
 	}
 
-	
+	@Override
+	public Sucursal getSucursalById(Long id) {
+		return sucursalRepository.findById(id).get();
+		
+	}
+
 	@Override
 	public void guardarSucursal(Sucursal sucursal) {
 		sucursalRepository.save(sucursal);
-		
+
 	}
 
+
+	
 	@Override
-	public void modificarSucursal(Sucursal sucursalA) {
-		sucursalRepository.save(sucursalA);
-		
+	public void actualizarSucursal(Sucursal sucursalActualizada) {
+		sucursalRepository.save(sucursalActualizada);
+
 	}
 
 	@Override
 	public void eliminarSucursal(Sucursal sucursal) {
-		//Eliminación logica, no elimina de la fila
+
 		sucursal.setEstado(false);
 		sucursalRepository.save(sucursal);
-		
-	}
 
-	@Override
-	public Sucursal buscarSucursalPorCodigo(Long id) {
-		return sucursalRepository.findById(id).get();
 	}
 
 	@Override
 	public Sucursal getSucursal() {
-		return sucursal;
+			return sucursal;
+		
 	}
+	
+	   
+
 
 }

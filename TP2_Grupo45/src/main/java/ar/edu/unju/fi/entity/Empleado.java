@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 //import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -64,6 +65,7 @@ public class Empleado {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "serv_id")
+	@Valid
 	private Servicio servicio;
 
 	public Empleado() {
