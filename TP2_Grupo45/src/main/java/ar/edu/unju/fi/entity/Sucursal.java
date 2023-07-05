@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+//import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 //import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -35,8 +37,9 @@ import jakarta.validation.constraints.Size;
 // Se procede a la incorporacion de validacion de datos
 
 /**
- * Se procede a añadir: Atributo estado en clase Sucursal
- * Se agregan nuevas anotaciones para referirnos al mapeo y poder indicar que la clase representa una identidad que se transformara en una tabla de la BD
+ * Se procede a añadir: Atributo estado en clase Sucursal Se agregan nuevas
+ * anotaciones para referirnos al mapeo y poder indicar que la clase representa
+ * una identidad que se transformara en una tabla de la BD
  * 
  * @author joelrojas95
  * @version 1.0 date: 24/06/23
@@ -46,13 +49,12 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "sucursales")
 public class Sucursal {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sucu_id")
 	private Long id;
-	
-	
+
 	@NotEmpty(message = "El nombre no puede estar vacio")
 	@Column(name = "sucu_nombre")
 	private String nombreSucursal;
@@ -62,29 +64,26 @@ public class Sucursal {
 	@Column(name = "sucu_direccion")
 	private String direccion;
 
-	
-	
-	@Column(name="sucu_provincia")
-	private String provincia;
+	@ManyToOne(cascade = CascadeType.ALL)
+	//@NotNull(message = "Debes elegir una provincia")
+	@JoinColumn(name = "prov_id")
+	private Provincia provincia;
 
-
-	
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "La fecha no puede ser null")
+	@NotNull(message = "La fecha no puede ser nula")
 	@Past(message = "La fecha debe ser menor a la fecha actual")
 	@Column(name = "sucu_fecha_inicio")
 	private LocalDate fechaInicio;
 
 	@Email(message = "Debe ingresar un correo valido")
-    @NotEmpty(message="El correo no puede quedar vacio")
+	@NotEmpty(message = "El correo no puede quedar vacio")
 	@Column(name = "sucu_email")
 	private String email;
 
 	@NotEmpty(message = "El telefono no puede ser vacio")
 	@Column(name = "sucu_telefono")
 	private String telefono;
-	@NotNull(message = "El codigo no puede ser vacio")
+	@NotNull(message = "La cantidad de empleados no puede quedar vacía")
 	@Min(value = 5, message = "El valor minimo permitido es 5")
 	@Max(value = 30, message = "El valor maximo permitido es 30")
 	@Positive(message = "Solo se permiten valores positivos")
@@ -94,35 +93,31 @@ public class Sucursal {
 	@NotEmpty(message = "La fecha no puede estar vacio")
 	@Column(name = "sucu_hora_lunes_viernes")
 	private String horaLunesViernes;
-	
+
 	@NotEmpty(message = "La fecha no puede estar vacio")
 	@Column(name = "sucu_hora_sabados")
 	private String horaSabados;
-	
+
 	@NotNull(message = "El codigo no puede ser vacio")
 	@Min(value = 1, message = "El valor minimo permitido es 1")
 	@Column(name = "sucu_codigo_sucursal")
 	private Integer codigoSucursal;
 
-	
 	@Column(name = "sucu_estado")
 	private boolean estado = true;
-	
 
-
-	
 	// Getters and Setters
-
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
 
 	public String getEmail() {
 		return email;
+	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	public void setEmail(String email) {
@@ -198,6 +193,11 @@ public class Sucursal {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
+	
 	/**
 	 * Constructor parametrizado
 	 * 
@@ -209,26 +209,24 @@ public class Sucursal {
 	 * @param codigoSucursal   es el codigo de la sucursal
 	 */
 
-	public Sucursal(String nombreSucursal, String direccion,String provincia,LocalDate fechaInicio, String telefono,
-			Integer cantidadEmpleados, String horaLunesViernes, String horaSabados, Integer codigoSucursal,String email, boolean estado) {
+
+
+	public Sucursal(Long id, String nombreSucursal, String direccion, Provincia provincia, LocalDate fechaInicio,
+			String email, String telefono, Integer cantidadEmpleados, String horaLunesViernes, String horaSabados,
+			Integer codigoSucursal, boolean estado) {
 		super();
+		this.id = id;
 		this.nombreSucursal = nombreSucursal;
 		this.direccion = direccion;
 		this.provincia = provincia;
 		this.fechaInicio = fechaInicio;
+		this.email = email;
 		this.telefono = telefono;
 		this.cantidadEmpleados = cantidadEmpleados;
 		this.horaLunesViernes = horaLunesViernes;
 		this.horaSabados = horaSabados;
 		this.codigoSucursal = codigoSucursal;
-		this.email = email;
 		this.estado = estado;
-	}
-
-	
-	
-	public Long getId() {
-		return id;
 	}
 
 	public void setId(Long id) {

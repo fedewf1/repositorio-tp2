@@ -9,79 +9,102 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
+import ar.edu.unju.fi.entity.Empleado;
+//import ar.edu.unju.fi.entity.Empleado;
+import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
-import ar.edu.unju.fi.service.ICommonService;
+
+import ar.edu.unju.fi.service.IProvinciaService;
+//import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/sucursales")
 public class SucursalController {
 
   @Autowired
   @Qualifier("sucursalServiceMysql")
   private ISucursalService sucursalService;
 
+//  @Autowired
+//  private ICommonService commonService;
+  
   @Autowired
-  private ICommonService commonService;
+  private IProvinciaService provinciaService;
 
-  @GetMapping("/listado")
+  @GetMapping("/sucursales")
   public String getListaSucursalesPage(Model model) {
-      model.addAttribute("sucursales", sucursalService.getSucursales());
+      List<Sucursal> sucursales = sucursalService.getSucursales();
+
+      for (Sucursal sucursal : sucursales) {
+          // Obtener el nombre de la provincia directamente de la sucursal
+          String nombreProvincia = sucursal.getProvincia().getNombre();
+          sucursal.getProvincia().setNombre(nombreProvincia);
+      }
+
+      model.addAttribute("sucursales", sucursales);
+
       return "sucursales";
   }
+
   
-  @GetMapping("/nuevo")
-  public String getNuevaSucursalPage(Model model) {
-    boolean edicion = false;
-    model.addAttribute("sucursal", new Sucursal());
-    model.addAttribute("provincias", commonService.getProvincias());
-    model.addAttribute("edicion", edicion);
-    return "nueva_sucursal";
+
+  @GetMapping("/sucursales/nuevo")
+  public String mostrarFormularioNuevaSucursal(Model model) {
+	  boolean editando = false;
+      model.addAttribute("sucursal", new Sucursal());
+      model.addAttribute("editando", editando);
+      
+      model.addAttribute("provincias", provinciaService.getProvincias());
+      return "nueva_sucursal";
   }
 
-  @PostMapping("/guardar")
-  public ModelAndView guardarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result) {
-    ModelAndView modelView = new ModelAndView("sucursales");
-    if (result.hasErrors()) {
-      modelView.setViewName("nueva_sucursal");
-      modelView.addObject("sucursal", sucursal);
-      return modelView;
-    }
 
-    String provinciaSeleccionada = sucursal.getProvincia();
+ 
+  @PostMapping("/sucursales/guardar")
+  public String guardarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, Model model) {
+	  if (result.hasErrors()) {
+          model.addAttribute("provincias", provinciaService.getProvincias());
+          return "nueva_sucursal";
+      }
 
-    // Asignar la provincia seleccionada al atributo "provincia" de la sucursal
-    sucursal.setProvincia(provinciaSeleccionada);
-
-    sucursalService.guardarSucursal(sucursal);
-    modelView.addObject("sucursales", sucursalService.getSucursales());
-    return modelView;
+      sucursalService.guardarSucursal(sucursal);
+      return "redirect:/sucursales";
   }
 
-  @GetMapping("/modificar/{id}")
-  public String getModificarSucursalPage(Model model, @PathVariable(value="id") Long id) {
-    Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorCodigo(id);
-    boolean edicion = true;
-    model.addAttribute("sucursal", sucursalEncontrada);
-    model.addAttribute("provincias", commonService.getProvincias());
-    model.addAttribute("edicion", edicion);
-    return "nueva_sucursal";
+  @GetMapping("/sucursales/modificar/{id}")
+  public String mostrarFormularioModificarSucursal(Model model, @PathVariable(value = "id") Long id) {
+      Sucursal sucursal = sucursalService.getSucursalById(id);
+      boolean editando = true;
+      if (sucursal == null) {
+          return "redirect:/sucursales";
+      }
+      model.addAttribute("sucursal", sucursal);
+      model.addAttribute("editando", editando);
+      model.addAttribute("provincias", provinciaService.getProvincias());
+      return "nueva_sucursal";
   }
 
-  @PostMapping("/modificar")
-  public String modificaSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
-    sucursalService.modificarSucursal(sucursal);
-    return "redirect:/sucursales/listado";
+  @PostMapping("/sucursales/modificar")
+  public String modificarSucursal(@Valid @ModelAttribute("provincia") Sucursal sucursal, BindingResult result) {
+      if (result.hasErrors()) {
+          return "nueva_sucursal";
+      }
+      sucursalService.actualizarSucursal(sucursal);
+      return "redirect:/sucursales";
   }
 
-  @GetMapping("/eliminar/{id}")
-  public String eliminarSucursal(@PathVariable(value="id") Long id) {
-    Sucursal sucursal = sucursalService.buscarSucursalPorCodigo(id);
-    sucursalService.eliminarSucursal(sucursal);
-    return "redirect:/sucursales/listado";
-  }
+ @GetMapping("/sucursales/eliminar/{id}")
+ public String eliminarSucursal(@PathVariable Long id) {
+     Sucursal sucursal = sucursalService.getSucursalById(id);
+     sucursal.setEstado(false);  // Establece el estado como false en lugar de eliminar
+     sucursalService.guardarSucursal(sucursal);
+     return "redirect:/sucursales";
+ }
+
+
 }
