@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -36,13 +37,12 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="productos")
 public class Producto {
-	/**
-     * El nombre del producto.
-     */
-	
+
 	// Validación del campo nombre
 	@NotEmpty(message="el nombre no puede estar vacio.")
-	@Size(min=5, max=100,message="El nombre del producto no puede ser inferior a 50 caracteres y mayor a 100.")
+
+	@Size(min=5, max=50,message="El nombre no puede ser inferior a 5 caracteres y mayor a 50.")
+
     @Column(name="produ_nombre", length=20, nullable=false)
 	private String nombre;
 	private int codigo;
@@ -52,32 +52,31 @@ public class Producto {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="produ_id")
-    /**
-     * El código del producto.
-     */
     private Long id;
     
     // Validación del campo precio
 	@NotNull(message = "El precio no puede quedar vacio")
 	@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
     @Column(name="produ_precio")
-	/**
-     * El precio del producto (sin descuento).
-     */
 	private Double precio;
+
 	
 	// Validación del campo categoría
-    @NotBlank(message="Debe seleccion una categoria.")
-    @Column(name="produ_categoria", length=20, nullable=false)
+   // @NotBlank(message="Debe seleccion una categoria.")
+   // @Column(name="produ_categoria", length=20, nullable=false)
     /**
      * La categoría del producto.
      */
-    private String categoria;
+    //private String categoria;
     
     // Validación del campo descuento
     //@PositiveOrZero(message="El descuento debe ser un valor positivo")
+    //@NotNull(message = "El descuento no puede ser nulo")
+	@NotNull(message = "El precio no puede quedar vacio")
+	//@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
     @Max(value=50, message="el descuento no puede ser mayor a 50")
-    @NotNull(message = "El descuento no puede ser nulo")
+	@Min(value=0, message="el descuento no puede ser menor a 0")
+
     @Column(name="produ_descuento", length=20, nullable=false)
     /**
      * El descuento del producto.
@@ -104,8 +103,11 @@ public class Producto {
      * brindado que tenga una relacion manytoone con producto.
      */
   //  private Categoria categori;
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
-	private List<Categoria> catDisponible;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="categoria_id")
+    private Categoria categoria;
+    //@ManyToOne(mappedBy = "producto", cascade = CascadeType.ALL)
+	//private List<Categoria> catDisponible;
     
     /**
      * Constructor parametrizado.
@@ -119,7 +121,9 @@ public class Producto {
      * @param nombreImagen el nombre de la imagen del producto
      * @param estado       el estado del producto
      */
-    public Producto(String nombre, int codigo,long id, Double precio, String categoria, int descuento, String nombreImagen, boolean estado) {
+
+    public Producto(String nombre, int codigo,long id, Double precio, Categoria categoria, Integer descuento, String nombreImagen, boolean estado) {
+
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -198,11 +202,11 @@ public class Producto {
 		this.precio = precio;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 

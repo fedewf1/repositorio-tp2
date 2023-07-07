@@ -17,23 +17,23 @@ import ar.edu.unju.fi.service.IProductoService;
  *
  * @author freinicks
  * @version 1.0.2
+ * @category
+ * {@summary}
+ * @implNote
+ * 
  */
 @Service("productoServiceMysql")
 public class ProductoServiceMysqlImp implements IProductoService {
 	@Autowired
 	private IProductoRepository productoRepository;
-	@Autowired
-	private Producto producto;
-	
+
 	@Override
-	public void save(Producto product) {
-		
+	//Guarda el producto
+	public void save(Producto product) {	
 		product.setEstado(true);
 		productoRepository.save(product);
 		
 	}
-	
-	
 	
 	/**
      * Obtiene una lista de todos los productos activos.
@@ -48,7 +48,7 @@ public class ProductoServiceMysqlImp implements IProductoService {
 	}
 	
 	/**
-     * Guarda un producto en la base de datos.
+     * guardar: este metodo me permite guardar un producto en la base de datos. Mediante 
      *
      * @param producto el producto a guardar
      */
