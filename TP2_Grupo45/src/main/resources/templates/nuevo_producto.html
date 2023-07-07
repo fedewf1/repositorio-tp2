@@ -42,21 +42,22 @@
                         <!-- Mostrar mensajes de error para el campo "precio" -->
                         <div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
                     </div>
+                    
                     <div class="form-group">
                         <label for="categoria">Categoría:</label>
-                        <select class="form-control" id="categoria" name="categoria" th:field="*{categoria}">
+                        <select class="form-control" id="nombreCategoria" name="categoria" th:field="*{categoria}">
                             <!-- Opciones de categoría -->
-                            <option value=""></option>
-                            <option value="Alimento">Alimento</option>
-                            <option value="Ropa">Ropa</option>
-                            <option value="Camas y Colchones">Camas y Colchones</option>
-                            <option value="Correas">Correas</option>
-                            <option value="Jaulas,Casas,Peceras">Jaulas,Casas,Peceras</option>
-                            <option value="Vestimenta">Vestimenta</option>
-                            <option value="Cuidado">Cuidado</option>
+                            <option value="">Seleccionar categoría</option>
+                            <option th:each="categoria : ${categorias_productos}" 
+                            th:text="${categoria.nombreCategoria}" 
+                            th:value="${categoria.idCategoria}"></option>
+     
                         </select>
+                        
                         <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
                     </div>
+                    
+                    
                     <div class="form-group">
                         <label for="nombreImagen">Nombre de la Imagen:</label>
                         <select class="form-control" id="nombreImagen" name="nombreImagen" th:field="*{nombreImagen}">

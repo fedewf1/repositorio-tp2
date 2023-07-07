@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Categoria;
 import ar.edu.unju.fi.entity.Empleado;
 import ar.edu.unju.fi.entity.Producto;
-import ar.edu.unju.fi.repository.IProductoRepository;
 import ar.edu.unju.fi.service.ICategoriaService;
 import ar.edu.unju.fi.service.IProductoService;
 //import ar.edu.unju.fi.service.imp.ProductoServiceImp;
@@ -37,6 +36,8 @@ public class ProductoController {
 	@Qualifier("productoServiceMysql")
 	private IProductoService iproduSer;
 	
+	@Autowired
+	private ICategoriaService icateSer;
 
     /* Muestra la página con el listado de productos que tenga el atributo estado igueal a true*/
     @GetMapping("/listado")
@@ -50,13 +51,22 @@ public class ProductoController {
     @GetMapping("/nuevo")
     public String getNuevoProductoPage(Model model) {
     	model.addAttribute("producto", new Producto());
+    	model.addAttribute("categorias_productos", icateSer.getCategorias());
     	return "nuevo_producto";
     }
     /* Lista los productos segun su categoria y atributo estado igual a true.*/
-    @GetMapping("/listado/{categoria}")
-    public String getProductosPorCategoria(Model model,@PathVariable String categoria) {
-    	List<Producto>productos=iproduSer.getProductosPorCategoria(categoria);
-    	model.addAttribute("productos", productos);
+    @GetMapping("/listado/")
+    public String mostrarListaServicios(@RequestParam(value = "dia", required = false) String dia, Model model) {
+        List<Producto> productos;
+
+       productos = iproduSer.getProductosPorCategoria(dia);
+       
+   
+       
+
+   
+        model.addAttribute("productos", productos);
+
         return "productos";
     }
     
@@ -64,12 +74,13 @@ public class ProductoController {
      * erroes y deben replantearselos. Si no, llama al metodo save con el nuevo objeto "producto" como parametro.
      * */
     @PostMapping("/guardar")
-    public String getguardarProductoPage(@Valid @ModelAttribute("producto") Producto producto, BindingResult result) {
+    public String getguardarProductoPage(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, Model model) {
     	ModelAndView modelView = new ModelAndView("productos");
     	if(result.hasErrors()) {
     		modelView.setViewName("index");
    		modelView.addObject("producto", producto);
     		modelView=new ModelAndView("index");
+    		model.addAttribute("categorias_productos", icateSer.getCategorias());
     		return "nuevo_producto";
     	}else {  		
     		iproduSer.save(producto); 
@@ -82,6 +93,7 @@ public class ProductoController {
    public String getModificarProductoPage(Model model, @PathVariable long id) {
     	Optional<Producto>producto=iproduSer.listarId(id);
     	model.addAttribute("producto", producto);
+    	model.addAttribute("categorias_productos", icateSer.getCategorias());
     	return"nuevo_producto";
     }
     

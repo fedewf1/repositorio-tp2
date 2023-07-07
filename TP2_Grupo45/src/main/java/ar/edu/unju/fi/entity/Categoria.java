@@ -1,78 +1,82 @@
 package ar.edu.unju.fi.entity;
 
 import java.util.List;
-
 import org.springframework.stereotype.Component;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotEmpty;
+
 
 /**
- * Clase que representa la entidad Categoria.
+ * Clase que representa la entidad Categoria. Se relaciona con productos a travez de un @OneToMany
  * @author Federico Nicolas Burgos
- * @version 1.0.1
- * 
+ * @version 1.0.2 07/07/2023
+ *
  */
 @Component
 @Entity
-@Table(name="categoria_productos")
+@Table(name="categorias_productos")
 public class Categoria {
-	private String nombre;
-	
-	@NotNull(message = "Debe elegir una categoria disponible")
-	@Column(name = "cat_Disponible")
-	@Size(min = 1)
-	@ElementCollection
-	private List<String> catDisponible;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "produ_id")
-	private Producto producto;
-	
+	//@NotNull(message = "Debe elegir una categoria disponible")
+	//@Column(name = "cat_Disponible")
+	//@Size(min = 1)
+	//@ElementCollection
+	//private List<String> catDisponible;
 	@Id
+	@Column(name = "categoria_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCategoria;
-	 /**
-     * Obtiene el nombre de la categoría.
-     *
-     * @return el nombre de la categoría
-     */
-	public String getNombre() {
-		return nombre;
+	
+	@NotEmpty(message = "El nombre no puede quedar vacio")
+	@Column(name = "nombre_categoria")
+	private String nombreCategoria;
+	
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	private List<Producto> productos;
+	
+	
+	public String getNombreCategoria() {
+		return nombreCategoria;
 	}
-	/**
-     * Establece el nombre de la categoría.
-     *
-     * @param nombre el nombre de la categoría a establecer
-     */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
 	}
-	/**
-     * Obtiene la lista de categorías.
-     *
-     * @return la lista de categorías
-     */
+
+
 	public Long getIdCategoria() {
 		return idCategoria;
 	}
-	/**
-     * Establece la lista de categorías.
-     *
-     * @param categori la lista de categorías a establecer
-     */
+
 	public void setIdCategoria(Long idCategoria) {
 		this.idCategoria = idCategoria;
 	}
+
 	
+	public List<Producto> getProductos() {
+		return productos;
+	}
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
+	
+	//Constructor parametrizado
+	/**
+	 * @param idCategoria
+	 * @param nombreCategoria
+	 */
+	public Categoria(Long idCategoria, String nombreCategoria) {
+		super();
+		this.idCategoria = idCategoria;
+		this.nombreCategoria = nombreCategoria;
+	}
+	public Categoria() {
+		super();
+	}
 }

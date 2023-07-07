@@ -81,7 +81,7 @@ public interface IProductoService {
 	//List<Categoria> getCategoria(List<Categoria> categoria1);
 
 
-	List<Producto> getProductosPorCategoria(String categoria);
+	List<Producto> getProductosPorCategoria(String dia);
 	
 	
 	
