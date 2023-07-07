@@ -18,11 +18,11 @@
 			<section class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
 
 				<div class="d-flex">
-
+				
 					<div class="col-2">
-						<a
-							class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
-							th:href="@{/empleado/nuevo}">Nuevo empleado</a>
+					<a
+						class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color row ms-4"
+						th:href="@{/empleado/nuevo}">Nuevo empleado</a>
 					</div>
 
 					<div class="col-2">
@@ -36,16 +36,13 @@
 								<ul class="dropdown-menu">
 									<li><a
 										class="dropdown-item btn btn-outline-primary filter-btn"
-										th:href="@{/empleados}">Todos</a></li>
-									<li><a
-										class="dropdown-item btn btn-outline-primary filter-btn"
 										th:href="@{/empleados(dia='Lunes')}">Lunes</a></li>
 									<li><a
 										class="dropdown-item btn btn-outline-primary filter-btn"
 										th:href="@{/empleados(dia='Martes')}">Martes</a></li>
 									<li><a
 										class="dropdown-item btn btn-outline-primary filter-btn"
-										th:href="@{/empleados(dia='Miercoles')}">Miercoles</a></li>
+										th:href="@{/empleados(dia='Miércoles')}">Miércoles</a></li>
 									<li><a
 										class="dropdown-item btn btn-outline-primary filter-btn"
 										th:href="@{/empleados(dia='Jueves')}">Jueves</a></li>
@@ -112,7 +109,7 @@
 												<h5 class="card-title fw-bold">Acciones</h5>
 												<a
 													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
-													th:href="@{/empleado/modificar/{id}(id=${empleado.id})}"
+													th:href="@{/empleado/modificar/}+${empleado.id}"
 													role="button">Editar</a> <a
 													class="btn btn-sm btn-secondary text-light"
 													th:href="@{/empleado/eliminar/{id}(id=${empleado.id})}"

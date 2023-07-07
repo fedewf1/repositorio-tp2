@@ -19,10 +19,18 @@
 			<section class="col-xl-8 col-lg-8">
 				<div class="mt-3">
 
-					<form action="#"
-						th:action="${editando}?@{/empleado/modificar}:@{/empleado/guardar}"
+					<form 
+						th:action="${editando}?@{/empleado/modificar/}:@{/empleado/guardar}"
 						th:object="${empleado}" method="post"
 						class="text-dark formulario-servicios-dentro">
+						
+						
+						<div class="form-group" hidden>
+<!--                         <label for="codigo">Código:</label> -->
+                        <input type="number" class="form-control" id="codigo" name="codigo" th:field="*{id}">
+                        <!-- Mostrar mensajes de error para el campo "codigo" -->
+<!--                         <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div> -->
+                    </div>
 
 						<!-- DIV CAMPO NOMBRE -->
 						<div
@@ -113,15 +121,15 @@
 
 							<div class="col-lg-4 col-sm-6 align-self-center">
 								<select class="form-select" id="nombreDeServicio"
-									name="servicio.id" th:field="*{servicio}">
+									name="servicio" th:field="*{servicio}">
 									<option value="">Seleccionar servicio</option>
 									<option th:each="servicio : ${servicios}"
 										th:text="${servicio.nombreDeServicio}"
 										th:value="${servicio.id}"></option>
 								</select>
 								<p class="form-text text-danger"
-									th:if="${#fields.hasErrors('servicio.nombreDeServicio')}"
-									th:errors="*{servicio.nombreDeServicio}" />
+									th:if="${#fields.hasErrors('servicio')}"
+									th:errors="*{servicio}" />
 							</div>
 
 
