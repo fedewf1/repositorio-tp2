@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
-
 <head>
-<meta charset="UTF-8">
-<title>Productos</title>
-<link th:rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-
+	<meta charset="UTF-8">
+	<title>Productos</title>
+	<!-- Enlace al archivo CSS de Bootstrap -->
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<!-- Enlace al archivo CSS personalizado -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 </head>
 
 <body>
 	<div class="container">
 		<h1>Productos</h1>
-		<!-- Se incluye el encabezado desde el fragmento "header" -->
+		<!-- Header -->
 		<header th:replace="~{layouts/header :: header}"></header>
-		<!-- Se incluye la navegación desde el fragmento "nav" -->
-		<nav th:replace="~{layouts/nav :: nav}"></nav>
-		<!-- Enlace para crear un nuevo producto -->
-		<a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo
-			Producto</a>
+		<!-- Header -->
 		
+		<!-- Barra de navegación -->
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+		<!-- Barra de navegación -->
+		
+		<!-- Boton crear un nuevo producto -->
+		<a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo Producto</a>
+		<!-- Boton crear un nuevo producto -->
+		
+		<!-- Lista de categorias -->
 		<div class="btn-group">
 			<button type="button"
 				class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color "
@@ -46,43 +50,26 @@
 							class="dropdown-item btn btn-outline-primary filter-btn"
 							th:href="@{/productos/listado/}+'Jaulas,Casas,Peceras'">Jaulas,Casas,Peceras</a></li>
 				</ul>
-			</div>
-				
+		</div>
+		<!-- Lista de categorias -->		
 					
 		<main>
+			<!-- Section listado de productos -->
 			<section>
 				<h2>Nuestros productos</h2>
 				
 				<div class="row">
-					
 					<div class="col-xs-12 col-sm-12 col-lg-4 col-md-6" th:each="produ : ${productos}">
-						<div
-							class="card mb-4 productos-card-bordes shadow p-3 mb-5 bg-body-tertiary rounded">
-							<img class="card-img-top productos-cards-estilo mt-2"
-								th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}"
-								th:title="${produ.nombre}">
+						<div class="card mb-4 productos-card-bordes shadow p-3 mb-5 bg-body-tertiary rounded">
+							<img class="card-img-top productos-cards-estilo mt-2" th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
 							<div class="card-body ">
-
 								<p class="card-title fw-bold fs-6" th:text="${produ.categoria}"></p>
 								<p class="card-text" th:text="${produ.nombre}"></p>
-
-								<p class="card-text">
-
-									Precio: $<span th:text="${produ.precio}"></span>,
-
-								</p>
-								<p class="card-text">
-									Precio con descuento: $<span
-										th:text="${produ.calcularDescuento()}"></span>
-
-								</p>
-
-
-								<a class="btn btn-secondary"
-									th:href="@{/productos/modificar/}+${produ.id}">Editar
-									Producto</a> <a class="btn btn-danger mt-xl-0 mt-lg-0 mt-md-2"
-									th:href="@{/productos/eliminar/}+${produ.id}">Eliminar
-									Producto</a>
+								<p class="card-text">Precio: $<span th:text="${produ.precio}"></span>,</p>
+								<p class="card-text">Precio con descuento: $<span th:text="${produ.calcularDescuento()}"></span></p>
+								<a class="btn btn-secondary" th:href="@{/productos/modificar/}+${produ.id}">Editar Producto</a> 
+								<a class="btn btn-danger mt-xl-0 mt-lg-0 mt-md-2" th:href="@{/productos/eliminar/}+${produ.id}">Eliminar Producto</a>
+								
 							</div>
 						</div>
 					</div>
@@ -90,18 +77,20 @@
 
 
 			</section>
-
+			<!-- Section listado de productos -->
+			
 		</main>
 
 
 
 	</div>
-	<!-- Se incluye el pie de página desde el fragmento "footer" -->
-	<footer class="row fila justify-content-center"
-		th:replace="~{layouts/footer :: footer}"></footer>
-	<!-- Inclusión del archivo JavaScript de Bootstrap -->
-	<script type="text/javascript"
-		th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- Footer-->
+	<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
+	<!-- Footer-->
+	
+	<!-- JavaScript de Bootstrap -->
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- JavaScript de Bootstrap -->
+	
 </body>
-
 </html>

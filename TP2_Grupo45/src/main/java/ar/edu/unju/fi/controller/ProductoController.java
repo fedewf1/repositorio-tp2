@@ -25,11 +25,8 @@ import ar.edu.unju.fi.service.IProductoService;
 import jakarta.validation.Valid;
 
 /**
- * 
- * 
- * 
- * @author freinicks
- * Esto es el controlador de productos y posea todos los metodos que recibiran las peticiones de la vista.
+ * @author Federico Nicolas Burgos Grupo 45 año 2023
+ * Esto es el controlador de productos y posea todos los metodos que recibiran las peticiones de la vista desde productos.
  * @version 1.0.4
  *
  */
@@ -40,58 +37,39 @@ public class ProductoController {
 	@Qualifier("productoServiceMysql")
 	private IProductoService iproduSer;
 	
-	//@Autowired
-	//private ICategoriaService icatGoria;
-	
-    //private Producto producto
-    
-    // Muestra la página con el listado de productos
+
+    /* Muestra la página con el listado de productos que tenga el atributo estado igueal a true*/
     @GetMapping("/listado")
-   // public String getListaProductoPage(Model model) {
-    public String listar(Model model) {
+    public String listarProductos(Model model) {
     	List<Producto>productos=iproduSer.listar();
         model.addAttribute("productos", productos);
         return "productos";
     }
    
-    // Muestra la página para agregar un nuevo producto
+    // Muestra el formulario para agregar un nuevo producto
     @GetMapping("/nuevo")
     public String getNuevoProductoPage(Model model) {
-    //	boolean edicion = false;
     	model.addAttribute("producto", new Producto());
-   // 	model.addAttribute("edicion", edicion);
     	return "nuevo_producto";
     }
-    
-    
-    /**@GetMapping("/empleados")
-    public String mostrarListaServicios(@RequestParam(value = "categoria", required = false) String categoria, Model model) {
-        List<Categoria> categoria1;
-        	categoria1 = icatGoria.getCategoria(categoria);
-        
-
-        return "productos";
-    }*/
+    /* Lista los productos segun su categoria y atributo estado igual a true.*/
     @GetMapping("/listado/{categoria}")
     public String getProductosPorCategoria(Model model,@PathVariable String categoria) {
-    	//String Categoria="Cuidado";
     	List<Producto>productos=iproduSer.getProductosPorCategoria(categoria);
     	model.addAttribute("productos", productos);
         return "productos";
     }
-    //
     
-    // Guarda un nuevo producto en la lista
+    /* Guarda un nuevo producto en la base de datos. Si los atributos son los incorrectos, muestra en la misma pagina que el formulario tiene
+     * erroes y deben replantearselos. Si no, llama al metodo save con el nuevo objeto "producto" como parametro.
+     * */
     @PostMapping("/guardar")
     public String getguardarProductoPage(@Valid @ModelAttribute("producto") Producto producto, BindingResult result) {
-    	
-    	
     	ModelAndView modelView = new ModelAndView("productos");
     	if(result.hasErrors()) {
     		modelView.setViewName("index");
    		modelView.addObject("producto", producto);
     		modelView=new ModelAndView("index");
-    		//return modelView;
     		return "nuevo_producto";
     	}else {  		
     		iproduSer.save(producto); 
@@ -99,19 +77,11 @@ public class ProductoController {
     	}    
     }
     
-    // Muestra la página para modificar un producto existente
+    /* Muestra la página para modificar un producto segun un id.*/
     @GetMapping("/modificar/{id}")
    public String getModificarProductoPage(Model model, @PathVariable long id) {
-    //	Producto productoEncontrado = productoRepository.findById(codigo);
-    	//boolean edicion= true;
     	Optional<Producto>producto=iproduSer.listarId(id);
-    	//decidir si quito este if.
-  //  	if (productoEncontrado == null) {
-  //          return "redirect:/productos/listado";
-   //     }
     	model.addAttribute("producto", producto);
-    	//model.addAttribute("edicion", edicion);
-
     	return"nuevo_producto";
     }
     
@@ -130,7 +100,7 @@ public class ProductoController {
     	}
     }
     
-    // Elimina un producto de la lista
+    // Elimina un producto de la lista segun su id.
      @GetMapping("/eliminar/{id}")
      public String eliminarProducto(@PathVariable(value="id") Long id) throws Exception {
     	 iproduSer.eliminar(id, false);

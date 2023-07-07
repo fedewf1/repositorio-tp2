@@ -11,11 +11,15 @@
 <body>
     <div class="container">
         <h1 class="mt-4" th:text="${edicion} ? 'Modificar Producto' : 'Nuevo Producto'"></h1>
-        <!-- Incluye el header -->
+        <!-- Header -->
         <header th:replace="~{layouts/header :: header}"></header>
-        <!-- Incluir la barra de navegación -->
+        <!-- Header -->
+        
+        <!-- Barra de navegación -->
         <nav th:replace="~{layouts/nav :: nav}"></nav>
-
+		<!-- Barra de navegación -->
+		
+		
         <div class="row">
             <div class="col-md-7">
             <!-- Formulario para crear o modificar un producto -->
@@ -77,6 +81,8 @@
                      <!-- Botón para enviar el formulario -->
                     <button type="submit" class="btn btn-primary" th:text="${edicion} ? 'Modificar' : 'Guardar'"></button>
                 </form>
+                
+                <!-- Formulario para crear o modificar un producto -->
             </div>
             <!-- Incluye al aside layouts -->
             <aside class="col-4" th:replace="~{layouts/aside :: aside}">
