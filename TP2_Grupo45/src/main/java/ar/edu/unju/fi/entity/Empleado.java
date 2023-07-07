@@ -22,7 +22,7 @@ import jakarta.validation.constraints.Size;
 /**
  * Hace referencia a un empleado
  * @author Jonathan R. Mascareño
- * @version 1.1 7/7/23
+ * @version 1.1 date: 7/7/23
  */
 
 @Component
