@@ -1,5 +1,5 @@
 package ar.edu.unju.fi.entity;
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,28 +8,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-//import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
-
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 
 
 
 /**
- * Representa un producto en el sistema.
+ * Representa a la entidad producto en el sistema. Que se relaciona con la entidad Categoria atravez de un @ManyToOne
  * @author Federico Nicolas Burgos
  * @Version 1.0.5
  */
@@ -40,15 +33,11 @@ public class Producto {
 
 	// Validación del campo nombre
 	@NotEmpty(message="el nombre no puede estar vacio.")
-
 	@Size(min=5, max=50,message="El nombre no puede ser inferior a 5 caracteres y mayor a 50.")
-
     @Column(name="produ_nombre", length=20, nullable=false)
 	private String nombre;
 	private int codigo;
     
-	
-	
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="produ_id")
@@ -59,37 +48,25 @@ public class Producto {
 	@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
     @Column(name="produ_precio")
 	private Double precio;
-
 	
 	// Validación del campo categoría
    // @NotBlank(message="Debe seleccion una categoria.")
    // @Column(name="produ_categoria", length=20, nullable=false)
-    /**
-     * La categoría del producto.
-     */
     //private String categoria;
     
     // Validación del campo descuento
     //@PositiveOrZero(message="El descuento debe ser un valor positivo")
-    //@NotNull(message = "El descuento no puede ser nulo")
-	@NotNull(message = "El precio no puede quedar vacio")
+    @NotNull(message = "El descuento no puede ser nulo")
+	//@NotNull(message = "El precio no puede quedar vacio")
 	//@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
     @Max(value=50, message="el descuento no puede ser mayor a 50")
 	@Min(value=0, message="el descuento no puede ser menor a 0")
-
     @Column(name="produ_descuento", length=20, nullable=false)
-    /**
-     * El descuento del producto.
-     */
-    private int descuento;
+    private Integer descuento;
     
  // Validación del campo nombreImagen
     @NotBlank(message="Debe seleccion una imagen.")
     @Column(name="produ_imamen", length= 200, nullable=false)
-    /**
-     * El nombre de la imagen del producto. La imagen debe estar en la carpeta static, dado que no realiza
-     * la subida del archivo.
-     */
     private String nombreImagen;
     
     @Column(name="produ_estado")
@@ -102,9 +79,9 @@ public class Producto {
      * La categoría a la cual pertenece el producto. Esta es una clase en la cual se intento con el material
      * brindado que tenga una relacion manytoone con producto.
      */
-  //  private Categoria categori;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="categoria_id")
+    @NotNull(message = "Debes seleccionar una categoria")
     private Categoria categoria;
     //@ManyToOne(mappedBy = "producto", cascade = CascadeType.ALL)
 	//private List<Categoria> catDisponible;
@@ -137,6 +114,9 @@ public class Producto {
     	super();
 	}
 
+    
+    
+    /*Métodos accesores (getters y setters) de la clase Producto*/
 	public int getCodigo() {
 		return codigo;
 	}
@@ -144,19 +124,11 @@ public class Producto {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	 /**
-     * Obtiene el ID del producto.
-     *
-     * @return el ID del producto
-     */
+
 	public Long getId() {
 		return id;
 	}
-	/**
-     * Establece el ID del producto.
-     *
-     * @param id el ID del producto
-     */
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -169,7 +141,7 @@ public class Producto {
 		this.estado = estado;
 	}
 
-	// Métodos accesores (getters y setters)
+	
     public String getNombre() {
 		return nombre;
 	}
@@ -185,19 +157,11 @@ public class Producto {
 	public void setProdu_id(long id) {
 		this.id = id;
 	}
-	/**
-     * Obtiene el precio del producto.
-     *
-     * @return el precio del producto
-     */
+
 	public Double getPrecio() {
 		return precio;
 	}
-	/**
-     * Establece el precio del producto.
-     *
-     * @param precio el precio del producto
-     */
+
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
@@ -210,11 +174,11 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	public int getDescuento() {
+	public Integer getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(int descuento) {
+	public void setDescuento(Integer descuento) {
 		this.descuento = descuento;
 	}
 	
@@ -240,11 +204,6 @@ public class Producto {
             return precio;
         }
     }
-    /**
-     * Obtiene la categoría del producto.
-     *
-     * @return la categoría del producto
-     */
 
 }
 

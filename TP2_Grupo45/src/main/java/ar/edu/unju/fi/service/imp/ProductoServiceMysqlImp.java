@@ -106,8 +106,8 @@ public class ProductoServiceMysqlImp implements IProductoService {
 		
 	}
 	@Override
-	public List<Producto> getProductosPorCategoria(String categoria) {
-        return productoRepository.findByEstadoAndCategoria(true, categoria);
+	public List<Producto> getProductosPorCategoria(String dia) {
+        return productoRepository.findByEstadoAndCategoria(true, dia);
     }
 	
 }

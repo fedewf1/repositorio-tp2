@@ -5,5 +5,8 @@ import java.util.List;
 import ar.edu.unju.fi.entity.Categoria;
 
 public interface ICategoriaService {
-	List<Categoria> getCategoria(String dia);
+	List<Categoria> getCategorias();
+	
+	
+	Categoria getCategoria();
 }

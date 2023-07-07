@@ -33,22 +33,22 @@
 				<ul class="dropdown-menu">
 					<li><a
 						class="dropdown-item btn btn-outline-primary filter-btn"
-						th:href="@{/productos/listado/}+'Cuidado'">Cuidado</a></li>
+						th:href="@{/productos/listado(dia='Cuidado')}">Cuidado</a></li>
 						<li><a
 							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado/}+'Alimento'">Alimento</a></li>
+							th:href="@{/productos/listado(dia='Alimento')}">Alimento</a></li>
 						<li><a
 							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado/}+'Ropa'">Ropa</a></li>
+							th:href="@{/productos/listado(dia='Ropa')}">Ropa</a></li>
 						<li><a
 							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado/}+'Correas'">Correas</a></li>
+							th:href="@{/productos/listado(dia='Correas')}">Correas</a></li>
 						<li><a
 							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado/}+'Camas y Colchones'">Camas y Colchones</a></li>
+							th:href="@{/productos/listado(dia='Camas,Colchones')}">Camas y Colchones</a></li>
 						<li><a
 							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado/}+'Jaulas,Casas,Peceras'">Jaulas,Casas,Peceras</a></li>
+							th:href="@{/productos/listado(dia='Jaulas,Casas,Peceras')}">Jaulas,Casas,Peceras</a></li>
 				</ul>
 		</div>
 		<!-- Lista de categorias -->		
@@ -63,7 +63,7 @@
 						<div class="card mb-4 productos-card-bordes shadow p-3 mb-5 bg-body-tertiary rounded">
 							<img class="card-img-top productos-cards-estilo mt-2" th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
 							<div class="card-body ">
-								<p class="card-title fw-bold fs-6" th:text="${produ.categoria}"></p>
+								<p class="card-title fw-bold fs-6" th:text="${produ.categoria.nombreCategoria}"></p>
 								<p class="card-text" th:text="${produ.nombre}"></p>
 								<p class="card-text">Precio: $<span th:text="${produ.precio}"></span>,</p>
 								<p class="card-text">Precio con descuento: $<span th:text="${produ.calcularDescuento()}"></span></p>
