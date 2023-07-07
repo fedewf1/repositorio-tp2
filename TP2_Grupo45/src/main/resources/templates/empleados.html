@@ -42,7 +42,7 @@
 										th:href="@{/empleados(dia='Martes')}">Martes</a></li>
 									<li><a
 										class="dropdown-item btn btn-outline-primary filter-btn"
-										th:href="@{/empleados(dia='Miercoles')}">Miercoles</a></li>
+										th:href="@{/empleados(dia='Miércoles')}">Miércoles</a></li>
 									<li><a
 										class="dropdown-item btn btn-outline-primary filter-btn"
 										th:href="@{/empleados(dia='Jueves')}">Jueves</a></li>
@@ -91,8 +91,8 @@
 										<div class="row">
 											<div class="col-md-3">
 												<h5 class="card-title fw-bold">Tipo de Servicio</h5>
-<!-- 												<p class="card-text" -->
-<!-- 													th:text="${empleado.servicio.nombreDeServicio}"></p> -->
+												<p class="card-text"
+													th:text="${empleado.servicio.nombreDeServicio}"></p>
 											</div>
 											<div class="col-md-3">
 												<h5 class="card-title fw-bold">Días Disponibles</h5>
@@ -109,7 +109,7 @@
 												<h5 class="card-title fw-bold">Acciones</h5>
 												<a
 													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
-													th:href="@{/empleado/modificar/{id}(id=${empleado.id})}"
+													th:href="@{/empleado/modificar/}+${empleado.id}"
 													role="button">Editar</a> <a
 													class="btn btn-sm btn-secondary text-light"
 													th:href="@{/empleado/eliminar/{id}(id=${empleado.id})}"

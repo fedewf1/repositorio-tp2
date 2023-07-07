@@ -82,6 +82,14 @@ public class EmpleadoServiceMysqlImp implements IEmpleadoService {
 	        return empleadoRepository.findByDiaDisponible(dia);
 	    }
 
-	   
+		@Override
+	    public List<Empleado> getEmpleadosPorEstado(boolean estado) {
+	        return empleadoRepository.findByEstado(estado);
+	    }
+
+	    @Override
+	    public List<Empleado> getEmpleadosPorDiaYEstado(String dia, boolean estado) {
+	        return empleadoRepository.findByDiaDisponibleAndEstado(dia, estado);
+	    }
 
 }

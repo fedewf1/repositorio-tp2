@@ -40,7 +40,9 @@ public class Producto {
 
 	// Validación del campo nombre
 	@NotEmpty(message="el nombre no puede estar vacio.")
+
 	@Size(min=5, max=50,message="El nombre no puede ser inferior a 5 caracteres y mayor a 50.")
+
     @Column(name="produ_nombre", length=20, nullable=false)
 	private String nombre;
 	private int codigo;
@@ -74,11 +76,12 @@ public class Producto {
 	//@DecimalMin(value = "1.0", message = "El precio debe ser un número positivo")
     @Max(value=50, message="el descuento no puede ser mayor a 50")
 	@Min(value=0, message="el descuento no puede ser menor a 0")
+
     @Column(name="produ_descuento", length=20, nullable=false)
     /**
      * El descuento del producto.
      */
-    private Integer descuento;
+    private int descuento;
     
  // Validación del campo nombreImagen
     @NotBlank(message="Debe seleccion una imagen.")
@@ -118,7 +121,9 @@ public class Producto {
      * @param nombreImagen el nombre de la imagen del producto
      * @param estado       el estado del producto
      */
+
     public Producto(String nombre, int codigo,long id, Double precio, Categoria categoria, Integer descuento, String nombreImagen, boolean estado) {
+
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -205,11 +210,11 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	public Integer getDescuento() {
+	public int getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(Integer descuento) {
+	public void setDescuento(int descuento) {
 		this.descuento = descuento;
 	}
 	

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Sucursales</title>
+<title>Servicios</title>
 <link th:rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
@@ -57,7 +57,7 @@
 
 											<div class="col-md-2 text-center">
 												<p class="card-title fw-bold">Provincia</p>
-												<p class="card-text" th:text="${sucu.provincia.nombre}"></p>
+												<p class="card-text" th:text="${sucu.provincia}"></p>
 											</div>
 
 										</div>
@@ -97,10 +97,10 @@
 												<p class="card-title fw-bold">Acciones</p>
 												<a
 													class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color"
-													th:href="@{/sucursales/modificar/}+${sucu.id}"
+													th:href="@{/sucursales/modificar/}+${sucu.codigoSucursal}"
 													role="button">Editar</a> <a
 													class="btn btn-sm btn-secondary text-light mt-2"
-													th:href="@{/sucursales/eliminar/}+${sucu.id}"
+													th:href="@{/sucursales/eliminar/}+${sucu.codigoSucursal}"
 													role="button">Eliminar</a>
 											</div>
 

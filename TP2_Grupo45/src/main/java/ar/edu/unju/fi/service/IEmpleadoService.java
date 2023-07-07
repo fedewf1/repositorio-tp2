@@ -12,8 +12,9 @@ public interface IEmpleadoService {
     void guardarEmpleado(Empleado empleado);
     void actualizarEmpleado(Empleado empleadoActualizado);
     void eliminarEmpleado(Empleado empleado);
-
     Empleado getEmpleado();
-	List<Empleado> getEmpleadosPorDia(String dia);
+	List<Empleado> getEmpleadosPorDia(String dia);//Metodo sin utilizar(?)
+    List<Empleado> getEmpleadosPorEstado(boolean estado);
+	List<Empleado> getEmpleadosPorDiaYEstado(String dia, boolean estado);
 	
 }

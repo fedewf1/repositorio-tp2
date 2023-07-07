@@ -3,25 +3,21 @@ package ar.edu.unju.fi.entity;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.Table;
-
 import jakarta.validation.constraints.NotBlank;
 
 
 
 /**
- * Representa un producto ofrecido
+ * Representa un consejo
  * @author Jonathan R. Mascareño
- * @version 1.0 date: 21/6/23
+ * @version 1.1 date: 7/7/23
  */
 
 
@@ -35,14 +31,14 @@ public class Consejo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	
-	
 	@NotBlank(message="El titulo no puede quedar vacio")
 	@Column(name = "cons_titulo")
 	private String titulo;
+	
 	@NotBlank(message="El contenido no puede quedar vacio")
 	@Column(name = "cons_contenido")
 	private String contenido;
+	
 	@NotBlank(message="El autor no puede quedar vacio")
 	@Column(name = "cons_autor")
 	private String autor;
@@ -65,6 +61,7 @@ public class Consejo {
 	 * @param contenido es el contenido que tendrá el consejo
 	 * @param autor es el autor del consejo
 	 * @param id es el numero de id que se asigna a cada consejo
+	 * @param estado valor booleano usado para realizar una eliminación logica
 	 * 
 	 */
 	

@@ -52,16 +52,34 @@ public class ConsejoController {
 	
 
 	@GetMapping("consejo/nuevo")
-	public String getFormularioNuevoConsejo(Model model) {
+	public ModelAndView getFormularioNuevoConsejo() {
 	    boolean editando = false;
-	    //ModelAndView mav = new ModelAndView("nuevo_consejo");
-	   // mav.addObject("consejo", consejoService.getConsejo()); 
-	    model.addAttribute("consejo", new Consejo());
-	   // mav.addObject("editando", editando);
-	    return "nuevo_consejo";
+	    ModelAndView mav = new ModelAndView("nuevo_consejo");
+	    mav.addObject("editando", editando);
+	    mav.addObject("consejo", consejoService.getConsejo()); 
+	   
+	    return mav;
 	}
 
 
+	/**Solicita la pagina de modificación segun un id*/
+	   @GetMapping("/consejo/modificar/{id}")
+	    public String mostrarFormularioModificarConsejo(Model model, @PathVariable(value = "id") Long id) {
+	        Consejo consejoEncontrado = consejoService.getConsejoById(id);
+	        boolean editando = true;
+	        if (consejoEncontrado == null) {
+	            return "redirect:/consejos";
+	        }
+	        model.addAttribute("consejo", consejoEncontrado);
+	        model.addAttribute("editando", editando);
+	        
+	        return "nuevo_consejo";
+	    }
+	
+	
+	
+	
+	
 	/**Solicitud para guardar lo rellenado en un formulario*/
 	@PostMapping("/consejo/guardar")
 	public ModelAndView getGuardarConsejoPage(@Valid @ModelAttribute("consejo") Consejo consejo, BindingResult result) {
@@ -79,19 +97,7 @@ public class ConsejoController {
 
 
 	
-	/**Solicita la pagina de modificación segun un id*/
-	   @GetMapping("/consejo/modificar/{id}")
-	    public String mostrarFormularioModificarConsejo(Model model, @PathVariable(value = "id") Long id) {
-	        Consejo consejoEncontrado = consejoService.getConsejoById(id);
-	        boolean editando = true;
-	        if (consejoEncontrado == null) {
-	            return "redirect:/consejos";
-	        }
-	        model.addAttribute("consejo", consejoEncontrado);
-	        model.addAttribute("editando", editando);
-	        
-	        return "nuevo_consejo";
-	    }
+
 
 	
 	/**Solicita la modificación de un consejo a traves de su id*/
