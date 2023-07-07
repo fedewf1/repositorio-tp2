@@ -1,32 +1,24 @@
 package ar.edu.unju.fi.entity;
 
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-//import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-//import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 import org.springframework.stereotype.Component;
-
-import jakarta.validation.constraints.NotBlank;
 //import jakarta.validation.constraints.DecimalMin;
 //import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+
 
 /**
- * Representa un servicio ofrecido
- * 
+ * Hace referencia a un servicio
  * @author Jonathan R. Mascareño
- * @version 1.0 date: 21/6/23
+ * @version 1.1 7/7/23
  */
 
 @Component
@@ -39,7 +31,7 @@ public class Servicio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "Debes seleccionar un servicio")
+	@NotEmpty(message = "El nombre no puede quedar vacio")
 	@Column(name = "serv_nombre")
 	private String nombreDeServicio;
 

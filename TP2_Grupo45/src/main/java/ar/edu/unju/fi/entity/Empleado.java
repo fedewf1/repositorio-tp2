@@ -3,7 +3,6 @@ package ar.edu.unju.fi.entity;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -14,12 +13,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
-//import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+
+/**
+ * Hace referencia a un empleado
+ * @author Jonathan R. Mascareño
+ * @version 1.1 7/7/23
+ */
 
 @Component
 @Entity
@@ -65,7 +69,7 @@ public class Empleado {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "serv_id")
-	@Valid
+	@NotNull(message = "Debes seleccionar un servicio")
 	private Servicio servicio;
 
 	public Empleado() {

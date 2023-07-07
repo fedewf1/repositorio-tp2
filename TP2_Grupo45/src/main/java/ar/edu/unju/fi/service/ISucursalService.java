@@ -2,9 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-
 import ar.edu.unju.fi.entity.Sucursal;
-
 
 /**
 * Servicio: Sucursal
@@ -20,14 +18,17 @@ import ar.edu.unju.fi.entity.Sucursal;
 
 public interface ISucursalService {
 	
-	List<Sucursal> getSucursales();
-    Sucursal getSucursalById(Long id);
-    void guardarSucursal(Sucursal sucursal);
-    void actualizarSucursal(Sucursal sucursalActualizada);
+    List<Sucursal> getSucursales();
+    
+    void guardarSucursal( Sucursal sucursal);
+    
+    void modificarSucursal(Sucursal sucursalA);
+    
+    //void eliminarSucursal(Integer codigoSucursal);
     void eliminarSucursal(Sucursal sucursal);
-
-    Sucursal getSucursal();
+    //Sucursal buscarSucursalPorCodigo(Integer codigoSucursal);
+	Sucursal getSucursal();
 	
-	
+	Sucursal buscarSucursalPorCodigo(Long id);
 }
 
