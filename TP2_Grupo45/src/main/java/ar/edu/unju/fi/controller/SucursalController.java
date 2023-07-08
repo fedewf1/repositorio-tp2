@@ -75,7 +75,7 @@ public class SucursalController {
         }
 
         sucursalService.guardarSucursal(sucursal);
-        return "redirect:/sucursales";
+        return "redirect:/sucursales/listado";
     }
 
 
@@ -118,7 +118,7 @@ public class SucursalController {
         Sucursal sucursal = sucursalService.getSucursalById(id);
         sucursal.setEstado(false); // Establece el estado como false en lugar de eliminar
         sucursalService.guardarSucursal(sucursal);
-        return "redirect:/sucursales";
+        return "redirect:/sucursales/listado";
     }
 
 }
