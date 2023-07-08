@@ -40,12 +40,14 @@ public class ProductoController {
 	private ICategoriaService icateSer;
 
     /* Muestra la página con el listado de productos que tenga el atributo estado igueal a true*/
-    @GetMapping("/listado")
-    public String listarProductos(Model model) {
-    	List<Producto>productos=iproduSer.listar();
-        model.addAttribute("productos", productos);
-        return "productos";
-    }
+	@GetMapping("/listado")
+	public String listarProductos(Model model) {
+	    List<Producto> productos = iproduSer.listar();
+	    List<Categoria> categorias = icateSer.getCategorias();
+	    model.addAttribute("productos", productos);
+	    model.addAttribute("categorias", categorias);
+	    return "productos";
+	}
    
     // Muestra el formulario para agregar un nuevo producto
     @GetMapping("/nuevo")
@@ -55,18 +57,20 @@ public class ProductoController {
     	return "nuevo_producto";
     }
     /* Lista los productos segun su categoria y atributo estado igual a true.*/
-    @GetMapping("/listado/")
-    public String mostrarListaServicios(@RequestParam(value = "dia", required = false) String dia, Model model) {
+    @GetMapping("/filtrar")
+    public String filtrarProductosPorCategoria(@RequestParam("categoria") Long categoriaId, Model model) {
         List<Producto> productos;
-
-       productos = iproduSer.getProductosPorCategoria(dia);
-       
-   
-       
-
-   
+        
+        if (categoriaId != null && categoriaId > 0) {
+            Categoria categoria = icateSer.getCategoriaPorId(categoriaId);
+            productos = iproduSer.getProductosPorCategoria(categoria);
+        } else {
+            productos = iproduSer.listar();
+        }
+        
+        List<Categoria> categorias = icateSer.getCategorias();
         model.addAttribute("productos", productos);
-
+        model.addAttribute("categorias", categorias);
         return "productos";
     }
     

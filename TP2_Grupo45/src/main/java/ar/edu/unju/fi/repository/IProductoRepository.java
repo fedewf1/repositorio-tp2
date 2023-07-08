@@ -21,6 +21,6 @@ public interface IProductoRepository extends CrudRepository<Producto,Long>{
 	
 	
 	//Busca y devuelve una lista de productos por categoría y estado.
-	List<Producto> findByEstadoAndCategoria(boolean estado, String categoria);
+	List<Producto> findByEstadoAndCategoria(boolean estado, Categoria categoria);
 	
 }
