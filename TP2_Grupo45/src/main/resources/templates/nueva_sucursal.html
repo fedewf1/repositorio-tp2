@@ -19,11 +19,18 @@
 			<section class="col-xl-8 col-lg-8">
 				<div class="mt-3">
 
-					<form action="#"
-						th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}"
+					<form 
+				
+
+						th:action="${edicion}?@{/sucursal/modificar}:@{/sucursal/guardar}"
 						th:object="${sucursal}" method="post"
 						class="text-dark formulario-servicios-dentro">
 
+
+						<div class="form-group" hidden>
+							<input type="number" class="form-control" id="codigo" name="codigo" th:field="*{id}">
+		
+							</div>
 						<!-- DIV CAMPO SUCURSAL -->
 						<div
 							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
@@ -92,16 +99,18 @@
 															<label for="provincia" class="form-label">Provincia</label>
 														</div>
 
-													<div class="col-lg-4 col-sm-6 align-self-center">
-															 <select
-															class="form-select" id="provincia" name="provincia">
-															<option value="">Seleccionar provincia</option>
-															<th:block th:each="provincia : ${provincias}">
-																<option th:value="${provincia}" th:text="${provincia}"></option>
-															</th:block>
-														</select>
-
-													</div>
+														<div class="col-lg-4 col-sm-6 align-self-center">
+															<select class="form-select" id="nombre"
+																name="provincia" th:field="*{provincia}">
+																<option value="">Seleccionar provincia</option>
+																<option th:each="provincia : ${provincias}"
+																	th:text="${provincia.nombre}"
+																	th:value="${provincia.id}"></option>
+															</select>
+															<p class="form-text text-danger"
+																th:if="${#fields.hasErrors('provincia')}"
+																th:errors="*{provincia}" />
+														</div>
 
 							
 								<!-- Otros campos del formulario -->
@@ -230,12 +239,37 @@
 
 							</div>
 
+							
+
 							<div class="col-lg-4 col-sm-6 align-self-center">
 								<input type="date" class="form-control" id="fechaInicio"
 									th:field="*{fechaInicio}">
 								<p class="form-text text-danger"
 									th:if="${#fields.hasErrors('fechaInicio')}"
 									th:errors="*{fechaInicio}" />
+							</div>
+
+						</div>
+
+							<!-- DIV CAMPO FECHA DE FINALIZACION -->
+
+							<div
+							class="row mb-md-1  col-lg-12  col-sm-12 justify-content-start ms-3 ">
+
+							<div class="col-lg-2 col-sm-3 align-self-start">
+								<label for="fechaInicio" class="form-label">Fecha de
+									finalización:</label>
+
+							</div>
+
+							
+
+							<div class="col-lg-4 col-sm-6 align-self-center">
+								<input type="date" class="form-control" id="fechaFin"
+									th:field="*{fechaFin}">
+								<p class="form-text text-danger"
+									th:if="${#fields.hasErrors('fechaFin')}"
+									th:errors="*{fechaFin}" />
 							</div>
 
 						</div>

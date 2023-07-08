@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unju.fi.entity.Empleado;
 import ar.edu.unju.fi.entity.Sucursal;
 
 /**
@@ -21,7 +22,12 @@ public interface ISucursalRepository extends CrudRepository<Sucursal,Long> {
 
 	public List<Sucursal> findByEstado(boolean estado);
 	
+	// 	List<Empleado> findByDiaDisponible(String dia);
+
+    // List<Sucursal> findByDiaDisponibleAndEstado(String dia, boolean estado);
+	
 	//Mostrar las sucursales que están entre una fechaInicio y fechaFin:
 	//public List<Sucursal> findByFechaInicioBetween(LocalDate fechaInicio, LocalDate fechaFin);
+	List<Sucursal> findByFechaInicioBetween(LocalDate fechaInicio, LocalDate fechaFin);
 
 }
