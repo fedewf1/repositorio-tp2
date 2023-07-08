@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-	<meta charset="UTF-8">
-	<title>Productos</title>
-	<!-- Enlace al archivo CSS de Bootstrap -->
-	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<!-- Enlace al archivo CSS personalizado -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+<meta charset="UTF-8">
+<title>Productos</title>
+<!-- Enlace al archivo CSS de Bootstrap -->
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<!-- Enlace al archivo CSS personalizado -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
 </head>
 
 <body>
@@ -15,61 +16,88 @@
 		<!-- Header -->
 		<header th:replace="~{layouts/header :: header}"></header>
 		<!-- Header -->
-		
+
 		<!-- Barra de navegación -->
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
 		<!-- Barra de navegación -->
-		
+
 		<!-- Boton crear un nuevo producto -->
-		<a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo Producto</a>
+		<a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo
+			Producto</a>
 		<!-- Boton crear un nuevo producto -->
-		
+
 		<!-- Lista de categorias -->
-		<div class="btn-group">
-			<button type="button"
-				class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color "
-				data-bs-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">Categorias</button>
-				<ul class="dropdown-menu">
-					<li><a
-						class="dropdown-item btn btn-outline-primary filter-btn"
-						th:href="@{/productos/listado(dia='Cuidado')}">Cuidado</a></li>
-						<li><a
-							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado(dia='Alimento')}">Alimento</a></li>
-						<li><a
-							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado(dia='Ropa')}">Ropa</a></li>
-						<li><a
-							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado(dia='Correas')}">Correas</a></li>
-						<li><a
-							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado(dia='Camas,Colchones')}">Camas y Colchones</a></li>
-						<li><a
-							class="dropdown-item btn btn-outline-primary filter-btn"
-							th:href="@{/productos/listado(dia='Jaulas,Casas,Peceras')}">Jaulas,Casas,Peceras</a></li>
-				</ul>
-		</div>
-		<!-- Lista de categorias -->		
-					
+
+		<form action="/productos/filtrar" method="GET">
+			<div class="form-group">
+				<label for="categoria">Categoría:</label> <select
+					class="form-control" id="categoria" name="categoria">
+					<option value="">Todas las categorías</option>
+					<th:block th:each="categoria : ${categorias}">
+						<option th:value="${categoria.idCategoria}" th:text="${categoria.nombreCategoria}"></option>
+					</th:block>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Filtrar</button>
+		</form>
+		<!-- 		<div class="btn-group"> -->
+		<!-- 			<button type="button" -->
+		<!-- 				class="btn btn-sm btn-outline-secondary formulario-consejo-boton-color " -->
+		<!-- 				data-bs-toggle="dropdown" aria-haspopup="true" -->
+		<!-- 				aria-expanded="false">Categorias</button> -->
+		<!-- 				<ul class="dropdown-menu"> -->
+		<!-- 					<li><a -->
+		<!-- 						class="dropdown-item btn btn-outline-primary filter-btn" -->
+		<!-- 						th:href="@{/productos/listado(dia='Cuidado')}">Cuidado</a></li> -->
+		<!-- 						<li><a -->
+		<!-- 							class="dropdown-item btn btn-outline-primary filter-btn" -->
+		<!-- 							th:href="@{/productos/listado(dia='Alimento')}">Alimento</a></li> -->
+		<!-- 						<li><a -->
+		<!-- 							class="dropdown-item btn btn-outline-primary filter-btn" -->
+		<!-- 							th:href="@{/productos/listado(dia='Ropa')}">Ropa</a></li> -->
+		<!-- 						<li><a -->
+		<!-- 							class="dropdown-item btn btn-outline-primary filter-btn" -->
+		<!-- 							th:href="@{/productos/listado(dia='Correas')}">Correas</a></li> -->
+		<!-- 						<li><a -->
+		<!-- 							class="dropdown-item btn btn-outline-primary filter-btn" -->
+		<!-- 							th:href="@{/productos/listado(dia='Camas,Colchones')}">Camas y Colchones</a></li> -->
+		<!-- 						<li><a -->
+		<!-- 							class="dropdown-item btn btn-outline-primary filter-btn" -->
+		<!-- 							th:href="@{/productos/listado(dia='Jaulas,Casas,Peceras')}">Jaulas,Casas,Peceras</a></li> -->
+		<!-- 				</ul> -->
+		<!-- 		</div> -->
+		<!-- Lista de categorias -->
+
 		<main>
 			<!-- Section listado de productos -->
 			<section>
 				<h2>Nuestros productos</h2>
-				
+
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-lg-4 col-md-6" th:each="produ : ${productos}">
-						<div class="card mb-4 productos-card-bordes shadow p-3 mb-5 bg-body-tertiary rounded">
-							<img class="card-img-top productos-cards-estilo mt-2" th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}" th:title="${produ.nombre}">
+					<div class="col-xs-12 col-sm-12 col-lg-4 col-md-6"
+						th:each="produ : ${productos}">
+						<div
+							class="card mb-4 productos-card-bordes shadow p-3 mb-5 bg-body-tertiary rounded">
+							<img class="card-img-top productos-cards-estilo mt-2"
+								th:src="@{${produ.nombreImagen}}" th:alt="${produ.nombre}"
+								th:title="${produ.nombre}">
 							<div class="card-body ">
-								<p class="card-title fw-bold fs-6" th:text="${produ.categoria.nombreCategoria}"></p>
+								<p class="card-title fw-bold fs-6"
+									th:text="${produ.categoria.nombreCategoria}"></p>
 								<p class="card-text" th:text="${produ.nombre}"></p>
-								<p class="card-text">Precio: $<span th:text="${produ.precio}"></span>,</p>
-								<p class="card-text">Precio con descuento: $<span th:text="${produ.calcularDescuento()}"></span></p>
-								<a class="btn btn-secondary" th:href="@{/productos/modificar/}+${produ.id}">Editar Producto</a> 
-								<a class="btn btn-danger mt-xl-0 mt-lg-0 mt-md-2" th:href="@{/productos/eliminar/}+${produ.id}">Eliminar Producto</a>
-								
+								<p class="card-text">
+									Precio: $<span th:text="${produ.precio}"></span>,
+								</p>
+								<p class="card-text">
+									Precio con descuento: $<span
+										th:text="${produ.calcularDescuento()}"></span>
+								</p>
+								<a class="btn btn-secondary"
+									th:href="@{/productos/modificar/}+${produ.id}">Editar
+									Producto</a> <a class="btn btn-danger mt-xl-0 mt-lg-0 mt-md-2"
+									th:href="@{/productos/eliminar/}+${produ.id}">Eliminar
+									Producto</a>
+
 							</div>
 						</div>
 					</div>
@@ -78,19 +106,21 @@
 
 			</section>
 			<!-- Section listado de productos -->
-			
+
 		</main>
 
 
 
 	</div>
 	<!-- Footer-->
-	<footer class="row fila justify-content-center" th:replace="~{layouts/footer :: footer}"></footer>
+	<footer class="row fila justify-content-center"
+		th:replace="~{layouts/footer :: footer}"></footer>
 	<!-- Footer-->
-	
+
 	<!-- JavaScript de Bootstrap -->
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<!-- JavaScript de Bootstrap -->
-	
+
 </body>
 </html>
