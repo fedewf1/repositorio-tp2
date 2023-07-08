@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.entity.Empleado;
 import ar.edu.unju.fi.entity.Producto;
+import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IConsejoService;
@@ -195,7 +196,9 @@ public class GestionController {
 		       return modelView;
 		     }
 
-		     String provinciaSeleccionada = sucursal.getProvincia();
+		     
+		     //cambiado de String a Provincia
+		     Provincia provinciaSeleccionada = sucursal.getProvincia();
 
 	
 		     sucursal.setProvincia(provinciaSeleccionada);
@@ -207,7 +210,7 @@ public class GestionController {
 
 		   @GetMapping("/gestion/sucursal/modificar/{id}")
 		   public String getModificarSucursalPage(Model model, @PathVariable(value="id") Long id) {
-		     Sucursal sucursalEncontrada = sucursalService.buscarSucursalPorCodigo(id);
+		     Sucursal sucursalEncontrada = sucursalService.getSucursalById(id);
 		     boolean edicion = true;
 		     model.addAttribute("sucursal", sucursalEncontrada);
 		     model.addAttribute("provincias", commonService.getProvincias());
@@ -215,18 +218,20 @@ public class GestionController {
 		     return "nueva_sucursal";
 		   }
 
+
 		   @PostMapping("/gestion/sucursal/modificar")
 		   public String modificaSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
-		     sucursalService.modificarSucursal(sucursal);
+		     sucursalService.actualizarSucursal(sucursal);
 		     return "redirect:/sucursales/listado";
 		   }
 
 		   @GetMapping("/gestion/sucursaleliminar/{id}")
 		   public String eliminarSucursal(@PathVariable(value="id") Long id) {
-		     Sucursal sucursal = sucursalService.buscarSucursalPorCodigo(id);
+		     Sucursal sucursal = sucursalService.getSucursalById(id);
 		     sucursalService.eliminarSucursal(sucursal);
 		     return "redirect:/sucursales/listado";
 		   }
+		   //Se cambia buscarSucursalPorId a getSucursalById
 		   /**######################################################################*/
 		   /**############################SECCION PRODUCTOS################################*/
 		   

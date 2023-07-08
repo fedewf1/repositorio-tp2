@@ -19,7 +19,7 @@ public class ListaSucursales {
 		sucursales = new ArrayList<Sucursal>();
 		
 		
-		sucursales.add(new Sucursal("Sucursal 1", "Av. General Belgrano 391","SALTA",LocalDate.of(2020,10,10),"4309784",15, "9:00am - 8:00pm","9:00am - 12:30pm",15,"sucursal1@gmail.com", false));		
+		// sucursales.add(new Sucursal("Sucursal 1", "Av. General Belgrano 391","SALTA",LocalDate.of(2020,10,10),"4309784",15, "9:00am - 8:00pm","9:00am - 12:30pm",15,"sucursal1@gmail.com", false));		
 //		sucursales.add(new Sucursal("Sucursal 2", "Av. Forestal 330",LocalDate.of(2017,10,10),"4309784",15, "9:00am - 8:00pm","Cerrado",10,"sucursal2@gmail.com"));
 		
 
